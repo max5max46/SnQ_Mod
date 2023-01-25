@@ -16,10 +16,9 @@ namespace Text_Based_RPG
         {
             Console.CursorVisible = false;
 
-            map.Draw();
-            player.Draw();
+            player.GetMap(map);
 
-            Console.ReadKey(true);
+            GameLoop();
         }
 
         static public ConsoleKey GetInput()
@@ -35,6 +34,15 @@ namespace Text_Based_RPG
                 map.Draw();
                 player.Draw();
                 pressedKey = GetInput();
+                ClearInputBuffer();
+            }
+        }
+
+        static void ClearInputBuffer()
+        {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
             }
         }
     }

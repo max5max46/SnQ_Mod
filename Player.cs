@@ -8,11 +8,12 @@ namespace Text_Based_RPG
 {
     internal class Player : GameCharacter
     {
-        public Player(int x, int y, Map map)
+        public Player(int x, int y)
         {
             this.x = x;
             this.y = y;
             character = '@';
+            color = ConsoleColor.Black;
         }
 
         public override void Update()
@@ -21,19 +22,19 @@ namespace Text_Based_RPG
             {
                 case (ConsoleKey.W):
                 case (ConsoleKey.UpArrow):
-                    //MoveUp();
+                    MoveUp();
                     break;
                 case (ConsoleKey.S):
                 case (ConsoleKey.DownArrow):
-                    //MoveDown();
+                    MoveDown();
                     break;
                 case (ConsoleKey.A):
                 case (ConsoleKey.LeftArrow):
-                    //MoveLeft();
+                    MoveLeft();
                     break;
                 case (ConsoleKey.D):
                 case (ConsoleKey.RightArrow):
-                    //MoveRight();
+                    MoveRight();
                     break;
             }
         }

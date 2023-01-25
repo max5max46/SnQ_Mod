@@ -11,14 +11,10 @@ namespace Text_Based_RPG
         protected Map map;
 
         protected char character;
+        protected ConsoleColor color;
 
         protected int x;
         protected int y;
-
-        public GameCharacter(Map map)
-        {
-            GetMap(map);
-        }
 
         public void GetMap(Map map)
         {
@@ -28,6 +24,7 @@ namespace Text_Based_RPG
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
+            Console.BackgroundColor = color;
             Console.Write(character);
         }
 
@@ -35,7 +32,23 @@ namespace Text_Based_RPG
 
         protected void MoveUp()
         {
-            if (true) { } ;
+            if (!map.IsWall(x, y - 1))
+                y -= 1;
+        }
+        protected void MoveDown()
+        {
+            if (!map.IsWall(x, y + 1))
+                y += 1;
+        }
+        protected void MoveLeft()
+        {
+            if (!map.IsWall(x - 1, y))
+                x -= 1;
+        }
+        protected void MoveRight()
+        {
+            if (!map.IsWall(x + 1, y))
+                x += 1;
         }
     }
 }
