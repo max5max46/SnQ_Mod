@@ -15,7 +15,7 @@ namespace Text_Based_RPG
         // * - forest
         // " - sand
 
-        char[,] map =
+        public char[,] map =
         {
             {'^','^','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
             {'^','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
@@ -49,31 +49,29 @@ namespace Text_Based_RPG
             {'`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','"','`','`','`','`','^','^','^','^','^','^','`','`','"','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','^','^','^','^'}
         };
 
-        public void Draw()
+        public void Draw(Render render)
         {
             for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    Console.SetCursorPosition(j, i);
                     switch (map[i, j])
                     {
                         case '`':
-                            Console.BackgroundColor = ConsoleColor.Green;
+                            render.ChangeSpace(map[i, j], ConsoleColor.Green, ConsoleColor.Black, j, i);
                             break;
                         case '"':
-                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            render.ChangeSpace(map[i, j], ConsoleColor.Yellow, ConsoleColor.Black, j, i);
                             break;
                         case '*':
-                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            render.ChangeSpace(map[i, j], ConsoleColor.DarkGreen, ConsoleColor.Black, j, i);
                             break;
                         case '^':
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            render.ChangeSpace(map[i, j], ConsoleColor.DarkGray, ConsoleColor.Black, j, i);
                             break;
                         case '~':
-                            Console.BackgroundColor = ConsoleColor.Blue;
+                            render.ChangeSpace(map[i, j], ConsoleColor.Blue, ConsoleColor.Black, j, i);
                             break;
                     }
-                    Console.Write(map[i, j]);
                 }
         }
 

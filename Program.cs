@@ -9,6 +9,7 @@ namespace Text_Based_RPG
     internal class Program
     {
         static Map map = new Map();
+        static Render render = new Render(map);
         static Player player = new Player(5, 5);
         public static ConsoleKey pressedKey;
 
@@ -31,9 +32,15 @@ namespace Text_Based_RPG
             while (true)
             {
                 player.Update();
-                map.Draw();
-                player.Draw();
+
+                map.Draw(render);
+
+                player.Draw(render);
+
+                render.Draw();
+
                 pressedKey = GetInput();
+
                 ClearInputBuffer();
             }
         }

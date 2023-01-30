@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         protected char character;
         protected ConsoleColor color;
 
-        protected int x;
+        public int x;
         protected int y;
 
         public void GetMap(Map map)
@@ -21,11 +21,9 @@ namespace Text_Based_RPG
             this.map = map;
         }
 
-        public void Draw()
+        public void Draw(Render render)
         {
-            Console.SetCursorPosition(x, y);
-            Console.BackgroundColor = color;
-            Console.Write(character);
+            render.ChangeSpace(character, ConsoleColor.Black, color, x, y);
         }
 
         public abstract void Update();

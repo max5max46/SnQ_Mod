@@ -13,7 +13,7 @@ namespace Text_Based_RPG
             this.x = x;
             this.y = y;
             character = '@';
-            color = ConsoleColor.Black;
+            color = ConsoleColor.White;
         }
 
         public override void Update()
