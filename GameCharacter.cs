@@ -9,24 +9,44 @@ namespace Text_Based_RPG
     internal abstract class GameCharacter
     {
         protected Map map;
+        protected AttackMap attackMap;
 
         protected char character;
         protected ConsoleColor color;
+        protected ConsoleColor attackColor;
+        protected ConsoleColor baseColor;
 
-        public int x;
+        protected int x;
         protected int y;
+
+        protected bool dead;
+
+        public GameCharacter()
+        {
+            dead = false;
+        }
 
         public void GetMap(Map map)
         {
             this.map = map;
         }
+        public void GetAttackMap(AttackMap attackMap)
+        {
+            this.attackMap = attackMap;
+        }
 
         public void Draw(Render render)
         {
             render.ChangeSpace(character, ConsoleColor.Black, color, x, y);
+
+            color = baseColor; // returns color to normal after attacking
         }
 
-        public abstract void Update();
+        public virtual void Update()
+        {
+            if (!dead)
+                dead = attackMap.IsAttack(x, y);
+        }
 
         protected void MoveUp()
         {
@@ -47,6 +67,12 @@ namespace Text_Based_RPG
         {
             if (!map.IsWall(x + 1, y))
                 x += 1;
+        }
+
+        protected void Attack()
+        {
+            color = attackColor;
+            attackMap.AddAttack(x, y);
         }
     }
 }

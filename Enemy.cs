@@ -6,16 +6,43 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    internal class Enemy : GameCharacter
+    internal abstract class EnemyClass : GameCharacter
     {
+        protected int moveCharge;
+        protected int moveAt;
+
+        public void Constructor(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+            moveCharge = 0;
+            color = ConsoleColor.Red;
+            baseColor = color;
+        }
+
         public override void Update()
         {
+            base.Update();
+            if (dead)
+                return;
+            moveCharge++;
             MoveAI();
         }
 
-        public void MoveAI()
+        protected virtual void MoveAI()
         {
+            if (MoveChargeCheck())
+                return;
+        }
 
+        protected bool MoveChargeCheck()
+        {
+            if (moveCharge >= moveAt)
+            {
+                moveCharge = 0;
+                return true;
+            }
+            return false;
         }
     }
 }

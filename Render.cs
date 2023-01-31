@@ -22,12 +22,18 @@ namespace Text_Based_RPG
         public Render(Map map)
         {
             this.map = map;
+
             CharBufferPrev = new char[map.map.GetLength(0), map.map.GetLength(1)];
             CharBufferNext = new char[map.map.GetLength(0), map.map.GetLength(1)];
+
             BGColourPrev = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
             BGColourNext = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
+
             FGColourPrev = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
             FGColourNext = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
+
+            Console.WindowHeight = map.map.GetLength(0) + 1;
+            Console.WindowWidth = map.map.GetLength(1) * 2;
         }
 
         public void ChangeSpace(char NewChar, ConsoleColor NewBGColour, ConsoleColor NewFGColour, int x, int y)
@@ -44,7 +50,12 @@ namespace Text_Based_RPG
                 {
                     if (CharBufferPrev[i, j] != CharBufferNext[i, j] || BGColourPrev[i, j] != BGColourPrev[i, j] || FGColourPrev[i, j] != FGColourNext[i, j])
                     {
-                        Console.SetCursorPosition(j, i);
+                        Console.SetCursorPosition(j * 2, i);
+                        Console.BackgroundColor = BGColourNext[i, j];
+                        Console.ForegroundColor = FGColourNext[i, j];
+                        Console.Write(CharBufferNext[i, j]);
+
+                        Console.SetCursorPosition(j * 2 + 1, i);
                         Console.BackgroundColor = BGColourNext[i, j];
                         Console.ForegroundColor = FGColourNext[i, j];
                         Console.Write(CharBufferNext[i, j]);
