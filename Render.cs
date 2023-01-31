@@ -46,6 +46,7 @@ namespace Text_Based_RPG
         public void Draw()
         {
             for (int i = 0; i < CharBufferPrev.GetLength(0); i++)
+            { 
                 for (int j = 0; j < CharBufferPrev.GetLength(1); j++)
                 {
                     if (CharBufferPrev[i, j] != CharBufferNext[i, j] || BGColourPrev[i, j] != BGColourPrev[i, j] || FGColourPrev[i, j] != FGColourNext[i, j])
@@ -54,14 +55,14 @@ namespace Text_Based_RPG
                         Console.BackgroundColor = BGColourNext[i, j];
                         Console.ForegroundColor = FGColourNext[i, j];
                         Console.Write(CharBufferNext[i, j]);
-
-                        Console.SetCursorPosition(j * 2 + 1, i);
-                        Console.BackgroundColor = BGColourNext[i, j];
-                        Console.ForegroundColor = FGColourNext[i, j];
                         Console.Write(CharBufferNext[i, j]);
                     }
-                        
+
                 }
+            }
+            CharBufferPrev = CharBufferNext;
+            BGColourPrev = BGColourNext;
+            FGColourPrev = FGColourNext;
         }
     }
 }
