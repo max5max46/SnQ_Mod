@@ -56,13 +56,13 @@ namespace Text_Based_RPG
                         Console.ForegroundColor = FGColourNext[i, j];
                         Console.Write(CharBufferNext[i, j]);
                         Console.Write(CharBufferNext[i, j]);
-                    }
 
+                        CharBufferPrev[i, j] = CharBufferNext[i, j];
+                        BGColourPrev[i, j] = BGColourNext[i, j];
+                        FGColourPrev[i, j] = FGColourNext[i, j];
+                    }
                 }
             }
-            CharBufferPrev = CharBufferNext;
-            BGColourPrev = BGColourNext;
-            FGColourPrev = FGColourNext;
         }
     }
 }

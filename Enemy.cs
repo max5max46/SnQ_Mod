@@ -18,22 +18,19 @@ namespace Text_Based_RPG
             moveCharge = 0;
             color = ConsoleColor.Red;
             baseColor = color;
+            attackColor = ConsoleColor.DarkBlue;
         }
 
-        public override void Update()
+        public override void Update(Render render)
         {
-            base.Update();
+            base.Update(render);
             if (dead)
                 return;
             moveCharge++;
             MoveAI();
         }
 
-        protected virtual void MoveAI()
-        {
-            if (MoveChargeCheck())
-                return;
-        }
+        protected abstract void MoveAI();
 
         protected bool MoveChargeCheck()
         {

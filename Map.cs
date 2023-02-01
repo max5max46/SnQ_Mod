@@ -96,5 +96,27 @@ namespace Text_Based_RPG
                 return true;
             }
         }
+
+        public void FillSpace(int x, int y, Render render)
+        {
+            switch (map[y, x])
+            {
+                case '`':
+                    render.ChangeSpace(map[y, x], ConsoleColor.Green, ConsoleColor.Black, x, y);
+                    break;
+                case '"':
+                    render.ChangeSpace(map[y, x], ConsoleColor.Yellow, ConsoleColor.Black, x, y);
+                    break;
+                case '*':
+                    render.ChangeSpace(map[y, x], ConsoleColor.DarkGreen, ConsoleColor.Black, x, y);
+                    break;
+                case '^':
+                    render.ChangeSpace(map[y, x], ConsoleColor.DarkGray, ConsoleColor.Black, x, y);
+                    break;
+                case '~':
+                    render.ChangeSpace(map[y, x], ConsoleColor.Blue, ConsoleColor.Black, x, y);
+                    break;
+            }
+        }
     }
 }

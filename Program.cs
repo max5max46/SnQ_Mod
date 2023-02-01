@@ -42,9 +42,9 @@ namespace Text_Based_RPG
             {
                 attack.Update();
 
-                player.Update();
+                player.Update(render);
 
-                enemy1.Update();
+                enemy1.Update(render);
 
                 map.Draw(render);
                 player.Draw(render);
@@ -62,6 +62,11 @@ namespace Text_Based_RPG
             {
                 Console.ReadKey(true);
             }
+        }
+
+        public static int[] GetPlayerPos()
+        {
+            return player.GetPos();
         }
     }
 }

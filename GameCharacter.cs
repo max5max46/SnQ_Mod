@@ -42,10 +42,12 @@ namespace Text_Based_RPG
             color = baseColor; // returns color to normal after attacking
         }
 
-        public virtual void Update()
+        public virtual void Update(Render render)
         {
             if (!dead)
+            {
                 dead = attackMap.IsAttack(x, y);
+            }
         }
 
         protected void MoveUp()
@@ -73,6 +75,11 @@ namespace Text_Based_RPG
         {
             color = attackColor;
             attackMap.AddAttack(x, y);
+        }
+
+        public int[] GetPos()
+        {
+            return new int[] { x, y };
         }
     }
 }

@@ -14,12 +14,13 @@ namespace Text_Based_RPG
             this.y = y;
             character = '@';
             color = ConsoleColor.White;
+            attackColor = ConsoleColor.Magenta;
             baseColor = color;
         }
 
-        public override void Update()
+        public override void Update(Render render)
         {
-            base.Update();
+            base.Update(render);
             if (dead)
                 return;
 

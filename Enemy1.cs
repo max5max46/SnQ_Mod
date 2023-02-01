@@ -18,8 +18,18 @@ namespace Text_Based_RPG
 
         protected override void MoveAI()
         {
-            base.MoveAI();
+            if (MoveChargeCheck())
+                return;
 
+            //attack the player
+            int[] playerPos = Program.GetPlayerPos();
+            if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
+            {
+                Attack();
+                return;
+            }
+
+            // or move
             Random random = new Random();
             switch(random.Next(4))
             {
