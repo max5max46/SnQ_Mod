@@ -81,5 +81,9 @@ namespace Text_Based_RPG
         {
             return new int[] { x, y };
         }
+        public bool GetDead()
+        {
+            return dead;
+        }
     }
 }

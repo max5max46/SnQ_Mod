@@ -24,6 +24,11 @@ namespace Text_Based_RPG
             if (dead)
                 return;
 
+            DetectInput();
+        }
+
+        protected void DetectInput()
+        {
             switch (Program.pressedKey)
             {
                 case ConsoleKey.W:
@@ -45,6 +50,16 @@ namespace Text_Based_RPG
                 case ConsoleKey.Spacebar:
                     Attack();
                     break;
+            }
+        }
+
+        public void CheckForDeath()
+        {
+            if (!dead)
+            {
+                dead = attackMap.IsAttack(x, y);
+                if (dead)
+                    return;
             }
         }
     }

@@ -9,8 +9,8 @@ namespace Text_Based_RPG
     internal class Program
     {
         static Map map = new Map();
-        static AttackMap attack = new AttackMap(map);
         static Render render = new Render(map);
+        static AttackMap attack = new AttackMap(map, render);
         static Player player = new Player(5, 5);
 
         // enemies
@@ -40,15 +40,19 @@ namespace Text_Based_RPG
         {
             while (true)
             {
+                if (player.GetDead())
+                    break;
+
                 attack.Update();
 
                 player.Update(render);
-
                 enemy1.Update(render);
+                player.CheckForDeath();
 
                 map.Draw(render);
                 player.Draw(render);
                 enemy1.Draw(render);
+                attack.Draw();
                 render.Draw();
 
                 ClearInputBuffer();

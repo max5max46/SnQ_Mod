@@ -11,19 +11,25 @@ namespace Text_Based_RPG
         bool[,] attacks;
 
         Map map;
+        Render render;
 
-        public AttackMap(Map map)
+        public AttackMap(Map map, Render render)
         {
             this.map = map;
+            this.render = render;
             attacks = new bool[map.map.GetLength(0), map.map.GetLength(1)];
         }
 
         public void AddAttack(int x, int y)
         {
-            attacks[y + 1, x] = true;
-            attacks[y - 1, x] = true;
-            attacks[y, x + 1] = true;
-            attacks[y, x - 1] = true;
+            if (y != 0)
+                attacks[y - 1, x] = true;
+            if (y != map.map.GetLength(0) - 1)
+                attacks[y + 1, x] = true;
+            if (x != 0)
+                attacks[y, x - 1] = true;
+            if (x != map.map.GetLength(1) - 1)
+                attacks[y, x + 1] = true;
         }
 
         public bool IsAttack(int x, int y)
@@ -36,6 +42,20 @@ namespace Text_Based_RPG
             for (int i = 0; i < attacks.GetLength(0); i++)
                 for (int j = 0; j < attacks.GetLength(1); j++)
                     attacks[i, j] = false;
+        }
+
+        public void Draw()
+        {
+            for (int i = 0; i < attacks.GetLength(0); i++)
+            {
+                for (int j = 0; j < attacks.GetLength(1); j++)
+                {
+                    if (attacks[i, j] == true)
+                    {
+                        render.ChangeSpace('.', ConsoleColor.DarkRed, ConsoleColor.DarkRed, j, i);
+                    }
+                }
+            } 
         }
     }
 }
