@@ -56,11 +56,7 @@ namespace Text_Based_RPG
         public void CheckForDeath()
         {
             if (!dead)
-            {
                 dead = attackMap.IsAttack(x, y);
-                if (dead)
-                    return;
-            }
         }
     }
 }
