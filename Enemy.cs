@@ -11,10 +11,8 @@ namespace Text_Based_RPG
         protected int moveCharge;
         protected int moveAt;
 
-        public void Constructor(int x, int y)
+        public EnemyClass(int x, int y, int health) : base(x, y, health)
         {
-            this.x = x;
-            this.y = y;
             moveCharge = 0;
             color = ConsoleColor.Red;
             baseColor = color;

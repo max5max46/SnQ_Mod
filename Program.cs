@@ -9,12 +9,13 @@ namespace Text_Based_RPG
     internal class Program
     {
         static Map map = new Map();
-        static Render render = new Render(map);
+        static Player player = new Player(5, 5, 10);
+        static PlayerUI playerUI = new PlayerUI(player);
+        static Render render = new Render(map, playerUI);
         static AttackMap attack = new AttackMap(map, render);
-        static Player player = new Player(5, 5);
 
         // enemies
-        static Enemy1 enemy1 = new Enemy1(7, 7);
+        static Enemy1 enemy1 = new Enemy1(7, 7, 3);
 
         public static ConsoleKey pressedKey;
 
@@ -43,6 +44,7 @@ namespace Text_Based_RPG
                 if (player.GetDead())
                     break;
 
+                playerUI.Draw(map);
                 attack.Update();
 
                 player.Update(render);
@@ -57,6 +59,8 @@ namespace Text_Based_RPG
 
                 ClearInputBuffer();
                 pressedKey = GetInput();
+
+                playerUI.Draw(map);
             }
         }
 

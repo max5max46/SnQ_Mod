@@ -19,7 +19,7 @@ namespace Text_Based_RPG
 
         Map map;
 
-        public Render(Map map)
+        public Render(Map map, PlayerUI playerUI)
         {
             this.map = map;
 
@@ -32,7 +32,7 @@ namespace Text_Based_RPG
             FGColourPrev = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
             FGColourNext = new ConsoleColor[map.map.GetLength(0), map.map.GetLength(1)];
 
-            Console.WindowHeight = map.map.GetLength(0) + 1;
+            Console.WindowHeight = map.map.GetLength(0) + playerUI.UIText.GetLength(0) + 1;
             Console.WindowWidth = map.map.GetLength(1) * 2;
         }
 

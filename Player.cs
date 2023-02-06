@@ -8,10 +8,8 @@ namespace Text_Based_RPG
 {
     internal class Player : GameCharacter
     {
-        public Player(int x, int y) : base()
+        public Player(int x, int y, int health) : base(x, y, health)
         {
-            this.x = x;
-            this.y = y;
             character = '@';
             color = ConsoleColor.White;
             attackColor = ConsoleColor.Magenta;
@@ -55,8 +53,14 @@ namespace Text_Based_RPG
 
         public void CheckForDeath()
         {
-            if (!dead)
-                dead = attackMap.IsAttack(x, y);
+            if (!dead && attackMap.IsAttack(x, y))
+            {
+                health--;
+                if (health <= 0)
+                {
+                    dead = true;
+                }
+            }
         }
     }
 }

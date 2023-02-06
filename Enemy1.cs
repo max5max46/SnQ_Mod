@@ -8,9 +8,9 @@ namespace Text_Based_RPG
 {
     internal class Enemy1 : EnemyClass
     {
-        public Enemy1(int x, int y) : base()
+        public Enemy1(int x, int y, int health) : base(x, y, health)
         {
-            Constructor(x, y);
+            this.health = health;
 
             character = '0';
             moveAt = 2;
@@ -21,7 +21,7 @@ namespace Text_Based_RPG
             if (MoveChargeCheck())
                 return;
 
-            //attack the player
+            // attack the player
             int[] playerPos = Program.GetPlayerPos();
             if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
             {

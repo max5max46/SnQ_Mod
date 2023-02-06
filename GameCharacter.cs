@@ -19,10 +19,14 @@ namespace Text_Based_RPG
         protected int x;
         protected int y;
 
+        protected int health;
         protected bool dead;
 
-        public GameCharacter()
+        public GameCharacter(int x, int y, int health)
         {
+            this.x = x;
+            this.y = y;
+            this.health = health;
             dead = false;
         }
 
@@ -44,9 +48,13 @@ namespace Text_Based_RPG
 
         public virtual void Update(Render render)
         {
-            if (!dead)
+            if (!dead && attackMap.IsAttack(x, y))
             {
-                dead = attackMap.IsAttack(x, y);
+                health--;
+                if (health <= 0)
+                {
+                    dead = true;
+                }
             }
         }
 
@@ -84,6 +92,10 @@ namespace Text_Based_RPG
         public bool GetDead()
         {
             return dead;
+        }
+        public int GetHealth()
+        {
+            return health;
         }
     }
 }
