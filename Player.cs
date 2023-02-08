@@ -27,7 +27,7 @@ namespace Text_Based_RPG
 
         protected void DetectInput()
         {
-            switch (Program.pressedKey)
+            switch (GameManager.pressedKey)
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    internal class Program
+    internal class EnemyType
     {
-        static void Main()
-        {
-            GameManager.StartGame();
-        }
+        public enum Types
+	    {
+            
+	    }
+
+        public void 
     }
 }

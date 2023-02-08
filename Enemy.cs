@@ -11,6 +11,8 @@ namespace Text_Based_RPG
         protected int moveCharge;
         protected int moveAt;
 
+
+
         public EnemyClass(int x, int y, int health) : base(x, y, health)
         {
             moveCharge = 0;
@@ -28,7 +30,10 @@ namespace Text_Based_RPG
             MoveAI();
         }
 
-        protected abstract void MoveAI();
+        protected void MoveAI()
+        {
+
+        }
 
         protected bool MoveChargeCheck()
         {
@@ -38,6 +43,40 @@ namespace Text_Based_RPG
                 return true;
             }
             return false;
+        }
+
+        // Movement behaviours
+
+        protected void RandomMovement()
+        {
+            if (MoveChargeCheck())
+                return;
+
+            // attack the player
+            int[] playerPos = GameManager.GetPlayerPos();
+            if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
+            {
+                Attack();
+                return;
+            }
+
+            // or move
+            Random random = new Random();
+            switch (random.Next(4))
+            {
+                case 0:
+                    MoveUp();
+                    break;
+                case 1:
+                    MoveLeft();
+                    break;
+                case 2:
+                    MoveDown();
+                    break;
+                case 3:
+                    MoveRight();
+                    break;
+            }
         }
     }
 }
