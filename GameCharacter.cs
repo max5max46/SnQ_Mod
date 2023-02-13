@@ -8,16 +8,18 @@ namespace Text_Based_RPG
 {
     internal abstract class GameCharacter
     {
+        // attack shape constants
+        public const int CROSS_ATTACK = 0;
+        public const int SPACE_ATTACK = 1;
+
         protected Map map;
         protected AttackMap attackMap;
 
         protected char character;
-        protected ConsoleColor color;
-        protected ConsoleColor attackColor;
-        protected ConsoleColor baseColor;
 
-        protected int x;
-        protected int y;
+        protected ConsoleColor color, attackColor, baseColor;
+
+        protected int x, y;
 
         protected int health;
         protected bool dead;
@@ -79,10 +81,10 @@ namespace Text_Based_RPG
                 x += 1;
         }
 
-        protected void Attack()
+        protected void Attack(int attackShape)
         {
             color = attackColor;
-            attackMap.AddAttack(x, y);
+            attackMap.AddAttack(x, y, attackShape);
         }
 
         public int[] GetPos()

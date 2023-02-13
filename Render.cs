@@ -8,14 +8,11 @@ namespace Text_Based_RPG
 {
     internal class Render
     {
-        char[,] CharBufferPrev;
-        char[,] CharBufferNext;
+        char[,] CharBufferPrev, CharBufferNext;
 
-        ConsoleColor[,] BGColourPrev;
-        ConsoleColor[,] BGColourNext;
+        ConsoleColor[,] BGColourPrev, BGColourNext;
 
-        ConsoleColor[,] FGColourPrev;
-        ConsoleColor[,] FGColourNext;
+        ConsoleColor[,] FGColourPrev, FGColourNext;
 
         Map map;
 

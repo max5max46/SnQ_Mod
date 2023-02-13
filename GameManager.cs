@@ -15,7 +15,8 @@ namespace Text_Based_RPG
         static AttackMap attack = new AttackMap(map, render);
 
         // enemies
-        static Enemy1 enemy1 = new Enemy1(7, 7, 3);
+        static EnemyClass enemy1 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Enemy1, 10, 10);
+        static EnemyClass enemy2 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Enemy2, 55, 20);
 
         public static ConsoleKey pressedKey;
 
@@ -28,6 +29,8 @@ namespace Text_Based_RPG
 
             enemy1.GetMap(map);
             enemy1.GetAttackMap(attack);
+            enemy2.GetMap(map);
+            enemy2.GetAttackMap(attack);
 
             GameLoop();
         }
@@ -49,11 +52,13 @@ namespace Text_Based_RPG
 
                 player.Update(render);
                 enemy1.Update(render);
+                enemy2.Update(render);
                 player.CheckForDeath();
 
                 map.Draw(render);
                 player.Draw(render);
                 enemy1.Draw(render);
+                enemy2.Draw(render);
                 attack.Draw();
                 render.Draw();
 

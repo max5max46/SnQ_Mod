@@ -45,10 +45,10 @@
   <ItemGroup>
     <Compile Include="AttackMap.cs" />
     <Compile Include="Enemy.cs" />
-    <Compile Include="Enemy1.cs" />
     <Compile Include="EnemyType.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerUI.cs" />

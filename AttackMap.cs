@@ -20,16 +20,19 @@ namespace Text_Based_RPG
             attacks = new bool[map.map.GetLength(0), map.map.GetLength(1)];
         }
 
-        public void AddAttack(int x, int y)
+        public void AddAttack(int x, int y, int attackShape)
         {
-            if (y != 0)
-                attacks[y - 1, x] = true;
-            if (y != map.map.GetLength(0) - 1)
-                attacks[y + 1, x] = true;
-            if (x != 0)
-                attacks[y, x - 1] = true;
-            if (x != map.map.GetLength(1) - 1)
-                attacks[y, x + 1] = true;
+            switch (attackShape)
+            {
+                case 0:
+                    crossAttack(x, y);
+                    break;
+                case 1:
+                    spaceAttack(x, y);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public bool IsAttack(int x, int y)
@@ -56,6 +59,24 @@ namespace Text_Based_RPG
                     }
                 }
             } 
+        }
+
+        // attack shapes
+
+        private void crossAttack(int x, int y)
+        {
+            if (y != 0)
+                attacks[y - 1, x] = true;
+            if (y != map.map.GetLength(0) - 1)
+                attacks[y + 1, x] = true;
+            if (x != 0)
+                attacks[y, x - 1] = true;
+            if (x != map.map.GetLength(1) - 1)
+                attacks[y, x + 1] = true;
+        }
+        private void spaceAttack(int x, int y)
+        {
+            attacks[y, x] = true;
         }
     }
 }

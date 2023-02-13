@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    internal abstract class EnemyClass : GameCharacter
+    internal class EnemyClass : GameCharacter
     {
-        protected int moveCharge;
-        protected int moveAt;
+        // movement behaviour constants
+        public const int BEHAVIOUR_RANDOM = 0;
+        public const int BEHAVIOUR_CHASE = 1;
 
+        private int moveCharge;
+        private int moveAt;
+        private int moveBehaviour;
 
-
-        public EnemyClass(int x, int y, int health) : base(x, y, health)
+        public EnemyClass(int x, int y, int health, int moveAt, int moveBehaviour, char character) : base(x, y, health)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
             baseColor = color;
             attackColor = ConsoleColor.DarkBlue;
+            this.moveAt = moveAt;
+            this.moveBehaviour = moveBehaviour;
+            this.character = character;
         }
 
         public override void Update(Render render)
@@ -32,7 +38,17 @@ namespace Text_Based_RPG
 
         protected void MoveAI()
         {
-
+            switch (moveBehaviour)
+            {
+                case BEHAVIOUR_RANDOM:
+                    RandomMovement();
+                    break;
+                case BEHAVIOUR_CHASE:
+                    ChaseMovement();
+                    break;
+                default:
+                    break;
+            }
         }
 
         protected bool MoveChargeCheck()
@@ -49,14 +65,14 @@ namespace Text_Based_RPG
 
         protected void RandomMovement()
         {
-            if (MoveChargeCheck())
+            if (!MoveChargeCheck())
                 return;
 
             // attack the player
             int[] playerPos = GameManager.GetPlayerPos();
             if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
             {
-                Attack();
+                Attack(CROSS_ATTACK);
                 return;
             }
 
@@ -77,6 +93,31 @@ namespace Text_Based_RPG
                     MoveRight();
                     break;
             }
+        }
+
+        protected void ChaseMovement()
+        {
+            if (!MoveChargeCheck())
+                return;
+
+            // attack the player
+            int[] playerPos = GameManager.GetPlayerPos();
+            if (x == playerPos[0] && y == playerPos[1])
+            {
+                Attack(SPACE_ATTACK);
+                dead = true;
+                return;
+            }
+
+            // or move
+            if (playerPos[0] > x)
+                MoveRight();
+            else if (playerPos[0] < x)
+                MoveLeft();
+            else if (playerPos[1] > y)
+                MoveDown();
+            else if (playerPos[1] < y)
+                MoveUp();
         }
     }
 }
