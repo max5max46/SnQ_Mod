@@ -20,9 +20,11 @@ namespace Text_Based_RPG
         protected ConsoleColor color, attackColor, baseColor;
 
         protected int x, y;
-
+        protected int attackShape;
         protected int health;
+
         protected bool dead;
+        protected bool kamikaze;
 
         public GameCharacter(int x, int y, int health)
         {
@@ -55,36 +57,54 @@ namespace Text_Based_RPG
                 health--;
                 if (health <= 0)
                 {
-                    dead = true;
+                    Die();
                 }
             }
         }
 
-        protected void MoveUp()
+        protected bool MoveUp()
         {
             if (!map.IsWall(x, y - 1))
+            {
                 y -= 1;
+                return false;
+            }
+            return map.IsWall(x, y - 1);
         }
-        protected void MoveDown()
+        protected bool MoveDown()
         {
             if (!map.IsWall(x, y + 1))
+            {
                 y += 1;
+                return false;
+            }
+            return map.IsWall(x, y + 1);
         }
-        protected void MoveLeft()
+        protected bool MoveLeft()
         {
             if (!map.IsWall(x - 1, y))
+            {
                 x -= 1;
+                return false;
+            }
+            return map.IsWall(x - 1, y);
         }
-        protected void MoveRight()
+        protected bool MoveRight()
         {
             if (!map.IsWall(x + 1, y))
+            {
                 x += 1;
+                return false;
+            }
+            return map.IsWall(x - 1, y);
         }
 
         protected void Attack(int attackShape)
         {
             color = attackColor;
             attackMap.AddAttack(x, y, attackShape);
+            if (kamikaze)
+                Die(); ;
         }
 
         public int[] GetPos()
@@ -98,6 +118,11 @@ namespace Text_Based_RPG
         public int GetHealth()
         {
             return health;
+        }
+
+        protected virtual void Die()
+        {
+            dead = true;
         }
     }
 }

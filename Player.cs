@@ -8,8 +8,6 @@ namespace Text_Based_RPG
 {
     internal class Player : GameCharacter
     {
-        private int attackShape;
-
         public Player(int x, int y, int health) : base(x, y, health)
         {
             character = '@';
@@ -17,6 +15,7 @@ namespace Text_Based_RPG
             attackColor = ConsoleColor.Magenta;
             baseColor = color;
             attackShape = GameCharacter.CROSS_ATTACK;
+            kamikaze = false;
         }
 
         public override void Update(Render render)

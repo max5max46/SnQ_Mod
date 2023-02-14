@@ -15,8 +15,8 @@ namespace Text_Based_RPG
         static AttackMap attack = new AttackMap(map, render);
 
         // enemies
-        static EnemyClass enemy1 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Enemy1, 10, 10);
-        static EnemyClass enemy2 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Enemy2, 55, 20);
+        static EnemyClass enemy1 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 10);
+        static EnemyClass enemy2 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Charger, 55, 20);
 
         public static ConsoleKey pressedKey;
 
@@ -80,6 +80,11 @@ namespace Text_Based_RPG
         public static int[] GetPlayerPos()
         {
             return player.GetPos();
+        }
+
+        public static void SetLastEnemy(string name)
+        {
+            playerUI.lastEnemy = name;
         }
     }
 }

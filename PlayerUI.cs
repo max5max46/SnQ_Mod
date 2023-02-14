@@ -9,12 +9,14 @@ namespace Text_Based_RPG
     internal class PlayerUI
     {
         Player player;
+        public string lastEnemy = "";
 
         public String[] UIText =
         {
             "----------",
             "HP: ",
-            "----------"
+            "----------",
+            "LAST ENEMY ENCOUNTERED: "
         };
 
         public PlayerUI(Player player)
@@ -31,6 +33,7 @@ namespace Text_Based_RPG
             Console.WriteLine(UIText[0]);
             Console.WriteLine(UIText[1] + player.GetHealth() + ' ');
             Console.WriteLine(UIText[2]);
+            Console.WriteLine(UIText[3] + lastEnemy);
         }
     }
 }

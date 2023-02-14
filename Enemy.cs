@@ -16,7 +16,9 @@ namespace Text_Based_RPG
         private int moveAt;
         private int moveBehaviour;
 
-        public EnemyClass(int x, int y, int health, int moveAt, int moveBehaviour, char character) : base(x, y, health)
+        private string name;
+
+        public EnemyClass(int x, int y, int health, int moveAt, int moveBehaviour, int attackShape, char character, bool kamikaze, string name) : base(x, y, health)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
@@ -25,6 +27,9 @@ namespace Text_Based_RPG
             this.moveAt = moveAt;
             this.moveBehaviour = moveBehaviour;
             this.character = character;
+            this.attackShape = attackShape;
+            this.kamikaze = kamikaze;
+            this.name = name;
         }
 
         public override void Update(Render render)
@@ -59,6 +64,12 @@ namespace Text_Based_RPG
                 return true;
             }
             return false;
+        }
+
+        protected override void Die()
+        {
+            base.Die();
+            GameManager.SetLastEnemy(name);
         }
 
         // Movement behaviours
@@ -105,15 +116,30 @@ namespace Text_Based_RPG
             if (x == playerPos[0] && y == playerPos[1])
             {
                 Attack(SPACE_ATTACK);
-                dead = true;
                 return;
             }
 
             // or move
             if (playerPos[0] > x)
-                MoveRight();
+            {
+                if (MoveRight())
+                {
+                    if (playerPos[1] > x)
+                        MoveDown();
+                    else if (playerPos[1] < y)
+                        MoveUp();
+                }
+            }
             else if (playerPos[0] < x)
-                MoveLeft();
+            {
+                if (MoveLeft())
+                {
+                    if (playerPos[1] > x)
+                        MoveDown();
+                    else if (playerPos[1] < y)
+                        MoveUp();
+                }
+            }
             else if (playerPos[1] > y)
                 MoveDown();
             else if (playerPos[1] < y)

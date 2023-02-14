@@ -10,8 +10,8 @@ namespace Text_Based_RPG
     {
         public enum EnemyType
         {
-            Enemy1,
-            Enemy2,
+            Roamer,
+            Charger,
             Enemy3
         }
 
@@ -19,14 +19,14 @@ namespace Text_Based_RPG
         {
             switch (enemyType)
             {
-                case EnemyType.Enemy1:
-                    return new EnemyClass(x, y, 2, 2, EnemyClass.BEHAVIOUR_RANDOM,'0');
-                case EnemyType.Enemy2:
-                    return new EnemyClass(x, y, 1, 1, EnemyClass.BEHAVIOUR_CHASE, 'V');
+                case EnemyType.Roamer:
+                    return new EnemyClass(x, y, 2, 2, EnemyClass.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString());
+                case EnemyType.Charger:
+                    return new EnemyClass(x, y, 1, 1, EnemyClass.BEHAVIOUR_CHASE, GameCharacter.SPACE_ATTACK, 'V', true, enemyType.ToString());
                 case EnemyType.Enemy3:
-                    return new EnemyClass(x, y, 1, 2, EnemyClass.BEHAVIOUR_RANDOM, '0');
+                    return new EnemyClass(x, y, 1, 2, EnemyClass.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString());
                 default:
-                    return new EnemyClass(x, y, 1, 2, EnemyClass.BEHAVIOUR_RANDOM, '0');
+                    return new EnemyClass(x, y, 1, 2, EnemyClass.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString());
             }
         }
     }
