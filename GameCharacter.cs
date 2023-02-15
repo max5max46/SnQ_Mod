@@ -22,9 +22,12 @@ namespace Text_Based_RPG
         protected int x, y;
         protected int attackShape;
         protected int health;
+        protected int strength;
 
         protected bool dead;
         protected bool kamikaze;
+
+        protected string name;
 
         public GameCharacter(int x, int y, int health)
         {
@@ -54,7 +57,7 @@ namespace Text_Based_RPG
         {
             if (!dead && attackMap.IsAttack(x, y))
             {
-                health--;
+                health -= attackMap.AttackStrength(x, y);
                 if (health <= 0)
                 {
                     Die();
@@ -102,9 +105,9 @@ namespace Text_Based_RPG
         protected void Attack(int attackShape)
         {
             color = attackColor;
-            attackMap.AddAttack(x, y, attackShape);
+            attackMap.AddAttack(x, y, strength, attackShape, name);
             if (kamikaze)
-                Die(); ;
+                Die();
         }
 
         public int[] GetPos()

@@ -16,6 +16,8 @@ namespace Text_Based_RPG
             baseColor = color;
             attackShape = GameCharacter.CROSS_ATTACK;
             kamikaze = false;
+            strength = 1;
+            name = "player";
         }
 
         public override void Update(Render render)
@@ -57,7 +59,7 @@ namespace Text_Based_RPG
         {
             if (!dead && attackMap.IsAttack(x, y))
             {
-                health--;
+                health -= attackMap.AttackStrength(x, y);
                 if (health <= 0)
                 {
                     dead = true;
