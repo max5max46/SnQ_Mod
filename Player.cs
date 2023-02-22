@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     internal class Player : GameCharacter
     {
-        public Player(int x, int y, int health) : base(x, y, health)
+        public Player(int x, int y, int health, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
         {
             character = '@';
             color = ConsoleColor.White;
@@ -20,9 +20,9 @@ namespace Text_Based_RPG
             name = "player";
         }
 
-        public override void Update(Render render)
+        public override void Update()
         {
-            base.Update(render);
+            base.Update();
             if (dead)
                 return;
 

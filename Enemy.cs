@@ -16,7 +16,7 @@ namespace Text_Based_RPG
         private int moveAt;
         private int moveBehaviour;
 
-        public EnemyClass(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name) : base(x, y, health)
+        public EnemyClass(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
@@ -31,9 +31,9 @@ namespace Text_Based_RPG
             this.strength = strength;
         }
 
-        public override void Update(Render render)
+        public override void Update()
         {
-            base.Update(render);
+            base.Update();
             if (dead)
                 return;
             moveCharge++;

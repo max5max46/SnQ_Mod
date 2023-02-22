@@ -56,6 +56,11 @@ namespace Text_Based_RPG
             return attacks[y, x].strength;
         }
 
+        public bool AttackSource(int x, int y)
+        {
+            return attacks[y, x].isPlayer;
+        }
+
         public void Update()
         {
             for (int i = 0; i < attacks.GetLength(0); i++)
@@ -83,34 +88,30 @@ namespace Text_Based_RPG
         {
             if (y != 0)
             {
+                attacks[y - 1, x] = attack;
                 attacks[y - 1, x].isAttack = true;
-                attacks[y - 1, x].strength = attack.strength;
-                attacks[y - 1, x].isPlayer = attack.isPlayer;
             }
             if (y != map.map.GetLength(0) - 1)
             {
+                attacks[y + 1, x] = attack;
                 attacks[y + 1, x].isAttack = true;
-                attacks[y + 1, x].strength = attack.strength;
-                attacks[y + 1, x].isPlayer = attack.isPlayer;
             }
             if (x != 0)
             {
+                attacks[y, x - 1] = attack;
                 attacks[y, x - 1].isAttack = true;
-                attacks[y, x - 1].strength = attack.strength;
-                attacks[y, x - 1].isPlayer = attack.isPlayer;
             }
+                
             if (x != map.map.GetLength(1) - 1)
             {
+                attacks[y, x + 1] = attack;
                 attacks[y, x + 1].isAttack = true;
-                attacks[y, x + 1].strength = attack.strength;
-                attacks[y, x + 1].isPlayer = attack.isPlayer;
             }
         }
         private void spaceAttack(int x, int y, Attack attack)
         {
+            attacks[y, x] = attack;
             attacks[y, x].isAttack = true;
-            attacks[y, x].strength = attack.strength;
-            attacks[y, x].isPlayer = attack.isPlayer;
         }
     }
 }

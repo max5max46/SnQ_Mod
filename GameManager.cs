@@ -9,28 +9,21 @@ namespace Text_Based_RPG
     internal class GameManager
     {
         static Map map = new Map();
-        static Player player = new Player(5, 5, 10);
-        static PlayerUI playerUI = new PlayerUI(player);
-        static Render render = new Render(map, playerUI);
+        static Render render = new Render(map);
         static AttackMap attack = new AttackMap(map, render);
-
-        // enemies
-        static EnemyClass enemy1 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 10);
-        static EnemyClass enemy2 = EnemyTypeClass.CreateEnemy(EnemyTypeClass.EnemyType.Charger, 55, 20);
+        static Player player = new Player(5, 5, 10, map, attack, render);
+        public static PlayerUI playerUI = new PlayerUI(player);
+        public static EnemyManager enemyManager = new EnemyManager();
 
         public static ConsoleKey pressedKey;
 
         public static void StartGame()
         {
+            render.SetWindowSize(playerUI);
             Console.CursorVisible = false;
 
-            player.GetMap(map);
-            player.GetAttackMap(attack);
-
-            enemy1.GetMap(map);
-            enemy1.GetAttackMap(attack);
-            enemy2.GetMap(map);
-            enemy2.GetAttackMap(attack);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 20, 20, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 40, 10, render, attack, map);
 
             GameLoop();
         }
@@ -50,15 +43,14 @@ namespace Text_Based_RPG
                 playerUI.Draw(map);
                 attack.Update();
 
-                player.Update(render);
-                enemy1.Update(render);
-                enemy2.Update(render);
+                enemyManager.Update();
+
+                player.Update();
                 player.CheckForDeath();
 
                 map.Draw(render);
-                player.Draw(render);
-                enemy1.Draw(render);
-                enemy2.Draw(render);
+                player.Draw();
+                enemyManager.Draw();
                 attack.Draw();
                 render.Draw();
 

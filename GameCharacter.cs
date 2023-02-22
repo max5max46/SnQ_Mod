@@ -11,9 +11,11 @@ namespace Text_Based_RPG
         // attack shape constants
         public const int CROSS_ATTACK = 0;
         public const int SPACE_ATTACK = 1;
+        public const int LONG_ATTACK = 2;
 
         protected Map map;
         protected AttackMap attackMap;
+        protected Render render;
 
         protected char character;
 
@@ -22,6 +24,7 @@ namespace Text_Based_RPG
         protected int x, y;
         protected int attackShape;
         protected int health;
+        protected int maxHealth;
         protected int strength;
 
         protected bool dead;
@@ -29,40 +32,30 @@ namespace Text_Based_RPG
 
         protected string name;
 
-        public GameCharacter(int x, int y, int health)
+        public GameCharacter(int x, int y, int health, Map map, AttackMap attackMap, Render render)
         {
             this.x = x;
             this.y = y;
             this.health = health;
+            this.maxHealth = health;
+            this.map = map;
+            this.attackMap = attackMap;
+            this.render = render;
+
             dead = false;
         }
 
-        public void GetMap(Map map)
-        {
-            this.map = map;
-        }
-        public void GetAttackMap(AttackMap attackMap)
-        {
-            this.attackMap = attackMap;
-        }
-
-        public void Draw(Render render)
+        public void Draw()
         {
             render.ChangeSpace(character, ConsoleColor.Black, color, x, y);
 
             color = baseColor; // returns color to normal after attacking
         }
 
-        public virtual void Update(Render render)
+        public virtual void Update()
         {
             if (!dead && attackMap.IsAttack(x, y))
-            {
-                health -= attackMap.AttackStrength(x, y);
-                if (health <= 0)
-                {
-                    Die();
-                }
-            }
+                TakeDamage(attackMap.AttackStrength(x, y));
         }
 
         protected bool MoveUp()
@@ -126,6 +119,25 @@ namespace Text_Based_RPG
         protected virtual void Die()
         {
             dead = true;
+        }
+
+        public void ChangeAttackShape(int newShape)
+        {
+            attackShape = newShape;
+        }
+
+        public void Heal(int healAmount)
+        {
+            health += healAmount;
+            if (health > maxHealth)
+                health = maxHealth;
+        }
+
+        public void TakeDamage(int damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0)
+                Die();
         }
     }
 }
