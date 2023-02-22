@@ -50,6 +50,7 @@
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemManager.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
@@ -60,9 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Map.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

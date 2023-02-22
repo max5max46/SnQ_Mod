@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    internal class EnemyClass : GameCharacter
+    internal class Enemy : GameCharacter
     {
         // movement behaviour constants
         public const int BEHAVIOUR_RANDOM = 0;
@@ -16,7 +16,7 @@ namespace Text_Based_RPG
         private int moveAt;
         private int moveBehaviour;
 
-        public EnemyClass(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
+        public Enemy(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;

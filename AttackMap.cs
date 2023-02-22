@@ -42,6 +42,9 @@ namespace Text_Based_RPG
                 case GameCharacter.SPACE_ATTACK:
                     spaceAttack(x, y, currentAttack);
                     break;
+                case GameCharacter.LONG_ATTACK:
+                    longAttack(x, y, currentAttack);
+                    break;
                 default:
                     break;
             }
@@ -56,7 +59,7 @@ namespace Text_Based_RPG
             return attacks[y, x].strength;
         }
 
-        public bool AttackSource(int x, int y)
+        public bool PlayerAttackCheck(int x, int y)
         {
             return attacks[y, x].isPlayer;
         }
@@ -80,6 +83,17 @@ namespace Text_Based_RPG
                     }
                 }
             } 
+        }
+
+        public void Flash()
+        {
+            for (int i = 0; i < attacks.GetLength(0); i++)
+            {
+                for (int j = 0; j < attacks.GetLength(1); j++)
+                {
+                    AddAttack(j, i, 0, GameCharacter.SPACE_ATTACK, "bomb");
+                }
+            }
         }
 
         // attack shapes
@@ -112,6 +126,32 @@ namespace Text_Based_RPG
         {
             attacks[y, x] = attack;
             attacks[y, x].isAttack = true;
+        }
+
+        private void longAttack(int x, int y, Attack attack)
+        {
+            crossAttack(x, y, attack);
+            if (y != 0)
+            {
+                attacks[y - 2, x] = attack;
+                attacks[y - 2, x].isAttack = true;
+            }
+            if (y != map.map.GetLength(0) - 1)
+            {
+                attacks[y + 2, x] = attack;
+                attacks[y + 2, x].isAttack = true;
+            }
+            if (x != 0)
+            {
+                attacks[y, x - 2] = attack;
+                attacks[y, x - 2].isAttack = true;
+            }
+
+            if (x != map.map.GetLength(1) - 1)
+            {
+                attacks[y, x + 2] = attack;
+                attacks[y, x + 2].isAttack = true;
+            }
         }
     }
 }

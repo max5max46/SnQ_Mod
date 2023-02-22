@@ -13,7 +13,8 @@ namespace Text_Based_RPG
         static AttackMap attack = new AttackMap(map, render);
         static Player player = new Player(5, 5, 10, map, attack, render);
         public static PlayerUI playerUI = new PlayerUI(player);
-        public static EnemyManager enemyManager = new EnemyManager();
+        public static EnemyManager enemyManager = new EnemyManager(attack);
+        public static ItemManager itemManager = new ItemManager();
 
         public static ConsoleKey pressedKey;
 
@@ -22,8 +23,11 @@ namespace Text_Based_RPG
             render.SetWindowSize(playerUI);
             Console.CursorVisible = false;
 
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 20, 20, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 7, render, attack, map);
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 40, 10, render, attack, map);
+            itemManager.AddItem(ItemTypeClass.ItemType.Bomb, 57, 18, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.Spear, 51, 10, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 15, 22, render, attack, map, player);
 
             GameLoop();
         }
@@ -40,19 +44,20 @@ namespace Text_Based_RPG
                 if (player.GetDead())
                     break;
 
-                playerUI.Draw(map);
                 attack.Update();
-
-                enemyManager.Update();
-
                 player.Update();
+                enemyManager.Update();
+                itemManager.Update();
+
                 player.CheckForDeath();
 
                 map.Draw(render);
+                attack.Draw();
                 player.Draw();
                 enemyManager.Draw();
-                attack.Draw();
+                itemManager.Draw();
                 render.Draw();
+                playerUI.Draw(map);
 
                 ClearInputBuffer();
                 pressedKey = GetInput();

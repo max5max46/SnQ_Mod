@@ -8,7 +8,14 @@ namespace Text_Based_RPG
 {
     internal class EnemyManager
     {
-        List<EnemyClass> enemies = new List<EnemyClass>();
+        private AttackMap attackMap;
+
+        public EnemyManager(AttackMap attackMap)
+        {
+            this.attackMap = attackMap;
+        }
+
+        List<Enemy> enemies = new List<Enemy>();
 
         public void AddEnemy(EnemyTypeClass.EnemyType type, int x, int y, Render render, AttackMap attackMap, Map map)
         {
@@ -17,20 +24,21 @@ namespace Text_Based_RPG
 
         public void Update()
         {
-            foreach (EnemyClass enemy in enemies)
+            foreach (Enemy enemy in enemies)
                 enemy.Update();
         }
 
         public void Draw()
         {
-            foreach (EnemyClass enemy in enemies)
+            foreach (Enemy enemy in enemies)
                 enemy.Draw();
         }
 
         public void Bomb()
         {
-            foreach (EnemyClass enemy in enemies)
-                enemy.TakeDamage(5);
+            foreach (Enemy enemy in enemies)
+                enemy.TakeDamage(Item.SMALL_BOMB_DAMAGE);
+            attackMap.Flash();
         }
     }
 }
