@@ -33,7 +33,7 @@ namespace Text_Based_RPG
             Console.WriteLine(UIText[0]);
             Console.WriteLine(UIText[1] + player.GetHealth() + ' ');
             Console.WriteLine(UIText[2]);
-            Console.WriteLine(UIText[3] + lastEnemy);
+            Console.WriteLine(UIText[3] + lastEnemy + "    ");
         }
     }
 }

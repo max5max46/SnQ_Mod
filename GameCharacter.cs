@@ -12,6 +12,8 @@ namespace Text_Based_RPG
         public const int CROSS_ATTACK = 0;
         public const int SPACE_ATTACK = 1;
         public const int LONG_ATTACK = 2;
+        public const int RING_ATTACK = 3;
+        public const int X_ATTACK = 4;
 
         protected Map map;
         protected AttackMap attackMap;

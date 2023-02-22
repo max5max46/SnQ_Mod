@@ -12,7 +12,7 @@ namespace Text_Based_RPG
         {
             Roamer,
             Charger,
-            Enemy3
+            Lava
         }
 
         public static Enemy CreateEnemy(EnemyType enemyType, int x, int y, Map map, AttackMap attackMap, Render render)
@@ -23,8 +23,8 @@ namespace Text_Based_RPG
                     return new Enemy(x, y, 2, 2, 1, Enemy.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render);
                 case EnemyType.Charger:
                     return new Enemy(x, y, 1, 1, 2, Enemy.BEHAVIOUR_CHASE, GameCharacter.SPACE_ATTACK, 'V', true, enemyType.ToString(), map, attackMap, render);
-                case EnemyType.Enemy3:
-                    return new Enemy(x, y, 1, 2, 1, Enemy.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render);
+                case EnemyType.Lava:
+                    return new Enemy(x, y, 1, 1, 3, Enemy.BEHAVIOUR_LAVA, GameCharacter.RING_ATTACK, '!', false, enemyType.ToString(), map, attackMap, render);
                 default:
                     return new Enemy(x, y, 1, 2, 1, Enemy.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render);
             }

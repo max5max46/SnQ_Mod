@@ -11,12 +11,14 @@ namespace Text_Based_RPG
         // movement behaviour constants
         public const int BEHAVIOUR_RANDOM = 0;
         public const int BEHAVIOUR_CHASE = 1;
+        public const int BEHAVIOUR_LAVA = 2;
 
         private int moveCharge;
         private int moveAt;
         private int moveBehaviour;
+        private int range;
 
-        public Enemy(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
+        public Enemy(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render, int range = 0) : base(x, y, health, map, attackMap, render)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
@@ -29,6 +31,7 @@ namespace Text_Based_RPG
             this.kamikaze = kamikaze;
             this.name = name;
             this.strength = strength;
+            this.range = range;
         }
 
         public override void Update()
@@ -40,7 +43,7 @@ namespace Text_Based_RPG
             MoveAI();
         }
 
-        protected void MoveAI()
+        private void MoveAI()
         {
             switch (moveBehaviour)
             {
@@ -50,12 +53,15 @@ namespace Text_Based_RPG
                 case BEHAVIOUR_CHASE:
                     ChaseMovement();
                     break;
+                case BEHAVIOUR_LAVA:
+                    Attack(attackShape);
+                    break;
                 default:
                     break;
             }
         }
 
-        protected bool MoveChargeCheck()
+        private bool MoveChargeCheck()
         {
             if (moveCharge >= moveAt)
             {
@@ -71,9 +77,9 @@ namespace Text_Based_RPG
             GameManager.SetLastEnemy(name);
         }
 
-        // Movement behaviours
+        // Behaviours -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-        protected void RandomMovement()
+        private void RandomMovement()
         {
             if (!MoveChargeCheck())
                 return;
@@ -82,7 +88,7 @@ namespace Text_Based_RPG
             int[] playerPos = GameManager.GetPlayerPos();
             if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
             {
-                Attack(CROSS_ATTACK);
+                Attack(attackShape);
                 return;
             }
 
@@ -105,7 +111,7 @@ namespace Text_Based_RPG
             }
         }
 
-        protected void ChaseMovement()
+        private void ChaseMovement()
         {
             if (!MoveChargeCheck())
                 return;
@@ -114,7 +120,7 @@ namespace Text_Based_RPG
             int[] playerPos = GameManager.GetPlayerPos();
             if (x == playerPos[0] && y == playerPos[1])
             {
-                Attack(SPACE_ATTACK);
+                Attack(attackShape);
                 return;
             }
 

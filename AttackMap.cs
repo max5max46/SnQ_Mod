@@ -45,6 +45,12 @@ namespace Text_Based_RPG
                 case GameCharacter.LONG_ATTACK:
                     longAttack(x, y, currentAttack);
                     break;
+                case GameCharacter.RING_ATTACK:
+                    ringAttack(x, y, currentAttack);
+                    break;
+                case GameCharacter.X_ATTACK:
+                    xAttack(x, y, currentAttack);
+                    break;
                 default:
                     break;
             }
@@ -122,6 +128,30 @@ namespace Text_Based_RPG
                 attacks[y, x + 1].isAttack = true;
             }
         }
+        private void xAttack(int x, int y, Attack attack)
+        {
+            if (y != 0 || x != 0)
+            {
+                attacks[y - 1, x - 1] = attack;
+                attacks[y - 1, x - 1].isAttack = true;
+            }
+            if (y != map.map.GetLength(0) - 1 || x != 0)
+            {
+                attacks[y + 1, x - 1] = attack;
+                attacks[y + 1, x - 1].isAttack = true;
+            }
+            if (y != 0 || x != map.map.GetLength(1) - 1)
+            {
+                attacks[y - 1, x + 1] = attack;
+                attacks[y - 1, x + 1].isAttack = true;
+            }
+
+            if (y != map.map.GetLength(0) - 1 || x != map.map.GetLength(1) - 1)
+            {
+                attacks[y + 1, x + 1] = attack;
+                attacks[y + 1, x + 1].isAttack = true;
+            }
+        }
         private void spaceAttack(int x, int y, Attack attack)
         {
             attacks[y, x] = attack;
@@ -152,6 +182,12 @@ namespace Text_Based_RPG
                 attacks[y, x + 2] = attack;
                 attacks[y, x + 2].isAttack = true;
             }
+        }
+
+        private void ringAttack(int x, int y, Attack attack)
+        {
+            crossAttack(x, y, attack);
+            xAttack(x, y, attack);
         }
     }
 }

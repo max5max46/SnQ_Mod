@@ -25,6 +25,7 @@ namespace Text_Based_RPG
 
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 7, render, attack, map);
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 40, 10, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 33, 17, render, attack, map);
             itemManager.AddItem(ItemTypeClass.ItemType.Bomb, 57, 18, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.Spear, 51, 10, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 15, 22, render, attack, map, player);
