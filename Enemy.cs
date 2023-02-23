@@ -93,8 +93,7 @@ namespace Text_Based_RPG
             }
 
             // or move
-            Random random = new Random();
-            switch (random.Next(4))
+            switch (GameManager.random.Next(4))
             {
                 case 0:
                     MoveUp();

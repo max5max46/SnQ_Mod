@@ -161,23 +161,23 @@ namespace Text_Based_RPG
         private void longAttack(int x, int y, Attack attack)
         {
             crossAttack(x, y, attack);
-            if (y != 0)
+            if (y != 0 && y != 1)
             {
                 attacks[y - 2, x] = attack;
                 attacks[y - 2, x].isAttack = true;
             }
-            if (y != map.map.GetLength(0) - 1)
+            if (y != map.map.GetLength(0) - 1 && y != map.map.GetLength(0) - 2)
             {
                 attacks[y + 2, x] = attack;
                 attacks[y + 2, x].isAttack = true;
             }
-            if (x != 0)
+            if (x != 0 && x != 1)
             {
                 attacks[y, x - 2] = attack;
                 attacks[y, x - 2].isAttack = true;
             }
 
-            if (x != map.map.GetLength(1) - 1)
+            if (x != map.map.GetLength(1) - 1 && x != map.map.GetLength(1) - 2)
             {
                 attacks[y, x + 2] = attack;
                 attacks[y, x + 2].isAttack = true;

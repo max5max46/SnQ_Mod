@@ -15,6 +15,7 @@ namespace Text_Based_RPG
         public static PlayerUI playerUI = new PlayerUI(player);
         public static EnemyManager enemyManager = new EnemyManager(attack);
         public static ItemManager itemManager = new ItemManager();
+        public static Random random = new Random();
 
         public static ConsoleKey pressedKey;
 
