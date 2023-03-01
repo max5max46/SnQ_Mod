@@ -55,9 +55,9 @@ namespace Text_Based_RPG
 
                 map.Draw(render);
                 attack.Draw();
-                player.Draw();
                 enemyManager.Draw();
                 itemManager.Draw();
+                player.Draw();
                 render.Draw();
                 playerUI.Draw(map);
 
