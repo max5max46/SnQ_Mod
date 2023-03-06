@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         static AttackMap attack = new AttackMap(map, render);
         static Player player = new Player(5, 5, 10, map, attack, render);
         public static PlayerUI playerUI = new PlayerUI(player);
-        public static EnemyManager enemyManager = new EnemyManager(attack);
+        public static EnemyManager enemyManager = new EnemyManager(attack, player);
         public static ItemManager itemManager = new ItemManager();
         public static Random random = new Random();
 
@@ -23,6 +23,8 @@ namespace Text_Based_RPG
         {
             render.SetWindowSize(playerUI);
             Console.CursorVisible = false;
+
+            player.GetEnemyManager(enemyManager);
 
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 7, render, attack, map);
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 40, 10, render, attack, map);
@@ -51,8 +53,6 @@ namespace Text_Based_RPG
                 enemyManager.Update();
                 itemManager.Update();
 
-                player.CheckForDeath();
-
                 map.Draw(render);
                 attack.Draw();
                 enemyManager.Draw();
@@ -63,8 +63,6 @@ namespace Text_Based_RPG
 
                 ClearInputBuffer();
                 pressedKey = GetInput();
-
-                playerUI.Draw(map);
             }
         }
 
@@ -79,11 +77,6 @@ namespace Text_Based_RPG
         public static int[] GetPlayerPos()
         {
             return player.GetPos();
-        }
-
-        public static void SetLastEnemy(string name)
-        {
-            playerUI.lastEnemy = name;
         }
     }
 }

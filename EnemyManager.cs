@@ -9,10 +9,12 @@ namespace Text_Based_RPG
     internal class EnemyManager
     {
         private AttackMap attackMap;
+        private Player player;
 
-        public EnemyManager(AttackMap attackMap)
+        public EnemyManager(AttackMap attackMap, Player player)
         {
             this.attackMap = attackMap;
+            this.player = player;
         }
 
         List<Enemy> enemies = new List<Enemy>();
@@ -26,6 +28,11 @@ namespace Text_Based_RPG
         {
             foreach (Enemy enemy in enemies)
                 enemy.Update();
+
+            if (attackMap.IsAttack(player.GetPos()[0], player.GetPos()[1]))
+            {
+                player.TakeDamage(attackMap.AttackStrength(player.GetPos()[0], player.GetPos()[1]));
+            }
         }
 
         public void Draw()
@@ -39,6 +46,17 @@ namespace Text_Based_RPG
             foreach (Enemy enemy in enemies)
                 enemy.TakeDamage(Item.SMALL_BOMB_DAMAGE);
             attackMap.Flash();
+        }
+
+        public void DamageEnemies()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (attackMap.IsAttack(enemy.GetPos()[0], enemy.GetPos()[1]) && attackMap.PlayerAttackCheck(enemy.GetPos()[0], enemy.GetPos()[1]))
+                {
+                    enemy.TakeDamage(attackMap.AttackStrength(enemy.GetPos()[0], enemy.GetPos()[1]));
+                }
+            }
         }
     }
 }

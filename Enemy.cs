@@ -74,7 +74,6 @@ namespace Text_Based_RPG
         protected override void Die()
         {
             base.Die();
-            GameManager.SetLastEnemy(name);
         }
 
         // Behaviours -----------------------------------------------------------------------------------------------------------------------------------------------------

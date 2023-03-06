@@ -9,7 +9,6 @@ namespace Text_Based_RPG
     internal class PlayerUI
     {
         Player player;
-        public string lastEnemy = "";
 
         public String[] UIText =
         {
@@ -31,9 +30,7 @@ namespace Text_Based_RPG
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine(UIText[0]);
-            Console.WriteLine(UIText[1] + player.GetHealth() + ' ');
-            Console.WriteLine(UIText[2]);
-            Console.WriteLine(UIText[3] + lastEnemy + "    c");
+            Console.WriteLine(UIText[1] + player.GetHealth() + "  ");
         }
     }
 }

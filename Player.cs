@@ -8,6 +8,8 @@ namespace Text_Based_RPG
 {
     internal class Player : GameCharacter
     {
+        EnemyManager enemyManager;
+
         public Player(int x, int y, int health, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
         {
             character = '@';
@@ -55,16 +57,16 @@ namespace Text_Based_RPG
             }
         }
 
-        public void CheckForDeath()
+        protected override void Attack(int attackShape)
         {
-            if (!dead && attackMap.IsAttack(x, y))
-            {
-                health -= attackMap.AttackStrength(x, y);
-                if (health <= 0)
-                {
-                    dead = true;
-                }
-            }
+            base.Attack(attackShape);
+
+            enemyManager.DamageEnemies();
+        }
+
+        public void GetEnemyManager(EnemyManager enemyManager)
+        {
+            this.enemyManager = enemyManager;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Text_Based_RPG
         protected ConsoleColor color, attackColor, baseColor;
 
         protected int x, y;
+        protected int xDelta, yDelta;
         protected int attackShape;
         protected int health;
         protected int maxHealth;
@@ -56,7 +57,10 @@ namespace Text_Based_RPG
 
         public virtual void Update()
         {
-            if (!dead && attackMap.IsAttack(x, y))
+            xDelta = 0;
+            yDelta = 0;
+
+            if (!dead && attackMap.IsAttack(x, y) && !attackMap.PlayerAttackCheck(x, y))
                 TakeDamage(attackMap.AttackStrength(x, y));
         }
 
@@ -97,7 +101,7 @@ namespace Text_Based_RPG
             return map.IsWall(x - 1, y);
         }
 
-        protected void Attack(int attackShape)
+        protected virtual void Attack(int attackShape)
         {
             color = attackColor;
             attackMap.AddAttack(x, y, strength, attackShape, name);
