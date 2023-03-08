@@ -64,45 +64,57 @@ namespace Text_Based_RPG
                 TakeDamage(attackMap.AttackStrength(x, y));
         }
 
-        protected bool MoveUp()
+        protected bool Move()
         {
-            if (!map.IsWall(x, y - 1))
+            if (xDelta > 0)
             {
-                y -= 1;
-                return false;
+                if (!map.IsWall(x + 1, y))
+                {
+                    x += 1;
+                    xDelta = 0;
+                    yDelta = 0;
+                    return false;
+                }
             }
-            return map.IsWall(x, y - 1);
-        }
-        protected bool MoveDown()
-        {
-            if (!map.IsWall(x, y + 1))
+            else if (xDelta < 0)
             {
-                y += 1;
-                return false;
+                if (!map.IsWall(x - 1, y))
+                {
+                    x -= 1;
+                    xDelta = 0;
+                    yDelta = 0;
+                    return false;
+                }
             }
-            return map.IsWall(x, y + 1);
-        }
-        protected bool MoveLeft()
-        {
-            if (!map.IsWall(x - 1, y))
+            else if (yDelta > 0)
             {
-                x -= 1;
-                return false;
+                if (!map.IsWall(x, y + 1))
+                {
+                    y += 1;
+                    xDelta = 0;
+                    yDelta = 0;
+                    return false;
+                }
             }
-            return map.IsWall(x - 1, y);
-        }
-        protected bool MoveRight()
-        {
-            if (!map.IsWall(x + 1, y))
+            else if (yDelta < 0)
             {
-                x += 1;
-                return false;
+                if (!map.IsWall(x, y - 1))
+                {
+                    y -= 1;
+                    xDelta = 0;
+                    yDelta = 0;
+                    return false;
+                }
             }
-            return map.IsWall(x - 1, y);
+            xDelta = 0;
+            yDelta = 0;
+            return true;
         }
 
         protected virtual void Attack(int attackShape)
         {
+            if (name != "Lava")
+                GameManager.playerUI.AddEvent(name + " attacked!");
             color = attackColor;
             attackMap.AddAttack(x, y, strength, attackShape, name);
             if (kamikaze)
@@ -124,6 +136,7 @@ namespace Text_Based_RPG
 
         protected virtual void Die()
         {
+            GameManager.playerUI.AddEvent(name + " died!");
             dead = true;
         }
 
@@ -134,6 +147,7 @@ namespace Text_Based_RPG
 
         public void Heal(int healAmount)
         {
+            GameManager.playerUI.AddEvent(name + " healed " + healAmount + " HP!");
             health += healAmount;
             if (health > maxHealth)
                 health = maxHealth;
@@ -141,6 +155,8 @@ namespace Text_Based_RPG
 
         public void TakeDamage(int damageAmount)
         {
+            if (dead) return;
+            GameManager.playerUI.AddEvent(name + " took " + damageAmount + " damage!");
             health -= damageAmount;
             if (health <= 0)
                 Die();

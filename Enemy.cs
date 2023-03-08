@@ -95,18 +95,19 @@ namespace Text_Based_RPG
             switch (GameManager.random.Next(4))
             {
                 case 0:
-                    MoveUp();
+                    yDelta--;
                     break;
                 case 1:
-                    MoveLeft();
+                    xDelta--;
                     break;
                 case 2:
-                    MoveDown();
+                    yDelta++;
                     break;
                 case 3:
-                    MoveRight();
+                    xDelta++;
                     break;
             }
+            Move();
         }
 
         private void ChaseMovement()
@@ -125,28 +126,32 @@ namespace Text_Based_RPG
             // or move
             if (playerPos[0] > x)
             {
-                if (MoveRight())
+                xDelta++;
+                if (Move())
                 {
                     if (playerPos[1] > x)
-                        MoveDown();
+                        yDelta++;
                     else if (playerPos[1] < y)
-                        MoveUp();
+                        yDelta--;
                 }
             }
             else if (playerPos[0] < x)
             {
-                if (MoveLeft())
+                xDelta--;
+                if (Move())
                 {
                     if (playerPos[1] > x)
-                        MoveDown();
+                        yDelta++;
                     else if (playerPos[1] < y)
-                        MoveUp();
+                        yDelta--;
                 }
             }
             else if (playerPos[1] > y)
-                MoveDown();
+                yDelta++;
             else if (playerPos[1] < y)
-                MoveUp();
+                yDelta--;
+
+            Move();
         }
     }
 }

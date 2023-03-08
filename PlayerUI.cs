@@ -15,12 +15,18 @@ namespace Text_Based_RPG
             "----------",
             "HP: ",
             "----------",
-            "LAST ENEMY ENCOUNTERED: "
         };
+
+        public String[] EventLog = new string[8];
 
         public PlayerUI(Player player)
         {
             this.player = player;
+
+            for (int i = 0; i < EventLog.GetLength(0); i++)
+            {
+                EventLog[i] = "";
+            }
         }
 
         public void Draw(Map map)
@@ -31,6 +37,29 @@ namespace Text_Based_RPG
 
             Console.WriteLine(UIText[0]);
             Console.WriteLine(UIText[1] + player.GetHealth() + "  ");
+            Console.WriteLine(UIText[0]);
+
+            for (int i = 0; i < EventLog.GetLength(0); i++)
+            {
+                Console.WriteLine(EventLog[i] + "                     ");
+            }
+        }
+
+        public void AddEvent(string Event)
+        {
+            for (int i = 0; i < EventLog.GetLength(0); i++)
+            {
+                if (EventLog[i] == "")
+                {
+                    EventLog[i] = Event;
+                    return;
+                }
+            }
+            for (int i = 0; i < EventLog.GetLength(0) - 1; i++)
+            {
+                EventLog[i] = EventLog[i + 1];
+            }
+            EventLog[EventLog.GetLength(0) - 1] = Event;
         }
     }
 }

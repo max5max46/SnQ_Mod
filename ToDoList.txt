@@ -1,13 +1,4 @@
-﻿Add UI data feed
-	gives attack info, death info, item info, etc.
-
-Make player handle all of its own data
-
-Make method names more descriptive
-
-Make a singular Move() method
-
-Make the bomb attack itself deal damage
+﻿Make the bomb attack itself deal damage
 
 FEEDBACK:
 

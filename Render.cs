@@ -32,7 +32,7 @@ namespace Text_Based_RPG
 
         public void SetWindowSize(PlayerUI playerUI)
         {
-            Console.WindowHeight = map.map.GetLength(0) + playerUI.UIText.GetLength(0) + 1;
+            Console.WindowHeight = map.map.GetLength(0) + playerUI.UIText.GetLength(0) + playerUI.EventLog.GetLength(0) + 1;
             Console.WindowWidth = map.map.GetLength(1) * 2;
         }
 

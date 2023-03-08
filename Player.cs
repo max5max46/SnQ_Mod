@@ -28,33 +28,34 @@ namespace Text_Based_RPG
             if (dead)
                 return;
 
-            DetectInput();
+            TakeInput();
         }
 
-        protected void DetectInput()
+        protected void TakeInput()
         {
             switch (GameManager.pressedKey)
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    MoveUp();
+                    yDelta--;
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    MoveDown();
+                    yDelta++;
                     break;
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    MoveLeft();
+                    xDelta--;
                     break;
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
-                    MoveRight();
+                    xDelta++;
                     break;
                 case ConsoleKey.Spacebar:
                     Attack(attackShape);
                     break;
             }
+            Move();
         }
 
         protected override void Attack(int attackShape)
