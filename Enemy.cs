@@ -8,17 +8,11 @@ namespace Text_Based_RPG
 {
     internal class Enemy : GameCharacter
     {
-        // movement behaviour constants
-        public const int BEHAVIOUR_RANDOM = 0;
-        public const int BEHAVIOUR_CHASE = 1;
-        public const int BEHAVIOUR_LAVA = 2;
-
         private int moveCharge;
         private int moveAt;
         private int moveBehaviour;
-        private int range;
 
-        public Enemy(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render, int range = 0) : base(x, y, health, map, attackMap, render)
+        public Enemy(int x, int y, int health, int moveAt, int strength, int moveBehaviour, int attackShape, char character, bool kamikaze, string name, Map map, AttackMap attackMap, Render render, bool waterWalking) : base(x, y, health, map, attackMap, render)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
@@ -31,7 +25,7 @@ namespace Text_Based_RPG
             this.kamikaze = kamikaze;
             this.name = name;
             this.strength = strength;
-            this.range = range;
+            this.waterWalking = waterWalking;
         }
 
         public override void Update()
@@ -47,13 +41,13 @@ namespace Text_Based_RPG
         {
             switch (moveBehaviour)
             {
-                case BEHAVIOUR_RANDOM:
+                case Global.BEHAVIOUR_RANDOM:
                     RandomMovement();
                     break;
-                case BEHAVIOUR_CHASE:
+                case Global.BEHAVIOUR_CHASE:
                     ChaseMovement();
                     break;
-                case BEHAVIOUR_LAVA:
+                case Global.BEHAVIOUR_LAVA:
                     Attack(attackShape);
                     break;
                 default:

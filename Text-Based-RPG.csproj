@@ -49,6 +49,7 @@
     <Compile Include="EnemyType.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="ItemType.cs" />

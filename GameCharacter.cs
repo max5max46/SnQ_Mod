@@ -8,13 +8,6 @@ namespace Text_Based_RPG
 {
     internal abstract class GameCharacter
     {
-        // attack shape constants
-        public const int CROSS_ATTACK = 0;
-        public const int SPACE_ATTACK = 1;
-        public const int LONG_ATTACK = 2;
-        public const int RING_ATTACK = 3;
-        public const int X_ATTACK = 4;
-
         protected Map map;
         protected AttackMap attackMap;
         protected Render render;
@@ -32,6 +25,7 @@ namespace Text_Based_RPG
 
         protected bool dead;
         protected bool kamikaze;
+        protected bool waterWalking;
 
         protected string name;
 
@@ -68,7 +62,7 @@ namespace Text_Based_RPG
         {
             if (xDelta > 0)
             {
-                if (!map.IsWall(x + 1, y))
+                if (!map.IsWall(x + 1, y, waterWalking))
                 {
                     x += 1;
                     xDelta = 0;
@@ -78,7 +72,7 @@ namespace Text_Based_RPG
             }
             else if (xDelta < 0)
             {
-                if (!map.IsWall(x - 1, y))
+                if (!map.IsWall(x - 1, y, waterWalking))
                 {
                     x -= 1;
                     xDelta = 0;
@@ -88,7 +82,7 @@ namespace Text_Based_RPG
             }
             else if (yDelta > 0)
             {
-                if (!map.IsWall(x, y + 1))
+                if (!map.IsWall(x, y + 1, waterWalking))
                 {
                     y += 1;
                     xDelta = 0;
@@ -98,7 +92,7 @@ namespace Text_Based_RPG
             }
             else if (yDelta < 0)
             {
-                if (!map.IsWall(x, y - 1))
+                if (!map.IsWall(x, y - 1, waterWalking))
                 {
                     y -= 1;
                     xDelta = 0;
@@ -159,7 +153,10 @@ namespace Text_Based_RPG
             GameManager.playerUI.AddEvent(name + " took " + damageAmount + " damage!");
             health -= damageAmount;
             if (health <= 0)
+            {
+                health = 0;
                 Die();
+            }
         }
     }
 }

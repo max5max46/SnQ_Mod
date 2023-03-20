@@ -16,7 +16,7 @@ namespace Text_Based_RPG
         // * - forest
         // " - sand
         // = - wood
-
+        
         public char[,] map;
 
         public void Draw(Render render)
@@ -26,41 +26,47 @@ namespace Text_Based_RPG
                 {
                     switch (map[i, j])
                     {
-                        case '`':
+                        case Global.MAP_GRASS:
                             render.ChangeSpace(map[i, j], ConsoleColor.Green, ConsoleColor.Black, j, i);
                             break;
-                        case '"':
+                        case Global.MAP_SAND:
                             render.ChangeSpace(map[i, j], ConsoleColor.Yellow, ConsoleColor.Black, j, i);
                             break;
-                        case '*':
+                        case Global.MAP_FOREST:
                             render.ChangeSpace(map[i, j], ConsoleColor.DarkGreen, ConsoleColor.Black, j, i);
                             break;
-                        case '^':
+                        case Global.MAP_MOUNTAIN:
                             render.ChangeSpace(map[i, j], ConsoleColor.DarkGray, ConsoleColor.Black, j, i);
                             break;
-                        case '~':
+                        case Global.MAP_WATER:
                             render.ChangeSpace(map[i, j], ConsoleColor.Blue, ConsoleColor.Black, j, i);
                             break;
-                        case '=':
+                        case Global.MAP_WOOD:
                             render.ChangeSpace(map[i, j], ConsoleColor.DarkYellow, ConsoleColor.Black, j, i);
+                            break;
+                        case Global.MAP_WALL:
+                            render.ChangeSpace(map[i, j], ConsoleColor.Black, ConsoleColor.DarkGray, j, i);
                             break;
                     }
                 }
         }
 
-        public bool IsWall(int x, int y)
+        public bool IsWall(int x, int y, bool waterWalking)
         {
             try
             {
                 switch (map[y, x])
                 {
-                    case '`':
-                    case '"':
-                    case '*':
-                    case '=':
+                    case Global.MAP_GRASS:
+                    case Global.MAP_SAND:
+                    case Global.MAP_FOREST:
+                    case Global.MAP_WOOD:
                         return false;
-                    case '^':
-                    case '~':
+                    case Global.MAP_WATER:
+                        if (waterWalking) return false;
+                        return true;
+                    case Global.MAP_MOUNTAIN:
+                    case Global.MAP_WALL:
                     default:
                         return true;
                 }

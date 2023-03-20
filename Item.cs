@@ -8,9 +8,6 @@ namespace Text_Based_RPG
 {
     internal class Item
     {
-        public const int HEAL_SMALL = 2;
-        public const int SMALL_BOMB_DAMAGE = 5;
-
         private Map map;
         private AttackMap attackMap;
         private Player player;
@@ -25,8 +22,9 @@ namespace Text_Based_RPG
         private bool collected;
 
         private ItemTypeClass.ItemType Type;
+        private string name;
 
-        public Item(char character, ConsoleColor color, int x, int y, ItemTypeClass.ItemType Type, Render render, AttackMap attackMap, Map map, Player player)
+        public Item(char character, ConsoleColor color, int x, int y, ItemTypeClass.ItemType Type, Render render, AttackMap attackMap, Map map, Player player, string name)
         {
             this.character = character;
             this.color = color;
@@ -37,6 +35,7 @@ namespace Text_Based_RPG
             this.attackMap = attackMap;
             this.map = map;
             this.player = player;
+            this.name = name;
 
             collected = false;
         }
@@ -75,15 +74,19 @@ namespace Text_Based_RPG
             switch (Type)
             {
                 case ItemTypeClass.ItemType.HealthPickup:
-                    player.Heal(HEAL_SMALL);
+                    player.Heal(Global.HEAL_SMALL);
                     break;
                 case ItemTypeClass.ItemType.Spear:
-                    player.ChangeAttackShape(GameCharacter.LONG_ATTACK);
+                    player.ChangeAttackShape(Global.LONG_ATTACK);
                     break;
                 case ItemTypeClass.ItemType.Bomb:
                     GameManager.enemyManager.Bomb();
                     break;
+                case ItemTypeClass.ItemType.Boat:
+                    player.getBoat();
+                    break;
             }
+            GameManager.playerUI.AddEvent("Player collected a " + Type.ToString());
             collected = true;
         }
     }

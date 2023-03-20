@@ -20,13 +20,13 @@ namespace Text_Based_RPG
             switch (enemyType)
             {
                 case EnemyType.Roamer:
-                    return new Enemy(x, y, 2, 2, 1, Enemy.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render);
+                    return new Enemy(x, y, 2, 2, 1, Global.BEHAVIOUR_RANDOM, Global.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render, false);
                 case EnemyType.Charger:
-                    return new Enemy(x, y, 1, 1, 2, Enemy.BEHAVIOUR_CHASE, GameCharacter.SPACE_ATTACK, 'V', true, enemyType.ToString(), map, attackMap, render);
+                    return new Enemy(x, y, 1, 1, 2, Global.BEHAVIOUR_CHASE, Global.SPACE_ATTACK, 'V', true, enemyType.ToString(), map, attackMap, render, false);
                 case EnemyType.Lava:
-                    return new Enemy(x, y, 1, 1, 3, Enemy.BEHAVIOUR_LAVA, GameCharacter.RING_ATTACK, '!', false, enemyType.ToString(), map, attackMap, render);
+                    return new Enemy(x, y, 1, 1, 3, Global.BEHAVIOUR_LAVA, Global.RING_ATTACK, '!', false, enemyType.ToString(), map, attackMap, render, false);
                 default:
-                    return new Enemy(x, y, 1, 2, 1, Enemy.BEHAVIOUR_RANDOM, GameCharacter.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render);
+                    return new Enemy(x, y, 1, 2, 1, Global.BEHAVIOUR_RANDOM, Global.CROSS_ATTACK, '0', false, enemyType.ToString(), map, attackMap, render, false);
             }
         }
     }

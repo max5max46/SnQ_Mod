@@ -16,10 +16,11 @@ namespace Text_Based_RPG
             color = ConsoleColor.White;
             attackColor = ConsoleColor.Magenta;
             baseColor = color;
-            attackShape = GameCharacter.CROSS_ATTACK;
+            attackShape = Global.CROSS_ATTACK;
             kamikaze = false;
             strength = 1;
             name = "player";
+            waterWalking = false;
         }
 
         public override void Update()
@@ -68,6 +69,11 @@ namespace Text_Based_RPG
         public void GetEnemyManager(EnemyManager enemyManager)
         {
             this.enemyManager = enemyManager;
+        }
+
+        public void getBoat()
+        {
+            if (!waterWalking) waterWalking = true;
         }
     }
 }

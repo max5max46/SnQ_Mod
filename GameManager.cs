@@ -11,7 +11,7 @@ namespace Text_Based_RPG
         static Map map = new Map();
         static Render render = new Render(map);
         static AttackMap attack = new AttackMap(map, render);
-        static Player player = new Player(5, 5, 10, map, attack, render);
+        static Player player = new Player(3, 3, 10, map, attack, render);
         public static PlayerUI playerUI = new PlayerUI(player);
         public static EnemyManager enemyManager = new EnemyManager(attack, player);
         public static ItemManager itemManager = new ItemManager();
@@ -26,12 +26,20 @@ namespace Text_Based_RPG
 
             player.GetEnemyManager(enemyManager);
 
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 10, 7, render, attack, map);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 40, 10, render, attack, map);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 33, 17, render, attack, map);
-            itemManager.AddItem(ItemTypeClass.ItemType.Bomb, 57, 18, render, attack, map, player);
-            itemManager.AddItem(ItemTypeClass.ItemType.Spear, 51, 10, render, attack, map, player);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 15, 22, render, attack, map, player);
+            // INIT items
+
+            // health pickups
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 1, 35, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 37, render, attack, map, player);
+            // weapons
+            itemManager.AddItem(ItemTypeClass.ItemType.Spear, 59, 23, render, attack, map, player);
+
+            // key items
+            itemManager.AddItem(ItemTypeClass.ItemType.Boat, 71, 3, render, attack, map, player);
+
+
+            // INIT enemies
+
 
             GameLoop();
         }
