@@ -10,7 +10,7 @@ namespace Text_Based_RPG
     {
         EnemyManager enemyManager;
 
-        public Player(int x, int y, int health, Map map, AttackMap attackMap, Render render) : base(x, y, health, map, attackMap, render)
+        public Player(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
         {
             character = '@';
             color = ConsoleColor.White;
@@ -19,8 +19,10 @@ namespace Text_Based_RPG
             attackShape = Global.CROSS_ATTACK;
             kamikaze = false;
             strength = 1;
-            name = "player";
+            name = "Player";
             waterWalking = false;
+            health = 10;
+            maxHealth = 10;
         }
 
         public override void Update()

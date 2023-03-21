@@ -76,6 +76,9 @@ namespace Text_Based_RPG
                 case ItemTypeClass.ItemType.HealthPickup:
                     player.Heal(Global.HEAL_SMALL);
                     break;
+                case ItemTypeClass.ItemType.HealthPickupLarge:
+                    player.Heal(Global.HEAL_LARGE);
+                    break;
                 case ItemTypeClass.ItemType.Spear:
                     player.ChangeAttackShape(Global.LONG_ATTACK);
                     break;

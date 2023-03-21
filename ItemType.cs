@@ -13,7 +13,8 @@ namespace Text_Based_RPG
             HealthPickup,
             Spear,
             Bomb,
-            Boat
+            Boat,
+            HealthPickupLarge
         }
 
         public static Item CreateItem(ItemType itemType, int x, int y, Render render, AttackMap attackMap, Map map, Player player)
@@ -22,6 +23,8 @@ namespace Text_Based_RPG
             {
                 case ItemType.HealthPickup:
                     return new Item('♥', ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
+                case ItemType.HealthPickupLarge:
+                    return new Item('♥', ConsoleColor.Red, x, y, itemType, render, attackMap, map, player, "large health pickup");
                 case ItemType.Spear:
                     return new Item('↑', ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "spear");
                 case ItemType.Bomb:

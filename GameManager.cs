@@ -11,11 +11,10 @@ namespace Text_Based_RPG
         static Map map = new Map();
         static Render render = new Render(map);
         static AttackMap attack = new AttackMap(map, render);
-        static Player player = new Player(3, 3, 10, map, attack, render);
+        static Player player = new Player(3, 3, map, attack, render);
         public static PlayerUI playerUI = new PlayerUI(player);
         public static EnemyManager enemyManager = new EnemyManager(attack, player);
         public static ItemManager itemManager = new ItemManager();
-        public static Random random = new Random();
 
         public static ConsoleKey pressedKey;
 
@@ -31,6 +30,13 @@ namespace Text_Based_RPG
             // health pickups
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 1, 35, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 37, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 11, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 22, 9, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 35, 38, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 14, 20, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 61, 17, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 36, 39, render, attack, map, player);
+
             // weapons
             itemManager.AddItem(ItemTypeClass.ItemType.Spear, 59, 23, render, attack, map, player);
 
@@ -39,6 +45,10 @@ namespace Text_Based_RPG
 
 
             // INIT enemies
+
+            //roamers
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 13, 14, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 42, 20, render, attack, map);
 
 
             GameLoop();

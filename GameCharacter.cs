@@ -29,12 +29,10 @@ namespace Text_Based_RPG
 
         protected string name;
 
-        public GameCharacter(int x, int y, int health, Map map, AttackMap attackMap, Render render)
+        public GameCharacter(int x, int y, Map map, AttackMap attackMap, Render render)
         {
             this.x = x;
             this.y = y;
-            this.health = health;
-            this.maxHealth = health;
             this.map = map;
             this.attackMap = attackMap;
             this.render = render;
