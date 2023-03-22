@@ -10,7 +10,20 @@ namespace Text_Based_RPG
     {
         List<Item> Items = new List<Item>();
 
-        public void AddItem(ItemTypeClass.ItemType type, int x, int y, Render render, AttackMap attackMap, Map map, Player player)
+        Render render;
+        AttackMap attackMap;
+        Map map;
+        Player player;
+
+        public ItemManager(Render render, AttackMap attackMap, Map map, Player player)
+        {
+            this.render = render;
+            this.attackMap = attackMap;
+            this.map = map;
+            this.player = player;
+        }
+
+        public void AddItem(ItemTypeClass.ItemType type, int x, int y)
         {
             Items.Add(ItemTypeClass.CreateItem(type, x, y, render, attackMap, map, player));
         }
@@ -25,6 +38,12 @@ namespace Text_Based_RPG
         {
             foreach (Item item in Items)
                 item.Draw();
+        }
+
+        public void ShowHidden()
+        {
+            foreach (Item item in Items)
+                item.Unhide();
         }
     }
 }

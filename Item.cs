@@ -19,7 +19,7 @@ namespace Text_Based_RPG
 
         private int x, y;
 
-        private bool collected;
+        private bool collected, hidden;
 
         private ItemTypeClass.ItemType Type;
         private string name;
@@ -36,8 +36,12 @@ namespace Text_Based_RPG
             this.map = map;
             this.player = player;
             this.name = name;
-
+            
             collected = false;
+
+            if (Type == ItemTypeClass.ItemType.Gem)
+                hidden = true;
+            else hidden = false;
         }
 
         public void GetMap(Map map)
@@ -55,14 +59,14 @@ namespace Text_Based_RPG
 
         public void Draw()
         {
-            if (collected)
+            if (collected || hidden)
                 return;
             render.ChangeSpace(character, ConsoleColor.Black, color, x, y);
         }
 
         public void Update()
         {
-            if (collected)
+            if (collected || hidden)
                 return;
             if (attackMap.IsAttack(x, y))
                 if (attackMap.PlayerAttackCheck(x, y))
@@ -92,8 +96,20 @@ namespace Text_Based_RPG
                 case ItemTypeClass.ItemType.Boat:
                     player.getBoat();
                     break;
+                case ItemTypeClass.ItemType.Gem:
+                    GameManager.gameWin = true;
+                    break;
             }
             collected = true;
+        }
+
+        public void Unhide()
+        {
+            if (hidden)
+            {
+                hidden = false;
+                GameManager.playerUI.AddEvent("A " + name + " was revealed!");
+            }
         }
     }
 }

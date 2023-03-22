@@ -16,8 +16,9 @@ namespace Text_Based_RPG
             character = Global.CHARGER_CHAR;
             strength = Global.CHARGER_STRENGTH;
             attackShape = Global.SPACE_ATTACK;
-            this.type = type;
+            this.Type = type;
             name = type.ToString();
+            kamikaze = true;
         }
 
         protected override void MoveAI()

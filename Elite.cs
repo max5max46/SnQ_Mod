@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    internal class Roamer : Enemy
+    internal class Elite : Enemy
     {
-        public Roamer(int x, int y, Map map, AttackMap attackMap, Render render, EnemyTypeClass.EnemyType type) : base(x, y, map, attackMap, render)
+        public Elite(int x, int y, Map map, AttackMap attackMap, Render render, EnemyTypeClass.EnemyType type) : base(x, y, map, attackMap, render)
         {
-            health = Global.ROAMER_HP;
-            maxHealth = Global.ROAMER_HP;
-            moveAt = Global.ROAMER_MOVEAT;
-            character = Global.ROAMER_CHAR;
-            strength = Global.ROAMER_STRENGTH;
-            attackShape = Global.CROSS_ATTACK;
+            health = Global.ELITE_HP;
+            maxHealth = Global.ELITE_HP;
+            moveAt = Global.ELITE_MOVEAT;
+            character = Global.ELITE_CHAR;
+            strength = Global.ELITE_STRENGTH;
+            attackShape = Global.LONG_ATTACK;
             this.Type = type;
             name = type.ToString();
         }
@@ -24,7 +24,11 @@ namespace Text_Based_RPG
         {
             // attack the player
             int[] playerPos = GameManager.GetPlayerPos();
-            if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
+            if (
+                ((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || 
+                ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)) ||
+                ((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 2)) ||
+                ((Math.Abs(playerPos[0] - x) == 2) && (Math.Abs(playerPos[1] - y) == 0)))
             {
                 Attack(attackShape);
                 return;

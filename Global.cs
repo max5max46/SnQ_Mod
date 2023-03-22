@@ -24,8 +24,15 @@ namespace Text_Based_RPG
         public const char PLAYER_CHAR = '@';
         public const char ROAMER_CHAR = '0';
         public const char CHARGER_CHAR = 'V';
-        public const char LAVA_CHAR = '!';
+        public const char LAVA_CHAR = '₤';
         public const char SWIMMER_CHAR = 'S';
+        public const char ELITE_CHAR = '‼';
+        public const char HEALTH_CHAR = '♥';
+        public const char SPEAR_CHAR = '↑';
+        public const char BOMB_CHAR = 'B';
+        public const char BOAT_CHAR = 'U';
+        public const char HULA_CHAR = 'O';
+        public const char GEM_CHAR = '♦';
 
         // map display constants
         public const char MAP_GRASS = '`';
@@ -42,12 +49,14 @@ namespace Text_Based_RPG
         public const int CHARGER_HP = 1;
         public const int LAVA_HP = 1;
         public const int SWIMMER_HP = 3;
+        public const int ELITE_HP = 8;
 
         // move-at constants
         public const int ROAMER_MOVEAT = 2;
         public const int CHARGER_MOVEAT = 1;
         public const int LAVA_MOVEAT = 1;
         public const int SWIMMER_MOVEAT = 2;
+        public const int ELITE_MOVEAT = 2;
 
         // strength constants
         public const int PLAYER_STRENGTH = 1;
@@ -55,8 +64,13 @@ namespace Text_Based_RPG
         public const int CHARGER_STRENGTH = 2;
         public const int LAVA_STRENGTH = 3;
         public const int SWIMMER_STRENGTH = 2;
+        public const int ELITE_STRENGTH = 4;
 
         // random class constant
         public static Random random = new Random();
+
+        // player starting position
+        public const int START_X = 3;
+        public const int START_Y = 3;
     }
 }

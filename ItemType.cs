@@ -15,7 +15,8 @@ namespace Text_Based_RPG
             Bomb,
             Boat,
             HealthPickupLarge,
-            HulaHoop
+            HulaHoop,
+            Gem
         }
 
         public static Item CreateItem(ItemType itemType, int x, int y, Render render, AttackMap attackMap, Map map, Player player)
@@ -23,19 +24,21 @@ namespace Text_Based_RPG
             switch (itemType)
             {
                 case ItemType.HealthPickup:
-                    return new Item('♥', ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
+                    return new Item(Global.HEALTH_CHAR, ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
                 case ItemType.HealthPickupLarge:
-                    return new Item('♥', ConsoleColor.Red, x, y, itemType, render, attackMap, map, player, "large health pickup");
+                    return new Item(Global.HEALTH_CHAR, ConsoleColor.Red, x, y, itemType, render, attackMap, map, player, "large health pickup");
                 case ItemType.Spear:
-                    return new Item('↑', ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "spear");
+                    return new Item(Global.SPEAR_CHAR, ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "spear");
                 case ItemType.Bomb:
-                    return new Item('B', ConsoleColor.White, x, y, itemType, render, attackMap, map, player, "bomb");
+                    return new Item(Global.BOMB_CHAR, ConsoleColor.White, x, y, itemType, render, attackMap, map, player, "bomb");
                 case ItemType.Boat:
-                    return new Item('U', ConsoleColor.DarkYellow, x, y, itemType, render, attackMap, map, player, "boat");
+                    return new Item(Global.BOAT_CHAR, ConsoleColor.DarkYellow, x, y, itemType, render, attackMap, map, player, "boat");
                 case ItemType.HulaHoop:
-                    return new Item('O', ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "hula-hoop");
+                    return new Item(Global.HULA_CHAR, ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "hula-hoop");
+                case ItemType.Gem:
+                    return new Item(Global.GEM_CHAR, ConsoleColor.Yellow, x, y, itemType, render, attackMap, map, player, "magical gem");
                 default:
-                    return new Item('♥', ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
+                    return new Item(Global.HEALTH_CHAR, ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
             }
         }
     }

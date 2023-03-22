@@ -77,5 +77,11 @@ namespace Text_Based_RPG
         {
             if (!waterWalking) waterWalking = true;
         }
+
+        protected override void Die()
+        {
+            base.Die();
+            GameManager.gameOver = true;
+        }
     }
 }

@@ -146,7 +146,7 @@ namespace Text_Based_RPG
                 health = maxHealth;
         }
 
-        public void TakeDamage(int damageAmount)
+        public virtual void TakeDamage(int damageAmount)
         {
             if (dead) return;
             GameManager.playerUI.AddEvent(name + " took " + damageAmount + " damage!");

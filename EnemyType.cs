@@ -13,7 +13,8 @@ namespace Text_Based_RPG
             Roamer,
             Charger,
             Lava,
-            Swimmer
+            Swimmer,
+            Elite
         }
 
         public static Enemy CreateEnemy(EnemyType enemyType, int x, int y, Map map, AttackMap attackMap, Render render)
@@ -28,6 +29,8 @@ namespace Text_Based_RPG
                     return new Lava(x, y, map, attackMap, render, EnemyType.Lava);
                 case EnemyType.Swimmer:
                     return new Swimmer(x, y, map, attackMap, render, EnemyType.Swimmer);
+                case EnemyType.Elite:
+                    return new Elite(x, y, map, attackMap, render, EnemyType.Elite);
                 default:
                     return new Roamer(x, y, map, attackMap, render, EnemyType.Roamer);
             }

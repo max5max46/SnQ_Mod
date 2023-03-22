@@ -10,7 +10,7 @@ namespace Text_Based_RPG
     {
         protected int moveCharge;
         protected int moveAt;
-        protected EnemyTypeClass.EnemyType type;
+        protected EnemyTypeClass.EnemyType Type;
 
         public Enemy(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
         {
@@ -33,7 +33,7 @@ namespace Text_Based_RPG
 
         protected virtual void MoveAI()
         {
-
+            return;
         }
 
         protected bool MoveChargeCheck()
@@ -49,6 +49,20 @@ namespace Text_Based_RPG
         protected override void Die()
         {
             base.Die();
+        }
+
+        public override void TakeDamage(int damageAmount)
+        {
+            if (attackMap.PlayerAttackCheck(x, y)) base.TakeDamage(damageAmount);
+        }
+        public void TakeDamageDirect(int damageAmount)
+        {
+            base.TakeDamage(damageAmount);
+        }
+
+        public EnemyTypeClass.EnemyType GetEnemyType()
+        {
+            return Type;
         }
     }
 }

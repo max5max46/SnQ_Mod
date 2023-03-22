@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AttackMap.cs" />
     <Compile Include="Charger.cs" />
+    <Compile Include="Elite.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="EnemyType.cs" />
