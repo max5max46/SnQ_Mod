@@ -12,17 +12,17 @@ namespace Text_Based_RPG
 
         public Player(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
         {
-            character = '@';
+            character = Global.PLAYER_CHAR;
             color = ConsoleColor.White;
             attackColor = ConsoleColor.Magenta;
             baseColor = color;
             attackShape = Global.CROSS_ATTACK;
             kamikaze = false;
-            strength = 1;
+            strength = Global.PLAYER_STRENGTH;
             name = "Player";
             waterWalking = false;
-            health = 10;
-            maxHealth = 10;
+            health = Global.PLAYER_HP;
+            maxHealth = Global.PLAYER_HP;
         }
 
         public override void Update()

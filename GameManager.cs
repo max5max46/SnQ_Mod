@@ -33,12 +33,19 @@ namespace Text_Based_RPG
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 11, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 22, 9, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 35, 38, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 69, 1, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 69, 7, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 56, 18, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 14, 20, render, attack, map, player);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 61, 17, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 60, 16, render, attack, map, player);
             itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 36, 39, render, attack, map, player);
 
             // weapons
             itemManager.AddItem(ItemTypeClass.ItemType.Spear, 59, 23, render, attack, map, player);
+            itemManager.AddItem(ItemTypeClass.ItemType.HulaHoop, 37, 40, render, attack, map, player);
+
+            // bombs
+            itemManager.AddItem(ItemTypeClass.ItemType.Bomb, 33, 6, render, attack, map, player);
 
             // key items
             itemManager.AddItem(ItemTypeClass.ItemType.Boat, 71, 3, render, attack, map, player);
@@ -46,9 +53,41 @@ namespace Text_Based_RPG
 
             // INIT enemies
 
-            //roamers
+            // roamers
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 13, 14, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 55, 17, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 55, 20, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 1, 37, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 18, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 16, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 22, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 23, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 70, 10, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 76, 12, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 10, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 79, 5, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 2, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 73, 6, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 20, 22, render, attack, map);
+
+            // chargers
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 1, 37, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 60, 10, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 79, 24, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 60, 16, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 71, 3, render, attack, map);
+
+            // swimmers
             enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 42, 20, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 42, 5, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 48, 40, render, attack, map);
+
+            // lava
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 37, 6, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 36, 8, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 58, 3, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 36, 39, render, attack, map);
+            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 66, 2, render, attack, map);
 
 
             GameLoop();

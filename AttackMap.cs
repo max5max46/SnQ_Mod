@@ -31,7 +31,7 @@ namespace Text_Based_RPG
         {
             Attack currentAttack = new Attack();
             currentAttack.strength = strength;
-            if (source == "player")
+            if (source == "Player")
                 currentAttack.isPlayer = true;
 
             switch (attackShape)

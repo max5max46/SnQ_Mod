@@ -71,6 +71,7 @@ namespace Text_Based_RPG
 
         private void Collect()
         {
+            GameManager.playerUI.AddEvent("Player collected a " + name);
             switch (Type)
             {
                 case ItemTypeClass.ItemType.HealthPickup:
@@ -82,6 +83,9 @@ namespace Text_Based_RPG
                 case ItemTypeClass.ItemType.Spear:
                     player.ChangeAttackShape(Global.LONG_ATTACK);
                     break;
+                case ItemTypeClass.ItemType.HulaHoop:
+                    player.ChangeAttackShape(Global.RING_ATTACK);
+                    break;
                 case ItemTypeClass.ItemType.Bomb:
                     GameManager.enemyManager.Bomb();
                     break;
@@ -89,7 +93,6 @@ namespace Text_Based_RPG
                     player.getBoat();
                     break;
             }
-            GameManager.playerUI.AddEvent("Player collected a " + Type.ToString());
             collected = true;
         }
     }

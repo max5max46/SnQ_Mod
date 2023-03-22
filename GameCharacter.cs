@@ -42,6 +42,7 @@ namespace Text_Based_RPG
 
         public void Draw()
         {
+            if (dead) return;
             render.ChangeSpace(character, ConsoleColor.Black, color, x, y);
 
             color = baseColor; // returns color to normal after attacking

@@ -18,6 +18,7 @@ namespace Text_Based_RPG
             attackShape = Global.CROSS_ATTACK;
             this.type = type;
             name = type.ToString();
+            waterWalking = true;
         }
 
         protected override void MoveAI()

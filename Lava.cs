@@ -19,5 +19,10 @@ namespace Text_Based_RPG
             this.type = type;
             name = type.ToString();
         }
+
+        protected override void MoveAI()
+        {
+            Attack(attackShape);
+        }
     }
 }
