@@ -108,5 +108,14 @@ namespace Text_Based_RPG
                 for (int j = 0; j < mapString[0].Length; j++)
                     map[i,j] = mapString[i][j];
         }
+
+        public int Width()
+        {
+            return map.GetLength(1);
+        }
+        public int Height()
+        {
+            return map.GetLength(0);
+        }
     }
 }

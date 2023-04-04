@@ -15,6 +15,7 @@ namespace Text_Based_RPG
         public static PlayerUI playerUI;
         public static EnemyManager enemyManager;
         public static ItemManager itemManager;
+        public static Camera camera;
 
         public static ConsoleKey pressedKey;
 
@@ -29,6 +30,7 @@ namespace Text_Based_RPG
             playerUI = new PlayerUI(player);
             itemManager = new ItemManager(render, attack, map, player);
             enemyManager = new EnemyManager(attack, player, render, map, itemManager);
+            camera = new Camera(player, map);
 
             gameOver = false;
             gameWin = false;
@@ -42,6 +44,7 @@ namespace Text_Based_RPG
             Console.CursorVisible = false;
 
             player.GetEnemyManager(enemyManager);
+            render.GetCamera(camera);
 
             SpawnEnemies();
             SpawnItems();
@@ -65,6 +68,7 @@ namespace Text_Based_RPG
                 player.Update();
                 enemyManager.Update();
                 itemManager.Update();
+                camera.Update();
 
                 map.Draw(render);
                 attack.Draw();
@@ -108,6 +112,7 @@ namespace Text_Based_RPG
             Console.WriteLine();
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
+            Console.Clear();
             StartGame();
         }
         public static void GameWinSequence()
@@ -118,6 +123,7 @@ namespace Text_Based_RPG
             Console.WriteLine();
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
+            Console.Clear();
             StartGame();
         }
 

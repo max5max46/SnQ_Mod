@@ -72,5 +72,8 @@ namespace Text_Based_RPG
         // player starting position
         public const int START_X = 3;
         public const int START_Y = 3;
+
+        // camera radius
+        public const int CAMERA_RADIUS = 8;
     }
 }
