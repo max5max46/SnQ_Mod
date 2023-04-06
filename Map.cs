@@ -16,7 +16,8 @@ namespace Text_Based_RPG
         // * - forest
         // " - sand
         // = - wood
-        
+        // ▓ - Wall
+
         public char[,] map;
 
         public void Draw(Render render)
@@ -47,6 +48,9 @@ namespace Text_Based_RPG
                         case Global.MAP_WALL:
                             render.ChangeSpace(map[i, j], ConsoleColor.Black, ConsoleColor.DarkGray, j, i);
                             break;
+                        case Global.MAP_HOLE:
+                            render.ChangeSpace(map[i, j], ConsoleColor.Black, ConsoleColor.Black, j, i);
+                            break;
                     }
                 }
         }
@@ -67,6 +71,7 @@ namespace Text_Based_RPG
                         return true;
                     case Global.MAP_MOUNTAIN:
                     case Global.MAP_WALL:
+                    case Global.MAP_HOLE:
                     default:
                         return true;
                 }
@@ -79,7 +84,7 @@ namespace Text_Based_RPG
 
         public void FillSpace(int x, int y, Render render)
         {
-            switch (map[y, x])
+            /*switch (map[y, x])
             {
                 case '`':
                     render.ChangeSpace(map[y, x], ConsoleColor.Green, ConsoleColor.Black, x, y);
@@ -96,7 +101,7 @@ namespace Text_Based_RPG
                 case '~':
                     render.ChangeSpace(map[y, x], ConsoleColor.Blue, ConsoleColor.Black, x, y);
                     break;
-            }
+            }*/
         }
 
         public Map()

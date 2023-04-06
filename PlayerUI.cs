@@ -31,7 +31,7 @@ namespace Text_Based_RPG
 
         public void Draw(Map map)
         {
-            Console.SetCursorPosition(0, map.map.GetLength(0));
+            Console.SetCursorPosition(0, Global.CAMERA_RADIUS * 2 + 1);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 

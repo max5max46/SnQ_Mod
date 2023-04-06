@@ -27,8 +27,8 @@ namespace Text_Based_RPG
             y = player.GetPos()[1];
             if (x <= Global.CAMERA_RADIUS - 2) x = Global.CAMERA_RADIUS - 1;
             if (y <= Global.CAMERA_RADIUS - 2) y = Global.CAMERA_RADIUS - 1;
-            if (x > map.Width() - Global.CAMERA_RADIUS) x = map.Width() - Global.CAMERA_RADIUS;
-            if (y >= map.Height() - Global.CAMERA_RADIUS + 1) y = map.Height() - Global.CAMERA_RADIUS;
+            if (x > map.Width() - Global.CAMERA_RADIUS - 1) x = map.Width() - Global.CAMERA_RADIUS - 1;
+            if (y >= map.Height() - Global.CAMERA_RADIUS) y = map.Height() - Global.CAMERA_RADIUS - 1;
         }
 
         public int[] GetPos()

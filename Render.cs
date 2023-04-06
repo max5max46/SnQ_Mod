@@ -29,12 +29,6 @@ namespace Text_Based_RPG
             camBufferNext = new RenderSpace[Global.CAMERA_RADIUS * 2, Global.CAMERA_RADIUS * 2];
         }
 
-        public void SetWindowSize(PlayerUI playerUI)
-        {
-            Console.WindowHeight = map.map.GetLength(0) + playerUI.UIText.GetLength(0) + playerUI.EventLog.GetLength(0) + 1;
-            Console.WindowWidth = map.map.GetLength(1) * 2;
-        }
-
         public void ChangeSpace(char NewChar, ConsoleColor NewBGColour, ConsoleColor NewFGColour, int x, int y)
         {
             wholeMap[y, x] = new RenderSpace();

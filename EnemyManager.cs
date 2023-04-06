@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Text_Based_RPG
 {
@@ -75,6 +76,39 @@ namespace Text_Based_RPG
                     enemy.TakeDamage(attackMap.AttackStrength(enemy.GetPos()[0], enemy.GetPos()[1]));
                 }
             }
+        }
+
+        public void InitEnemies()
+        {
+            string[] mapString = File.ReadAllLines("Enemies.txt");
+            char[,] enemyMap = new char[mapString.GetLength(0), mapString[0].Length];
+
+            for (int i = 0; i < mapString.GetLength(0); i++)
+                for (int j = 0; j < mapString[0].Length; j++)
+                    enemyMap[i, j] = mapString[i][j];
+            
+            for (int i = 0; i < enemyMap.GetLength(0); i++)
+                for (int j = 0; j < enemyMap.GetLength(1); j++)
+                {
+                    switch (enemyMap[i, j])
+                    {
+                        case Global.CHARGER_CHAR:
+                            AddEnemy(EnemyTypeClass.EnemyType.Charger, j, i);
+                            break;
+                        case Global.ELITE_CHAR:
+                            AddEnemy(EnemyTypeClass.EnemyType.Elite, j, i);
+                            break;
+                        case Global.SWIMMER_CHAR:
+                            AddEnemy(EnemyTypeClass.EnemyType.Swimmer, j, i);
+                            break;
+                        case Global.ROAMER_CHAR:
+                            AddEnemy(EnemyTypeClass.EnemyType.Roamer, j, i);
+                            break;
+                        case Global.LAVA_CHAR:
+                            AddEnemy(EnemyTypeClass.EnemyType.Lava, j, i);
+                            break;
+                    }
+                }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Text_Based_RPG
         public const char SWIMMER_CHAR = 'S';
         public const char ELITE_CHAR = '‼';
         public const char HEALTH_CHAR = '♥';
+        public const char HEALTH_CHAR2 = '+';
         public const char SPEAR_CHAR = '↑';
         public const char BOMB_CHAR = 'B';
         public const char BOAT_CHAR = 'U';
@@ -42,6 +43,7 @@ namespace Text_Based_RPG
         public const char MAP_SAND = '"';
         public const char MAP_WOOD = '=';
         public const char MAP_WALL = '▓';
+        public const char MAP_HOLE = 'n';
 
         // health constants
         public const int PLAYER_HP = 10;
@@ -70,10 +72,10 @@ namespace Text_Based_RPG
         public static Random random = new Random();
 
         // player starting position
-        public const int START_X = 3;
-        public const int START_Y = 3;
+        public const int START_X = 74;
+        public const int START_Y = 36;
 
         // camera radius
-        public const int CAMERA_RADIUS = 8;
+        public const int CAMERA_RADIUS = 10;
     }
 }

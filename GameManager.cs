@@ -32,6 +32,8 @@ namespace Text_Based_RPG
             enemyManager = new EnemyManager(attack, player, render, map, itemManager);
             camera = new Camera(player, map);
 
+            enemyManager.InitEnemies();
+            itemManager.InitItems();
             gameOver = false;
             gameWin = false;
         }
@@ -40,14 +42,10 @@ namespace Text_Based_RPG
         {
             InitializeObjects();
 
-            render.SetWindowSize(playerUI);
             Console.CursorVisible = false;
 
             player.GetEnemyManager(enemyManager);
             render.GetCamera(camera);
-
-            SpawnEnemies();
-            SpawnItems();
 
             GameLoop();
         }
@@ -70,13 +68,13 @@ namespace Text_Based_RPG
                 itemManager.Update();
                 camera.Update();
 
+                playerUI.Draw(map);
                 map.Draw(render);
                 attack.Draw();
                 enemyManager.Draw();
                 itemManager.Draw();
                 player.Draw();
                 render.Draw();
-                playerUI.Draw(map);
 
                 // break out to start a game over/win
                 if (gameOver || gameWin) break;
@@ -112,6 +110,7 @@ namespace Text_Based_RPG
             Console.WriteLine();
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             StartGame();
         }
@@ -123,96 +122,9 @@ namespace Text_Based_RPG
             Console.WriteLine();
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             StartGame();
-        }
-
-        // SPAWNER METHODS
-
-        public static void SpawnEnemies()
-        {
-            // roamers
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 13, 14);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 55, 17);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 55, 20);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 1, 37);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 18);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 16);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 22);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 23);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 70, 10);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 76, 12);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 10);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 79, 5);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 75, 2);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 73, 6);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 20, 22);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 67, 15);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 66, 16);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 80, 30);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 68, 35);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 63, 31);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 52, 30);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Roamer, 13, 36);
-
-            // chargers
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 1, 37);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 60, 10);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 79, 24);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 60, 16);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Charger, 71, 3);
-
-            // swimmers
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 42, 20);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 42, 5);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 48, 40);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 22, 40);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Swimmer, 70, 40);
-
-            // lava
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 37, 6);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 36, 8);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 58, 3);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 36, 39);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Lava, 66, 2);
-
-            // elites
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Elite, 61, 6);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Elite, 67, 5);
-            enemyManager.AddEnemy(EnemyTypeClass.EnemyType.Elite, 69, 4);
-        }
-
-        public static void SpawnItems()
-        {
-            // health pickups
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 1, 35);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 37);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 4, 11);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 22, 9);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 35, 38);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 69, 1);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 69, 7);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 78, 17);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 69, 15);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 40, 30);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 42, 28);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 49, 2);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickup, 52, 1);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 56, 18);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 14, 20);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 60, 16);
-            itemManager.AddItem(ItemTypeClass.ItemType.HealthPickupLarge, 36, 39);
-
-            // weapons
-            itemManager.AddItem(ItemTypeClass.ItemType.Spear, 59, 23);
-            itemManager.AddItem(ItemTypeClass.ItemType.HulaHoop, 37, 40);
-
-            // bombs
-            itemManager.AddItem(ItemTypeClass.ItemType.Bomb, 33, 6);
-
-            // key items
-            itemManager.AddItem(ItemTypeClass.ItemType.Boat, 71, 3);
-            itemManager.AddItem(ItemTypeClass.ItemType.Gem, 3, 3);
         }
     }
 }
