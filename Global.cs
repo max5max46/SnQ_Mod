@@ -77,5 +77,8 @@ namespace Text_Based_RPG
 
         // camera radius
         public const int CAMERA_RADIUS = 10;
+
+        // event log length
+        public const int EVENT_LOG_LENGTH = 7;
     }
 }

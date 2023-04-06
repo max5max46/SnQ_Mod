@@ -17,7 +17,7 @@ namespace Text_Based_RPG
             "----------",
         };
 
-        public String[] EventLog = new string[8];
+        public String[] EventLog = new string[Global.EVENT_LOG_LENGTH];
 
         public PlayerUI(Player player)
         {
@@ -31,7 +31,7 @@ namespace Text_Based_RPG
 
         public void Draw(Map map)
         {
-            Console.SetCursorPosition(0, Global.CAMERA_RADIUS * 2 + 1);
+            Console.SetCursorPosition(0, Global.CAMERA_RADIUS * 2);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 

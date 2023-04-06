@@ -111,6 +111,7 @@ namespace Text_Based_RPG
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
             StartGame();
         }
@@ -123,6 +124,7 @@ namespace Text_Based_RPG
             Console.WriteLine("Press any key to start over");
             Console.ReadKey(true);
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
             StartGame();
         }
