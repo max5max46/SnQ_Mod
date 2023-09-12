@@ -86,6 +86,9 @@ namespace Text_Based_RPG
                         case Global.SHOP_CHAR:
                             AddNPC(NPCTypeClass.NPCType.ShopKeep, j, i);
                             break;
+                        case Global.SIGN_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.Sign, j, i);
+                            break;
                     }
                 }
         }

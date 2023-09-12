@@ -16,5 +16,23 @@ namespace Text_Based_RPG
             this.Type = type;
             name = type.ToString();
         }
+
+        public override void TakeDamage(int damageAmount, bool displayDamage = true)
+        {
+            switch (health)
+            {
+                case 3:
+                    GameManager.playerUI.AddEvent("\"Hey! Watch where you swing that thing!\" -" + name);
+                    break;
+                case 2:
+                    GameManager.playerUI.AddEvent("\"I'm serious! get away from me with that thing!\" -" + name);
+                    break;
+                case 1:
+                    GameManager.playerUI.AddEvent("\"Why....\" -" + name);
+                    break;
+            }
+
+            base.TakeDamage(damageAmount);
+        }
     }
 }

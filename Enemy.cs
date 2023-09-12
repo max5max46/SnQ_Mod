@@ -51,13 +51,13 @@ namespace Text_Based_RPG
             base.Die();
         }
 
-        public override void TakeDamage(int damageAmount)
+        public override void TakeDamage(int damageAmount, bool displayDamage = true)
         {
-            if (attackMap.PlayerAttackCheck(x, y)) base.TakeDamage(damageAmount);
+            if (attackMap.PlayerAttackCheck(x, y)) base.TakeDamage(damageAmount, displayDamage);
         }
-        public void TakeDamageDirect(int damageAmount)
+        public void TakeDamageDirect(int damageAmount, bool displayDamage = true)
         {
-            base.TakeDamage(damageAmount);
+            base.TakeDamage(damageAmount, displayDamage);
         }
 
         public EnemyTypeClass.EnemyType GetEnemyType()

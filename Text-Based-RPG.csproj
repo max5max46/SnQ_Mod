@@ -46,6 +46,7 @@
     <Compile Include="AttackMap.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="Sign.cs" />
     <Compile Include="QuestDealer.cs" />
     <Compile Include="ShopKeep.cs" />
     <Compile Include="Charger.cs" />

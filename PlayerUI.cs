@@ -41,7 +41,7 @@ namespace Text_Based_RPG
 
             for (int i = 0; i < EventLog.GetLength(0); i++)
             {
-                Console.WriteLine(EventLog[i] + "                                      ");
+                Console.WriteLine(EventLog[i] + "                                                  ");
             }
         }
 

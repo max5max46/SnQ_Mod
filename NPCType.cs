@@ -11,7 +11,8 @@ namespace Text_Based_RPG
         public enum NPCType
         {
             ShopKeep,
-            QuestDealer
+            QuestDealer,
+            Sign
         }
 
         public static NPC CreateNPC(NPCType npcType, int x, int y, Map map, AttackMap attackMap, Render render)
@@ -22,6 +23,8 @@ namespace Text_Based_RPG
                     return new ShopKeep(x, y, map, attackMap, render, NPCType.ShopKeep);
                 case NPCType.QuestDealer:
                     return new QuestDealer(x, y, map, attackMap, render, NPCType.QuestDealer);
+                case NPCType.Sign:
+                    return new Sign(x, y, map, attackMap, render, NPCType.Sign);
                 default: return null;
             }
         }
