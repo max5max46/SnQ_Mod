@@ -45,9 +45,14 @@
   <ItemGroup>
     <Compile Include="AttackMap.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="QuestDealer.cs" />
+    <Compile Include="ShopKeep.cs" />
     <Compile Include="Charger.cs" />
     <Compile Include="Elite.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="NPC.cs" />
+    <Compile Include="NPCType.cs" />
+    <Compile Include="NPCManager.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="EnemyType.cs" />
     <Compile Include="GameCharacter.cs" />

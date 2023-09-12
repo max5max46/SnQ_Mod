@@ -15,6 +15,7 @@ namespace Text_Based_RPG
         public static PlayerUI playerUI;
         public static EnemyManager enemyManager;
         public static ItemManager itemManager;
+        public static NPCManager npcManager;
         public static Camera camera;
 
         public static ConsoleKey pressedKey;
@@ -30,10 +31,12 @@ namespace Text_Based_RPG
             playerUI = new PlayerUI(player);
             itemManager = new ItemManager(render, attack, map, player);
             enemyManager = new EnemyManager(attack, player, render, map, itemManager);
+            npcManager = new NPCManager(attack, player, render, map, itemManager);
             camera = new Camera(player, map);
 
             enemyManager.InitEnemies();
             itemManager.InitItems();
+            npcManager.InitNPCs();
             gameOver = false;
             gameWin = false;
         }
@@ -45,6 +48,7 @@ namespace Text_Based_RPG
             Console.CursorVisible = false;
 
             player.GetEnemyManager(enemyManager);
+            player.GetNPCManager(npcManager);
             render.GetCamera(camera);
 
             GameLoop();
@@ -66,6 +70,7 @@ namespace Text_Based_RPG
                 player.Update();
                 enemyManager.Update();
                 itemManager.Update();
+                npcManager.Update();
                 camera.Update();
 
                 playerUI.Draw(map);
@@ -73,6 +78,7 @@ namespace Text_Based_RPG
                 attack.Draw();
                 enemyManager.Draw();
                 itemManager.Draw();
+                npcManager.Draw();
                 player.Draw();
                 render.Draw();
 

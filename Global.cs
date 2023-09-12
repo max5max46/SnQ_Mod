@@ -22,6 +22,8 @@ namespace Text_Based_RPG
 
         // character constants
         public const char PLAYER_CHAR = '@';
+        public const char SHOP_CHAR = '$';
+        public const char QUEST_CHAR = '?';
         public const char ROAMER_CHAR = '0';
         public const char CHARGER_CHAR = 'V';
         public const char LAVA_CHAR = '₤';
@@ -47,6 +49,8 @@ namespace Text_Based_RPG
 
         // health constants
         public const int PLAYER_HP = 10;
+        public const int SHOP_HP = 3;
+        public const int QUEST_HP = 3;
         public const int ROAMER_HP = 2;
         public const int CHARGER_HP = 1;
         public const int LAVA_HP = 1;

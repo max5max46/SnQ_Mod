@@ -9,6 +9,7 @@ namespace Text_Based_RPG
     internal class Player : GameCharacter
     {
         EnemyManager enemyManager;
+        NPCManager npcManager;
 
         public Player(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
         {
@@ -66,6 +67,12 @@ namespace Text_Based_RPG
             base.Attack(attackShape);
 
             enemyManager.DamageEnemies();
+            npcManager.DamageNPCs();
+        }
+
+        public void GetNPCManager(NPCManager npcManager)
+        {
+            this.npcManager = npcManager;
         }
 
         public void GetEnemyManager(EnemyManager enemyManager)
