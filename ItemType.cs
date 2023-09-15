@@ -16,7 +16,8 @@ namespace Text_Based_RPG
             Boat,
             HealthPickupLarge,
             HulaHoop,
-            Gem
+            Gem,
+            CoinBag
         }
 
         public static Item CreateItem(ItemType itemType, int x, int y, Render render, AttackMap attackMap, Map map, Player player)
@@ -37,6 +38,8 @@ namespace Text_Based_RPG
                     return new Item(Global.HULA_CHAR, ConsoleColor.Gray, x, y, itemType, render, attackMap, map, player, "hula-hoop");
                 case ItemType.Gem:
                     return new Item(Global.GEM_CHAR, ConsoleColor.Yellow, x, y, itemType, render, attackMap, map, player, "magical gem");
+                case ItemType.CoinBag:
+                    return new Item(Global.COINBAG_CHAR, ConsoleColor.Yellow, x, y, itemType, render, attackMap, map, player, "bag of coins");
                 default:
                     return new Item(Global.HEALTH_CHAR, ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup");
             }

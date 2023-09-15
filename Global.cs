@@ -32,6 +32,7 @@ namespace Text_Based_RPG
         public const char ELITE_CHAR = '‼';
         public const char HEALTH_CHAR = '♥';
         public const char HEALTH_CHAR2 = '+';
+        public const char COINBAG_CHAR = 'C';
         public const char SPEAR_CHAR = '↑';
         public const char BOMB_CHAR = 'B';
         public const char BOAT_CHAR = 'U';
@@ -58,6 +59,11 @@ namespace Text_Based_RPG
         public const int LAVA_HP = 1;
         public const int SWIMMER_HP = 3;
         public const int ELITE_HP = 8;
+
+        // coin constants
+        public const int PLAYER_START_COINS = 5;
+        public const int COINBAG_RANGE = 5;
+        public const int COINBAG_MIN = 3;
 
         // move-at constants
         public const int ROAMER_MOVEAT = 2;

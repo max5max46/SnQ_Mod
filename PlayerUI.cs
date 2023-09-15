@@ -12,9 +12,9 @@ namespace Text_Based_RPG
 
         public String[] UIText =
         {
-            "----------",
-            "HP: ",
-            "----------",
+            "----------------------",
+            "HP:        Coins: ",
+            "----------------------",
         };
 
         public String[] EventLog = new string[Global.EVENT_LOG_LENGTH];
@@ -36,8 +36,10 @@ namespace Text_Based_RPG
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine(UIText[0]);
-            Console.WriteLine(UIText[1] + player.GetHealth() + "  ");
-            Console.WriteLine(UIText[0]);
+            Console.WriteLine(UIText[1]);
+            Console.SetCursorPosition(4, (Global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetHealth() + "  ");
+            Console.SetCursorPosition(18, (Global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetCoins() + "  ");
+            Console.WriteLine("\n" + UIText[0]);
 
             for (int i = 0; i < EventLog.GetLength(0); i++)
             {

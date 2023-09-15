@@ -82,6 +82,9 @@ namespace Text_Based_RPG
                         case Global.HEALTH_CHAR2:
                             AddItem(ItemTypeClass.ItemType.HealthPickupLarge, j, i);
                             break;
+                        case Global.COINBAG_CHAR:
+                            AddItem(ItemTypeClass.ItemType.CoinBag, j, i);
+                            break;
                     }
                 }
         }

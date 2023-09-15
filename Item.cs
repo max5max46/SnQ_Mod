@@ -75,7 +75,15 @@ namespace Text_Based_RPG
 
         private void Collect()
         {
-            GameManager.playerUI.AddEvent("Player collected a " + name);
+            int coinAmount = 0;
+
+            if (Type == ItemTypeClass.ItemType.CoinBag)
+            {
+                coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
+                GameManager.playerUI.AddEvent("Player collected a " + name + " worth " + coinAmount + " coins");
+            }else
+                GameManager.playerUI.AddEvent("Player collected a " + name);
+
             switch (Type)
             {
                 case ItemTypeClass.ItemType.HealthPickup:
@@ -98,6 +106,9 @@ namespace Text_Based_RPG
                     break;
                 case ItemTypeClass.ItemType.Gem:
                     GameManager.gameWin = true;
+                    break;
+                case ItemTypeClass.ItemType.CoinBag:
+                    player.GiveCoins(coinAmount);
                     break;
             }
             collected = true;
