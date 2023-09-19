@@ -17,6 +17,10 @@ namespace Text_Based_RPG
 
         private ConsoleColor color;
 
+        private int cost;
+
+        private bool aboutToBuy = false;
+
         private int x, y;
 
         private bool collected, hidden;
@@ -24,7 +28,7 @@ namespace Text_Based_RPG
         private ItemTypeClass.ItemType Type;
         private string name;
 
-        public Item(char character, ConsoleColor color, int x, int y, ItemTypeClass.ItemType Type, Render render, AttackMap attackMap, Map map, Player player, string name)
+        public Item(char character, ConsoleColor color, int x, int y, ItemTypeClass.ItemType Type, Render render, AttackMap attackMap, Map map, Player player, string name, int cost)
         {
             this.character = character;
             this.color = color;
@@ -36,6 +40,7 @@ namespace Text_Based_RPG
             this.map = map;
             this.player = player;
             this.name = name;
+            this.cost = cost;
             
             collected = false;
 
@@ -70,19 +75,48 @@ namespace Text_Based_RPG
                 return;
             if (attackMap.IsAttack(x, y))
                 if (attackMap.PlayerAttackCheck(x, y))
-                    Collect();
+                    if (map.GetChar(x, y) == 'x')
+                    {
+                        Collect(true);
+                        return;
+                    }
+                    else
+                        Collect(false);
+
+            aboutToBuy = false;
         }
 
-        private void Collect()
+        private void Collect(bool inShop)
         {
             int coinAmount = 0;
-
-            if (Type == ItemTypeClass.ItemType.CoinBag)
+            if (inShop)
             {
-                coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
-                GameManager.playerUI.AddEvent("Player collected a " + name + " worth " + coinAmount + " coins");
+                if (aboutToBuy == true)
+                    if (player.GetCoins() >= cost)
+                    {
+                        GameManager.playerUI.AddEvent("Player bought a " + name);
+                        player.TakeCoins(cost);
+                    }else
+                    {
+                        GameManager.playerUI.AddEvent("\"Sorry Bud, you don't have enough coins for that\" -ShopKeeper");
+                        return;
+                    }
+                else
+                {
+                    GameManager.playerUI.AddEvent("\"That " + name + "? that will be " + cost + " coins\" -ShopKeeper");
+                    aboutToBuy = true;
+                    return;
+                }
+
             }else
-                GameManager.playerUI.AddEvent("Player collected a " + name);
+
+                if (Type == ItemTypeClass.ItemType.CoinBag)
+                {
+                    coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
+                    GameManager.playerUI.AddEvent("Player collected a " + name + " worth " + coinAmount + " coins");
+                }else
+                    GameManager.playerUI.AddEvent("Player collected a " + name);
+
 
             switch (Type)
             {

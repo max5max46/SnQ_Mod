@@ -48,6 +48,7 @@ namespace Text_Based_RPG
         public const char MAP_WOOD = '=';
         public const char MAP_WALL = '▓';
         public const char MAP_HOLE = 'n';
+        public const char MAP_SHOP = 'x';
 
         // health constants
         public const int PLAYER_HP = 10;
@@ -64,6 +65,14 @@ namespace Text_Based_RPG
         public const int PLAYER_START_COINS = 5;
         public const int COINBAG_RANGE = 5;
         public const int COINBAG_MIN = 3;
+        public const int HEALTH_COST = 6;
+        public const int HEALTH_COST2 = 10;
+        public const int SPEAR_COST = 15;
+        public const int BOMB_COST = 50;
+        public const int BOAT_COST = 20;
+        public const int HULA_COST = 15;
+        public const int GEM_COST = 100;
+        public const int COINBAG_COST = 5;
 
         // move-at constants
         public const int ROAMER_MOVEAT = 2;
