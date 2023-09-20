@@ -140,6 +140,7 @@ namespace Text_Based_RPG
                     break;
                 case QuestTypeClass.QuestType.GiveSpear:
                     player.ChangeAttackShape(Global.CROSS_ATTACK);
+                    GameManager.playerUI.AddEvent("player lost the spear!");
                     break;
             }
 

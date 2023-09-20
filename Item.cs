@@ -98,12 +98,12 @@ namespace Text_Based_RPG
                         player.TakeCoins(cost);
                     }else
                     {
-                        GameManager.playerUI.AddEvent("\"Sorry Bud, you don't have enough coins for that\" -ShopKeeper");
+                        GameManager.playerUI.AddEvent("You wanted the " + name + ", but didn't have enough");
                         return;
                     }
                 else
                 {
-                    GameManager.playerUI.AddEvent("\"That " + name + "? that will be " + cost + " coins\" -ShopKeeper");
+                    GameManager.playerUI.AddEvent("Try to buy the " + name + " worth " + cost + " coins?");
                     aboutToBuy = true;
                     return;
                 }
