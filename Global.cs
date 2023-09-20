@@ -74,6 +74,10 @@ namespace Text_Based_RPG
         public const int GEM_COST = 100;
         public const int COINBAG_COST = 5;
 
+        // quest contants
+        public const char UNACCEPTED_QUEST = '?';
+        public const char COMPLETED_QUEST = '!';
+
         // move-at constants
         public const int ROAMER_MOVEAT = 2;
         public const int CHARGER_MOVEAT = 1;
