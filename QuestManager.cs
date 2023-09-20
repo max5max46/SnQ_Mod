@@ -9,14 +9,14 @@ namespace Text_Based_RPG
 {
     internal class QuestManager
     {
-        List<Quest> Items = new List<Quest>();
+        List<Quest> Quests = new List<Quest>();
 
         Render render;
         AttackMap attackMap;
         Map map;
         Player player;
 
-        public ItemManager(Render render, AttackMap attackMap, Map map, Player player)
+        public QuestManager(Render render, AttackMap attackMap, Map map, Player player)
         {
             this.render = render;
             this.attackMap = attackMap;
@@ -24,66 +24,53 @@ namespace Text_Based_RPG
             this.player = player;
         }
 
-        public void AddItem(ItemTypeClass.ItemType type, int x, int y, int cost)
+        public void AddQuest(QuestTypeClass.QuestType type, int x, int y, int reward)
         {
-            Items.Add(ItemTypeClass.CreateItem(type, x, y, render, attackMap, map, player, cost));
+            Quests.Add(QuestTypeClass.CreateQuest(type, x, y, render, attackMap, map, player, reward));
         }
 
         public void Update()
         {
-            foreach (Item item in Items)
-                item.Update();
+            foreach (Quest quest in Quests)
+                quest.Update();
         }
 
         public void Draw()
         {
-            foreach (Item item in Items)
-                item.Draw();
+            foreach (Quest quest in Quests)
+                quest.Draw();
         }
 
-        public void ShowHidden()
+        public void InitQuests()
         {
-            foreach (Item item in Items)
-                item.Unhide();
-        }
-
-        public void InitItems()
-        {
-            string[] mapString = File.ReadAllLines("Items.txt");
-            char[,] itemMap = new char[mapString.GetLength(0), mapString[0].Length];
+            string[] mapString = File.ReadAllLines("Quests.txt");
+            char[,] questMap = new char[mapString.GetLength(0), mapString[0].Length];
 
             for (int i = 0; i < mapString.GetLength(0); i++)
                 for (int j = 0; j < mapString[0].Length; j++)
-                    itemMap[i, j] = mapString[i][j];
+                    questMap[i, j] = mapString[i][j];
 
-            for (int i = 0; i < itemMap.GetLength(0); i++)
-                for (int j = 0; j < itemMap.GetLength(1); j++)
+            for (int i = 0; i < questMap.GetLength(0); i++)
+                for (int j = 0; j < questMap.GetLength(1); j++)
                 {
-                    switch (itemMap[i, j])
+                    switch (questMap[i, j])
                     {
-                        case Global.GEM_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Gem, j, i, Global.GEM_COST);
+                        case Global.RANDOM_QUEST_CHAR:
+                            switch (Global.random.Next(1))
+                            {
+                                case 0:
+                                    AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(Global.GIVE_HEALTH_QUEST_REWARD_RANGE) + Global.GIVE_HEALTH_QUEST_REWARD_MIN);
+                                    break;
+                                case 1:
+                                    AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(Global.GIVE_SPEAR_QUEST_REWARD_RANGE) + Global.GIVE_SPEAR_QUEST_REWARD_MIN);
+                                    break;
+                            }
                             break;
-                        case Global.BOAT_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Boat, j, i, Global.BOAT_COST);
+                        case Global.GIVE_HEALTH_QUEST_CHAR:
+                            AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(Global.GIVE_HEALTH_QUEST_REWARD_RANGE) + Global.GIVE_HEALTH_QUEST_REWARD_MIN);
                             break;
-                        case Global.HULA_CHAR:
-                            AddItem(ItemTypeClass.ItemType.HulaHoop, j, i, Global.HULA_COST);
-                            break;
-                        case Global.SPEAR_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Spear, j, i, Global.SPEAR_COST);
-                            break;
-                        case Global.BOMB_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Bomb, j, i, Global.BOMB_COST);
-                            break;
-                        case Global.HEALTH_CHAR:
-                            AddItem(ItemTypeClass.ItemType.HealthPickup, j, i, Global.HEALTH_COST);
-                            break;
-                        case Global.HEALTH_CHAR2:
-                            AddItem(ItemTypeClass.ItemType.HealthPickupLarge, j, i, Global.HEALTH_COST2);
-                            break;
-                        case Global.COINBAG_CHAR:
-                            AddItem(ItemTypeClass.ItemType.CoinBag, j, i, Global.COINBAG_COST);
+                        case Global.GIVE_SPEAR_QUEST_CHAR:
+                            AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(Global.GIVE_SPEAR_QUEST_REWARD_RANGE) + Global.GIVE_SPEAR_QUEST_REWARD_MIN);
                             break;
                     }
                 }

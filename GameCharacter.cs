@@ -133,6 +133,11 @@ namespace Text_Based_RPG
             dead = true;
         }
 
+        public int GetAttackShape()
+        {
+            return attackShape;
+        }
+
         public void ChangeAttackShape(int newShape)
         {
             attackShape = newShape;

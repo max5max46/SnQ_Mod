@@ -74,9 +74,19 @@ namespace Text_Based_RPG
         public const int GEM_COST = 100;
         public const int COINBAG_COST = 5;
 
-        // quest contants
+        // quest char contants
         public const char UNACCEPTED_QUEST = '?';
-        public const char COMPLETED_QUEST = '!';
+        public const char ACCEPTED_QUEST = '?';
+        public const char NOT_TURNED_IN_QUEST = '!';
+        public const char RANDOM_QUEST_CHAR = 'R';
+        public const char GIVE_HEALTH_QUEST_CHAR = 'H';
+        public const char GIVE_SPEAR_QUEST_CHAR = 'S';
+
+        // quest reward contants
+        public const int GIVE_HEALTH_QUEST_REWARD_RANGE = 4;
+        public const int GIVE_HEALTH_QUEST_REWARD_MIN = 5;
+        public const int GIVE_SPEAR_QUEST_REWARD_RANGE = 6;
+        public const int GIVE_SPEAR_QUEST_REWARD_MIN = 13;
 
         // move-at constants
         public const int ROAMER_MOVEAT = 2;

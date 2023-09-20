@@ -74,9 +74,9 @@ namespace Text_Based_RPG
                 case QuestState.unaccepted: 
                     render.ChangeSpace(Global.UNACCEPTED_QUEST, ConsoleColor.Black, ConsoleColor.Red, x, y); return;
                 case QuestState.accepted:
-                    render.ChangeSpace(Global.UNACCEPTED_QUEST, ConsoleColor.Black, ConsoleColor.Yellow, x, y); return;
+                    render.ChangeSpace(Global.ACCEPTED_QUEST, ConsoleColor.Black, ConsoleColor.Yellow, x, y); return;
                 case QuestState.notTurnedIn:
-                    render.ChangeSpace(Global.COMPLETED_QUEST, ConsoleColor.Black, ConsoleColor.Green, x, y); return;
+                    render.ChangeSpace(Global.NOT_TURNED_IN_QUEST, ConsoleColor.Black, ConsoleColor.Green, x, y); return;
             }
             
         }
@@ -85,16 +85,18 @@ namespace Text_Based_RPG
         {
             if (state == QuestState.turnedIn)
                 return;
+            if (state == QuestState.accepted || state == QuestState.notTurnedIn)
+                UpdateQuest();
             if (attackMap.IsAttack(x, y))
                 if (attackMap.PlayerAttackCheck(x, y))
                     switch (state)
                     {
                         case QuestState.unaccepted:
-                            AcceptQuest(); break;
-                        case QuestState.accepted:
-                            CheckQuest(); return;
-                        case QuestState.notTurnedIn:
                             AcceptQuest(); return;
+                        case QuestState.accepted:
+                            CheckQuest(); break;
+                        case QuestState.notTurnedIn:
+                            TurnInQuest(); break;
                     }
             aboutToAccept = false;
         }
@@ -118,27 +120,58 @@ namespace Text_Based_RPG
             {
                 GameManager.playerUI.AddEvent("You accepted the Quest!");
                 state = QuestState.accepted;
+                UpdateQuest();
             }
             else
             {
                 GameManager.playerUI.AddEvent(questDescription);
-                GameManager.playerUI.AddEvent("Reward: " + reward + " coins");
+                GameManager.playerUI.AddEvent("Reward: " + reward + " coins   (unaccepted)");
                 aboutToAccept = true;
                 return;
             }
         }
 
-        private void CheckQuest()
+        private void TurnInQuest()
         {
             switch (Type)
             {
                 case QuestTypeClass.QuestType.GiveHealth:
-                    questDescription = "\"Could I get some blood? maybe 3 HP worth?\" -Sketchy Docter";
+                    player.TakeDamage(3);
                     break;
                 case QuestTypeClass.QuestType.GiveSpear:
-                    questDescription = "\"My spear was damaged and I need a new one\" -Brash Hunter";
+                    player.ChangeAttackShape(Global.CROSS_ATTACK);
                     break;
             }
+
+            state = QuestState.turnedIn;
+            player.GiveCoins(reward);
+            GameManager.playerUI.AddEvent("Quest Complete! You got " + reward + " coins!");
+        }
+
+        private void UpdateQuest()
+        {
+            switch (Type)
+            {
+                case QuestTypeClass.QuestType.GiveHealth:
+                    if (player.GetHealth() > 3)
+                        state = QuestState.notTurnedIn;
+                    else
+                        state = QuestState.accepted;
+                    break;
+                case QuestTypeClass.QuestType.GiveSpear:
+                    if (player.GetAttackShape() == Global.LONG_ATTACK)
+                        state = QuestState.notTurnedIn;
+                    else
+                        state = QuestState.accepted;
+                    break;
+            }
+        }
+
+        private void CheckQuest()
+        {
+            SetQuestDescription();
+            GameManager.playerUI.AddEvent(questDescription);
+            GameManager.playerUI.AddEvent("Reward: " + reward + " coins   (In Progress)");
         }
     }
 }

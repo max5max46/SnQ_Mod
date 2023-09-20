@@ -14,16 +14,16 @@ namespace Text_Based_RPG
             GiveSpear
         }
 
-        public static Quest CreateQuest(QuestType questType, int x, int y, Render render, AttackMap attackMap, Map map, Player player, int cost)
+        public static Quest CreateQuest(QuestType questType, int x, int y, Render render, AttackMap attackMap, Map map, Player player, int reward)
         {
-            switch (itemType)
+            switch (questType)
             {
-                case ItemType.GiveHealth:
-                    return new Item(Global.HEALTH_CHAR, ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup", cost);
-                case ItemType.GiveSpear:
-                    return new Item(Global.HEALTH_CHAR2, ConsoleColor.Red, x, y, itemType, render, attackMap, map, player, "large health pickup", cost);
+                case QuestType.GiveHealth:
+                    return new Quest(x, y, questType, render, attackMap, map, player, reward);
+                case QuestType.GiveSpear:
+                    return new Quest(x, y, questType, render, attackMap, map, player, reward);
                 default:
-                    return new Item(Global.HEALTH_CHAR, ConsoleColor.Magenta, x, y, itemType, render, attackMap, map, player, "health pickup", cost);
+                    return new Quest(x, y, questType, render, attackMap, map, player, reward);
             }
         }
     }
