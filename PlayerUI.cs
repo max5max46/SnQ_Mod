@@ -43,7 +43,11 @@ namespace Text_Based_RPG
 
             for (int i = 0; i < EventLog.GetLength(0); i++)
             {
-                Console.WriteLine(EventLog[i] + "                                                  ");
+                string overwrite = "";
+                for (int j = 0; j < Console.WindowWidth - EventLog[i].Length - 1; j++)
+                    overwrite += " ";
+
+                Console.WriteLine(EventLog[i] + overwrite);
             }
         }
 

@@ -52,19 +52,6 @@ namespace Text_Based_RPG
             SetQuestDescription();
         }
 
-        public void GetMap(Map map)
-        {
-            this.map = map;
-        }
-        public void GetAttackMap(AttackMap attackMap)
-        {
-            this.attackMap = attackMap;
-        }
-        public void GetPlayer(Player player)
-        {
-            this.player = player;
-        }
-
         public void Draw()
         {
             if (state == QuestState.turnedIn)
@@ -111,6 +98,9 @@ namespace Text_Based_RPG
                 case QuestTypeClass.QuestType.GiveSpear:
                     questDescription = "\"My spear was damaged and I need a new one\" -Brash Hunter";
                     break;
+                case QuestTypeClass.QuestType.GiveHula:
+                    questDescription = "\"Mom won't buy me have a hula-hoop, could someone get me one?\" -Demanding Kid";
+                    break;
             }
         }
 
@@ -142,6 +132,10 @@ namespace Text_Based_RPG
                     player.ChangeAttackShape(Global.CROSS_ATTACK);
                     GameManager.playerUI.AddEvent("player lost the spear!");
                     break;
+                case QuestTypeClass.QuestType.GiveHula:
+                    player.ChangeAttackShape(Global.CROSS_ATTACK);
+                    GameManager.playerUI.AddEvent("player lost the hula-hoop!");
+                    break;
             }
 
             state = QuestState.turnedIn;
@@ -161,6 +155,12 @@ namespace Text_Based_RPG
                     break;
                 case QuestTypeClass.QuestType.GiveSpear:
                     if (player.GetAttackShape() == Global.LONG_ATTACK)
+                        state = QuestState.notTurnedIn;
+                    else
+                        state = QuestState.accepted;
+                    break;
+                case QuestTypeClass.QuestType.GiveHula:
+                    if (player.GetAttackShape() == Global.RING_ATTACK)
                         state = QuestState.notTurnedIn;
                     else
                         state = QuestState.accepted;

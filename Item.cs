@@ -49,19 +49,6 @@ namespace Text_Based_RPG
             else hidden = false;
         }
 
-        public void GetMap(Map map)
-        {
-            this.map = map;
-        }
-        public void GetAttackMap(AttackMap attackMap)
-        {
-            this.attackMap = attackMap;
-        }
-        public void GetPlayer(Player player)
-        {
-            this.player = player;
-        }
-
         public void Draw()
         {
             if (collected || hidden)

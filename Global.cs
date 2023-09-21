@@ -81,12 +81,15 @@ namespace Text_Based_RPG
         public const char RANDOM_QUEST_CHAR = 'R';
         public const char GIVE_HEALTH_QUEST_CHAR = 'H';
         public const char GIVE_SPEAR_QUEST_CHAR = 'S';
+        public const char GIVE_HULA_QUEST_CHAR = 'O';
 
         // quest reward contants
         public const int GIVE_HEALTH_QUEST_REWARD_RANGE = 4;
         public const int GIVE_HEALTH_QUEST_REWARD_MIN = 5;
         public const int GIVE_SPEAR_QUEST_REWARD_RANGE = 6;
         public const int GIVE_SPEAR_QUEST_REWARD_MIN = 13;
+        public const int GIVE_HULA_QUEST_REWARD_RANGE = 6;
+        public const int GIVE_HULA_QUEST_REWARD_MIN = 13;
 
         // move-at constants
         public const int ROAMER_MOVEAT = 2;
