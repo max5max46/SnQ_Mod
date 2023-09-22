@@ -15,6 +15,7 @@ namespace Text_Based_RPG
         private AttackMap attackMap;
         private Player player;
         private ItemManager itemManager;
+        private char[,] npcMap;
 
         public NPCManager(AttackMap attackMap, Player player, Render render, Map map, ItemManager itemManager)
         {
@@ -23,6 +24,13 @@ namespace Text_Based_RPG
             this.render = render;
             this.map = map;
             this.itemManager = itemManager;
+
+            string[] mapString = File.ReadAllLines("NPCs.txt");
+            npcMap = new char[mapString.GetLength(0), mapString[0].Length];
+
+            for (int i = 0; i < mapString.GetLength(0); i++)
+                for (int j = 0; j < mapString[0].Length; j++)
+                    npcMap[i, j] = mapString[i][j];
         }
 
         List<NPC> npcs = new List<NPC>();
@@ -49,32 +57,19 @@ namespace Text_Based_RPG
             }
         }
 
-        public void Bomb()
-        {
-            foreach (NPC npc in npcs)
-                npc.TakeDamageDirect(Global.SMALL_BOMB_DAMAGE);
-        }
-
-        public void DamageNPCs()
+        public void NPCInteract()
         {
             foreach (NPC npc in npcs)
             {
                 if (attackMap.IsAttack(npc.GetPos()[0], npc.GetPos()[1]) && attackMap.PlayerAttackCheck(npc.GetPos()[0], npc.GetPos()[1]))
                 {
-                    npc.TakeDamage(attackMap.AttackStrength(npc.GetPos()[0], npc.GetPos()[1]));
+                    npc.Interact();
                 }
             }
         }
 
         public void InitNPCs()
         {
-            string[] mapString = File.ReadAllLines("NPCs.txt");
-            char[,] npcMap = new char[mapString.GetLength(0), mapString[0].Length];
-
-            for (int i = 0; i < mapString.GetLength(0); i++)
-                for (int j = 0; j < mapString[0].Length; j++)
-                    npcMap[i, j] = mapString[i][j];
-            
             for (int i = 0; i < npcMap.GetLength(0); i++)
                 for (int j = 0; j < npcMap.GetLength(1); j++)
                 {
@@ -86,11 +81,52 @@ namespace Text_Based_RPG
                         case Global.SHOP_CHAR:
                             AddNPC(NPCTypeClass.NPCType.ShopKeep, j, i);
                             break;
+                        case Global.FISHERMAN_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.Fisherman, j, i);
+                            break;
+                        case Global.MAYOR_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.Mayor, j, i);
+                            break;
+                        case Global.SOLDIER_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.RetiredSoldier, j, i);
+                            break;
+                        case Global.HERMIT_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.OldHermit, j, i);
+                            break;
+                        case Global.GRASSGUY_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.GrassGuy, j, i);
+                            break;
+                        case Global.SANDGUY_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.SandGuy, j, i);
+                            break;
+                        case Global.DOCKGUY_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.DockGuy, j, i);
+                            break;
                         case Global.SIGN_CHAR:
                             AddNPC(NPCTypeClass.NPCType.Sign, j, i);
                             break;
                     }
                 }
+        }
+
+        public bool IsNPCHere(int x, int y)
+        {
+            switch (npcMap[y, x])
+            {
+                case Global.QUEST_CHAR:
+                case Global.SHOP_CHAR:
+                case Global.FISHERMAN_CHAR:
+                case Global.MAYOR_CHAR:
+                case Global.SOLDIER_CHAR:
+                case Global.HERMIT_CHAR:
+                case Global.GRASSGUY_CHAR:
+                case Global.SANDGUY_CHAR:
+                case Global.DOCKGUY_CHAR:
+                case Global.SIGN_CHAR:
+                    return true;
+                default: 
+                    return false;
+            }
         }
     }
 }

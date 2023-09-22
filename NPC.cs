@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         protected int moveCharge;
         protected int moveAt;
         protected NPCTypeClass.NPCType Type;
+        protected int dialogueCycle;
 
         public NPC(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
         {
@@ -22,27 +23,24 @@ namespace Text_Based_RPG
         public override void Update()
         {
             base.Update();
-            if (dead)
-                return;
         }
-
-        protected override void Die()
-        {
-            base.Die();
-        }
-
-        public override void TakeDamage(int damageAmount, bool displayDamage = true)
-        {
-            if (attackMap.PlayerAttackCheck(x, y)) base.TakeDamage(damageAmount, displayDamage);
-        }
-        public void TakeDamageDirect(int damageAmount, bool displayDamage = true)
-        {
-            base.TakeDamage(damageAmount, displayDamage);
-        }
-
         public NPCTypeClass.NPCType GetNPCType()
         {
             return Type;
         }
+
+        public virtual void Interact()
+        {
+
+        }
+
+        protected override void Die()
+        {
+        }
+
+        public override void TakeDamage(int damageAmount, bool displayDamage = true)
+        {
+        }
+
     }
 }

@@ -14,16 +14,18 @@ namespace Text_Based_RPG
         private AttackMap attackMap;
         private Player player;
         private ItemManager itemManager;
+        private NPCManager npcManager;
 
         private bool bossAlive;
 
-        public EnemyManager(AttackMap attackMap, Player player, Render render, Map map, ItemManager itemManager)
+        public EnemyManager(AttackMap attackMap, Player player, Render render, Map map, ItemManager itemManager, NPCManager npcManager)
         {
             this.attackMap = attackMap;
             this.player = player;
             this.render = render;
             this.map = map;
             this.itemManager = itemManager;
+            this.npcManager = npcManager;
         }
 
         List<Enemy> enemies = new List<Enemy>();

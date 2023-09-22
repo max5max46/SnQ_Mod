@@ -24,7 +24,14 @@ namespace Text_Based_RPG
         public const char PLAYER_CHAR = '@';
         public const char SHOP_CHAR = '$';
         public const char QUEST_CHAR = '?';
-        public const char SIGN_CHAR = 'S';
+        public const char FISHERMAN_CHAR = 'F';
+        public const char MAYOR_CHAR = 'M';
+        public const char SOLDIER_CHAR = 'A';
+        public const char HERMIT_CHAR = 'H';
+        public const char GRASSGUY_CHAR = 'G';
+        public const char SANDGUY_CHAR = 'S';
+        public const char DOCKGUY_CHAR = 'D';
+        public const char SIGN_CHAR = 'P';
         public const char ROAMER_CHAR = '0';
         public const char CHARGER_CHAR = 'V';
         public const char LAVA_CHAR = '₤';
@@ -48,13 +55,12 @@ namespace Text_Based_RPG
         public const char MAP_WOOD = '=';
         public const char MAP_WALL = '▓';
         public const char MAP_HOLE = 'n';
+        public const char MAP_HOLE_FALSE = 'f';
         public const char MAP_SHOP = 'x';
+        public const char MAP_SHOP_R = 'r';
 
         // health constants
         public const int PLAYER_HP = 10;
-        public const int SHOP_HP = 3;
-        public const int QUEST_HP = 3;
-        public const int SIGN_HP = 5;
         public const int ROAMER_HP = 2;
         public const int CHARGER_HP = 1;
         public const int LAVA_HP = 1;
@@ -65,12 +71,12 @@ namespace Text_Based_RPG
         public const int PLAYER_START_COINS = 5;
         public const int COINBAG_RANGE = 5;
         public const int COINBAG_MIN = 3;
-        public const int HEALTH_COST = 6;
-        public const int HEALTH_COST2 = 10;
+        public const int HEALTH_COST = 4;
+        public const int HEALTH_COST2 = 8;
         public const int SPEAR_COST = 15;
-        public const int BOMB_COST = 50;
-        public const int BOAT_COST = 20;
-        public const int HULA_COST = 15;
+        public const int BOMB_COST = 60;
+        public const int BOAT_COST = 40;
+        public const int HULA_COST = 20;
         public const int GEM_COST = 100;
         public const int COINBAG_COST = 5;
 
@@ -101,7 +107,7 @@ namespace Text_Based_RPG
         // strength constants
         public const int PLAYER_STRENGTH = 1;
         public const int ROAMER_STRENGTH = 1;
-        public const int CHARGER_STRENGTH = 2;
+        public const int CHARGER_STRENGTH = 3;
         public const int LAVA_STRENGTH = 3;
         public const int SWIMMER_STRENGTH = 2;
         public const int ELITE_STRENGTH = 4;
@@ -110,8 +116,8 @@ namespace Text_Based_RPG
         public static Random random = new Random();
 
         // player starting position
-        public const int START_X = 74;
-        public const int START_Y = 36;
+        public const int START_X = 54;
+        public const int START_Y = 39;
 
         // camera radius
         public const int CAMERA_RADIUS = 10;

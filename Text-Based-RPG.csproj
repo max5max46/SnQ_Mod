@@ -49,6 +49,13 @@
     <Compile Include="Quest.cs" />
     <Compile Include="QuestManager.cs" />
     <Compile Include="QuestType.cs" />
+    <Compile Include="Fisherman.cs" />
+    <Compile Include="Mayor.cs" />
+    <Compile Include="RetiredSoldier.cs" />
+    <Compile Include="OldHermit.cs" />
+    <Compile Include="SandGuy.cs" />
+    <Compile Include="GrassGuy.cs" />
+    <Compile Include="DockGuy.cs" />
     <Compile Include="Sign.cs" />
     <Compile Include="QuestDealer.cs" />
     <Compile Include="ShopKeep.cs" />

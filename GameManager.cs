@@ -31,8 +31,8 @@ namespace Text_Based_RPG
             player = new Player(Global.START_X, Global.START_Y, map, attack, render);
             playerUI = new PlayerUI(player);
             itemManager = new ItemManager(render, attack, map, player);
-            enemyManager = new EnemyManager(attack, player, render, map, itemManager);
             npcManager = new NPCManager(attack, player, render, map, itemManager);
+            enemyManager = new EnemyManager(attack, player, render, map, itemManager, npcManager);
             questManager = new QuestManager(render, attack, map, player);
             camera = new Camera(player, map);
 

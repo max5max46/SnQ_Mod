@@ -69,7 +69,7 @@ namespace Text_Based_RPG
             base.Attack(attackShape);
 
             enemyManager.DamageEnemies();
-            npcManager.DamageNPCs();
+            npcManager.NPCInteract();
         }
 
         public void GetNPCManager(NPCManager npcManager)

@@ -51,7 +51,13 @@ namespace Text_Based_RPG
                         case Global.MAP_HOLE:
                             render.ChangeSpace(map[i, j], ConsoleColor.Black, ConsoleColor.Black, j, i);
                             break;
+                        case Global.MAP_HOLE_FALSE:
+                            render.ChangeSpace(map[i, j], ConsoleColor.Black, ConsoleColor.Black, j, i);
+                            break;
                         case Global.MAP_SHOP:
+                            render.ChangeSpace(map[i, j], ConsoleColor.DarkYellow, ConsoleColor.Black, j, i);
+                            break;
+                        case Global.MAP_SHOP_R:
                             render.ChangeSpace(map[i, j], ConsoleColor.DarkYellow, ConsoleColor.Black, j, i);
                             break;
                     }
@@ -69,6 +75,8 @@ namespace Text_Based_RPG
                     case Global.MAP_FOREST:
                     case Global.MAP_WOOD:
                     case Global.MAP_SHOP:
+                    case Global.MAP_SHOP_R:
+                    case Global.MAP_HOLE_FALSE:
                         return false;
                     case Global.MAP_WATER:
                         if (waterWalking) return false;

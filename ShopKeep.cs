@@ -10,28 +10,28 @@ namespace Text_Based_RPG
     {
         public ShopKeep(int x, int y, Map map, AttackMap attackMap, Render render, NPCTypeClass.NPCType type) : base(x, y, map, attackMap, render)
         {
-            health = Global.SHOP_HP;
-            maxHealth = Global.SHOP_HP;
+            health = 1;
+            maxHealth = 1;
+            dialogueCycle = 0;
             character = Global.SHOP_CHAR;
             this.Type = type;
-            name = type.ToString();
+            name = "Shop Keep";
         }
-        public override void TakeDamage(int damageAmount, bool displayDamage = true)
+        public override void Interact()
         {
-            switch (health)
+            switch (dialogueCycle)
             {
-                case 3:
-                    GameManager.playerUI.AddEvent("\"Hey! Watch where you swing that thing!\" -" + name);
-                    break;
-                case 2:
-                    GameManager.playerUI.AddEvent("\"I'm serious! get away from me with that thing!\" -" + name);
+                case 0:
+                    GameManager.playerUI.AddEvent("\"Hello! Welcome to my humble shop!\" -" + name);
                     break;
                 case 1:
-                    GameManager.playerUI.AddEvent("\"Why....\" -" + name);
+                    GameManager.playerUI.AddEvent("\"If you want to try your luck, talk to my friend the room over\" -" + name);
                     break;
+                case 2:
+                    GameManager.playerUI.AddEvent("\"Gem? no I don't have anything like that\" -" + name); dialogueCycle = 0;
+                    return;
             }
-
-            base.TakeDamage(damageAmount);
+            dialogueCycle++;
         }
     }
 }

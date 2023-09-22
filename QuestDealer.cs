@@ -10,29 +10,26 @@ namespace Text_Based_RPG
     {
         public QuestDealer(int x, int y, Map map, AttackMap attackMap, Render render, NPCTypeClass.NPCType type) : base(x, y, map, attackMap, render)
         {
-            health = Global.QUEST_HP;
-            maxHealth = Global.QUEST_HP;
+            health = 1;
+            maxHealth = 1;
+            dialogueCycle = 0;
             character = Global.QUEST_CHAR;
             this.Type = type;
-            name = type.ToString();
+            name = "Quest Manager";
         }
 
-        public override void TakeDamage(int damageAmount, bool displayDamage = true)
+        public override void Interact()
         {
-            switch (health)
+            switch (dialogueCycle)
             {
-                case 3:
-                    GameManager.playerUI.AddEvent("\"Hey! Watch where you swing that thing!\" -" + name);
-                    break;
-                case 2:
-                    GameManager.playerUI.AddEvent("\"I'm serious! get away from me with that thing!\" -" + name);
+                case 0:
+                    GameManager.playerUI.AddEvent("\"Oh! Hi! Didn't see you there, feel free to take a quest!\" -" + name);
                     break;
                 case 1:
-                    GameManager.playerUI.AddEvent("\"Why....\" -" + name);
-                    break;
+                    GameManager.playerUI.AddEvent("\"What? a gem you say? I heard the Mayor might have one\" -" + name); dialogueCycle = 0;
+                    return;
             }
-
-            base.TakeDamage(damageAmount);
+            dialogueCycle++;
         }
     }
 }

@@ -13,6 +13,13 @@ namespace Text_Based_RPG
         private Player player;
         private Render render;
 
+        private enum ShopState
+        {
+            Field,
+            NonRestock,
+            Restocks
+        }
+
         private char character;
 
         private ConsoleColor color;
@@ -62,26 +69,34 @@ namespace Text_Based_RPG
                 return;
             if (attackMap.IsAttack(x, y))
                 if (attackMap.PlayerAttackCheck(x, y))
-                    if (map.GetChar(x, y) == 'x')
+                    switch (map.GetChar(x, y))
                     {
-                        Collect(true);
-                        return;
+                        case 'x':
+                            Collect(ShopState.NonRestock); return;
+                        case 'r':
+                            Collect(ShopState.Restocks); return;
+                        default:
+                            Collect(ShopState.Field); break;
                     }
-                    else
-                        Collect(false);
 
             aboutToBuy = false;
         }
 
-        private void Collect(bool inShop)
+        private void Collect(ShopState shopState)
         {
             int coinAmount = 0;
-            if (inShop)
+            if (shopState == ShopState.NonRestock || shopState == ShopState.Restocks)
             {
                 if (aboutToBuy == true)
                     if (player.GetCoins() >= cost)
                     {
-                        GameManager.playerUI.AddEvent("Player bought a " + name);
+                        if (Type == ItemTypeClass.ItemType.CoinBag)
+                        {
+                            coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
+                            GameManager.playerUI.AddEvent("Player bought a " + name + " worth " + coinAmount + " coins");
+                        }
+                        else
+                            GameManager.playerUI.AddEvent("Player bought a " + name);
                         player.TakeCoins(cost);
                     }else
                     {
@@ -90,7 +105,10 @@ namespace Text_Based_RPG
                     }
                 else
                 {
-                    GameManager.playerUI.AddEvent("Try to buy the " + name + " worth " + cost + " coins?");
+                    if (shopState == ShopState.Restocks)
+                        GameManager.playerUI.AddEvent("Try to buy the " + name + " worth " + cost + " coins? (Restocks)");
+                    else
+                        GameManager.playerUI.AddEvent("Try to buy the " + name + " worth " + cost + " coins? (Limited)");
                     aboutToBuy = true;
                     return;
                 }
@@ -132,7 +150,11 @@ namespace Text_Based_RPG
                     player.GiveCoins(coinAmount);
                     break;
             }
-            collected = true;
+
+            if (shopState == ShopState.Restocks) {
+                aboutToBuy = false; return;
+            }else
+                collected = true;
         }
 
         public void Unhide()
@@ -140,7 +162,7 @@ namespace Text_Based_RPG
             if (hidden)
             {
                 hidden = false;
-                GameManager.playerUI.AddEvent("A " + name + " was revealed!");
+                GameManager.playerUI.AddEvent("You killed all the Elites!");
             }
         }
     }

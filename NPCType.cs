@@ -12,6 +12,13 @@ namespace Text_Based_RPG
         {
             ShopKeep,
             QuestDealer,
+            Fisherman,
+            Mayor,
+            RetiredSoldier,
+            OldHermit,
+            GrassGuy,
+            SandGuy,
+            DockGuy,
             Sign
         }
 
@@ -23,6 +30,20 @@ namespace Text_Based_RPG
                     return new ShopKeep(x, y, map, attackMap, render, NPCType.ShopKeep);
                 case NPCType.QuestDealer:
                     return new QuestDealer(x, y, map, attackMap, render, NPCType.QuestDealer);
+                case NPCType.Fisherman:
+                    return new Fisherman(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.Mayor:
+                    return new Mayor(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.RetiredSoldier:
+                    return new RetiredSoldier(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.OldHermit:
+                    return new OldHermit(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.GrassGuy:
+                    return new GrassGuy(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.SandGuy:
+                    return new SandGuy(x, y, map, attackMap, render, NPCType.Sign);
+                case NPCType.DockGuy:
+                    return new DockGuy(x, y, map, attackMap, render, NPCType.Sign);
                 case NPCType.Sign:
                     return new Sign(x, y, map, attackMap, render, NPCType.Sign);
                 default: return null;

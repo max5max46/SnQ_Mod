@@ -10,18 +10,16 @@ namespace Text_Based_RPG
     {
         public Sign(int x, int y, Map map, AttackMap attackMap, Render render, NPCTypeClass.NPCType type) : base(x, y, map, attackMap, render)
         {
-            health = Global.SIGN_HP;
-            maxHealth = Global.SIGN_HP;
+            health = 1;
+            maxHealth = 1;
             character = Global.SIGN_CHAR;
             this.Type = type;
-            name = type.ToString();
+            name = "Shop Sign";
         }
 
-        public override void TakeDamage(int damageAmount, bool displayDamage = true)
+        public override void Interact()
         {
-            GameManager.playerUI.AddEvent("\"The Totally Legit Shop!!!\" -" + name);
-
-            base.TakeDamage(damageAmount, false);
+            GameManager.playerUI.AddEvent("\"Health Shop! (and nothing shady!)\" -" + name);
         }
     }
 }
