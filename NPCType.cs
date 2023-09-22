@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         public enum NPCType
         {
             ShopKeep,
+            Gambler,
             QuestDealer,
             Fisherman,
             Mayor,
@@ -28,6 +29,8 @@ namespace Text_Based_RPG
             {
                 case NPCType.ShopKeep:
                     return new ShopKeep(x, y, map, attackMap, render, NPCType.ShopKeep);
+                case NPCType.Gambler:
+                    return new Gambler(x, y, map, attackMap, render, NPCType.ShopKeep);
                 case NPCType.QuestDealer:
                     return new QuestDealer(x, y, map, attackMap, render, NPCType.QuestDealer);
                 case NPCType.Fisherman:

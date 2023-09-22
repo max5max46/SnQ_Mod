@@ -23,6 +23,7 @@ namespace Text_Based_RPG
         // character constants
         public const char PLAYER_CHAR = '@';
         public const char SHOP_CHAR = '$';
+        public const char GAMBLER_CHAR = '¢';
         public const char QUEST_CHAR = '?';
         public const char FISHERMAN_CHAR = 'F';
         public const char MAYOR_CHAR = 'M';

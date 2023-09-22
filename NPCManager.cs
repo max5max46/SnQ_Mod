@@ -81,6 +81,9 @@ namespace Text_Based_RPG
                         case Global.SHOP_CHAR:
                             AddNPC(NPCTypeClass.NPCType.ShopKeep, j, i);
                             break;
+                        case Global.GAMBLER_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.Gambler, j, i);
+                            break;
                         case Global.FISHERMAN_CHAR:
                             AddNPC(NPCTypeClass.NPCType.Fisherman, j, i);
                             break;
@@ -115,6 +118,7 @@ namespace Text_Based_RPG
             {
                 case Global.QUEST_CHAR:
                 case Global.SHOP_CHAR:
+                case Global.GAMBLER_CHAR:
                 case Global.FISHERMAN_CHAR:
                 case Global.MAYOR_CHAR:
                 case Global.SOLDIER_CHAR:
