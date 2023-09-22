@@ -33,6 +33,7 @@ namespace Text_Based_RPG
         public const char SANDGUY_CHAR = 'S';
         public const char DOCKGUY_CHAR = 'D';
         public const char SIGN_CHAR = 'P';
+        public const char JOURNAL_CHAR = 'J'; 
         public const char ROAMER_CHAR = '0';
         public const char CHARGER_CHAR = 'V';
         public const char LAVA_CHAR = '₤';

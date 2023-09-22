@@ -57,6 +57,7 @@
     <Compile Include="GrassGuy.cs" />
     <Compile Include="DockGuy.cs" />
     <Compile Include="Gambler.cs" />
+    <Compile Include="Journal.cs" />
     <Compile Include="Sign.cs" />
     <Compile Include="QuestDealer.cs" />
     <Compile Include="ShopKeep.cs" />

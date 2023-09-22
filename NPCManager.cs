@@ -108,6 +108,9 @@ namespace Text_Based_RPG
                         case Global.SIGN_CHAR:
                             AddNPC(NPCTypeClass.NPCType.Sign, j, i);
                             break;
+                        case Global.JOURNAL_CHAR:
+                            AddNPC(NPCTypeClass.NPCType.Journal, j, i);
+                            break;
                     }
                 }
         }
@@ -127,6 +130,7 @@ namespace Text_Based_RPG
                 case Global.SANDGUY_CHAR:
                 case Global.DOCKGUY_CHAR:
                 case Global.SIGN_CHAR:
+                case Global.JOURNAL_CHAR:
                     return true;
                 default: 
                     return false;
