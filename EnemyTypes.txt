@@ -1,0 +1,11 @@
+{
+[Name](Elite)
+[Symbol Used In Enemy Map](‼)
+[Symbol Used In Gameplay](☺)
+[Health](10)
+[Strength](4)
+[Attack Shape](long_attack)
+[Will Kamikaze](false)
+[Movement Type](random_long)
+[Movement Cooldown](2)
+}
