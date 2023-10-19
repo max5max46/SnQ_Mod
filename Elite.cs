@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             character = Global.ELITE_CHAR;
             strength = Global.ELITE_STRENGTH;
             attackShape = Global.LONG_ATTACK;
-            this.Type = type;
+            this.type = type;
             name = type.ToString();
         }
 

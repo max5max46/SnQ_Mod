@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             character = Global.ROAMER_CHAR;
             strength = Global.ROAMER_STRENGTH;
             attackShape = Global.CROSS_ATTACK;
-            this.Type = type;
+            this.type = type;
             name = type.ToString();
         }
 

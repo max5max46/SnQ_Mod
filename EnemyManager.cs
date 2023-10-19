@@ -4,11 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Text_Based_RPG
 {
     internal class EnemyManager
     {
+        private struct EnemyStats
+        {
+            public string name;
+            public char characterOnEnemyMap;
+            public char character;
+            public int maxHealth;
+            public int strength;
+            public string attackShape;
+            public bool kamikaze;
+            public string moveType;
+            public int moveAt;
+        }
+
         private Render render;
         private Map map;
         private AttackMap attackMap;
@@ -30,10 +44,10 @@ namespace Text_Based_RPG
 
         List<Enemy> enemies = new List<Enemy>();
 
-        public void AddEnemy(EnemyTypeClass.EnemyType Type, int x, int y)
+        public void AddEnemy(int x, int y, int maxHealth, int moveAt, char character, int strength, string attackShape, bool kamikaze, string moveType, string name)
         {
-            enemies.Add(EnemyTypeClass.CreateEnemy(Type, x, y, map, attackMap, render));
-            if (Type == EnemyTypeClass.EnemyType.Elite) bossAlive = true;
+            enemies.Add(new Enemy(x, y, map, attackMap, render, maxHealth, moveAt, character, strength, attackShape, kamikaze, moveType, name));
+            if (name.Equals("elite", StringComparison.InvariantCultureIgnoreCase)) bossAlive = true;
         }
 
         public void Update()
@@ -43,7 +57,7 @@ namespace Text_Based_RPG
             foreach (Enemy enemy in enemies)
             {
                 enemy.Update();
-                if (enemy.GetEnemyType() == EnemyTypeClass.EnemyType.Elite && !enemy.GetDead())
+                if (enemy.GetEnemyName().Equals("elite", StringComparison.InvariantCultureIgnoreCase))
                     bossAlive = true;
             }
 
@@ -111,6 +125,12 @@ namespace Text_Based_RPG
                             break;
                     }
                 }
+        }
+
+        public EnemyStats[] InitEnemyTypes()
+        {
+            string mapString = File.ReadAllText("Enemies.txt");
+            EnemyStats[] enemyStats = new 
         }
     }
 }

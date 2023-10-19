@@ -10,14 +10,24 @@ namespace Text_Based_RPG
     {
         protected int moveCharge;
         protected int moveAt;
-        protected EnemyTypeClass.EnemyType Type;
+        protected string moveType;
 
-        public Enemy(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
+        public Enemy(int x, int y, Map map, AttackMap attackMap, Render render, int maxHealth, int moveAt, char character, int strength, string attackShape, bool kamikaze, string moveType, string name) : base(x, y, map, attackMap, render)
         {
             moveCharge = 0;
             color = ConsoleColor.Red;
             baseColor = color;
             attackColor = ConsoleColor.DarkBlue;
+
+            this.maxHealth = maxHealth;
+            health = this.maxHealth;
+            this.moveAt = moveAt;
+            this.character = character;
+            this.strength = strength;
+            this.attackShape = Global.ConvertAttackType(attackShape);
+            this.kamikaze = true;
+            this.moveType = moveType;
+            this.name = name;
         }
 
         public override void Update()
@@ -31,8 +41,15 @@ namespace Text_Based_RPG
             MoveAI();
         }
 
-        protected virtual void MoveAI()
+        protected void MoveAI()
         {
+            switch (moveType)
+            {
+                case "chasing": ChasingMove(); break;
+                case "random": RandomMove(); break;
+                case "random_long": RandomMoveL(); break;
+                case "static": StaticMove(); break;
+            }
             return;
         }
 
@@ -44,6 +61,115 @@ namespace Text_Based_RPG
                 return true;
             }
             return false;
+        }
+
+        private void ChasingMove()
+        {
+            // attack the player
+            int[] playerPos = GameManager.GetPlayerPos();
+            if (x == playerPos[0] && y == playerPos[1])
+            {
+                Attack(attackShape);
+                return;
+            }
+
+            // or move
+            if (playerPos[0] > x)
+            {
+                xDelta++;
+                if (Move())
+                {
+                    if (playerPos[1] > x)
+                        yDelta++;
+                    else if (playerPos[1] < y)
+                        yDelta--;
+                }
+            }
+            else if (playerPos[0] < x)
+            {
+                xDelta--;
+                if (Move())
+                {
+                    if (playerPos[1] > x)
+                        yDelta++;
+                    else if (playerPos[1] < y)
+                        yDelta--;
+                }
+            }
+            else if (playerPos[1] > y)
+                yDelta++;
+            else if (playerPos[1] < y)
+                yDelta--;
+
+            Move();
+        }
+
+        private void RandomMove()
+        {
+            // attack the player
+            int[] playerPos = GameManager.GetPlayerPos();
+            if (((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) || ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)))
+            {
+                Attack(attackShape);
+                return;
+            }
+
+            // or move
+            switch (Global.random.Next(4))
+            {
+                case 0:
+                    yDelta--;
+                    break;
+                case 1:
+                    xDelta--;
+                    break;
+                case 2:
+                    yDelta++;
+                    break;
+                case 3:
+                    xDelta++;
+                    break;
+            }
+            Move();
+        }
+
+        private void RandomMoveL()
+        {
+            // attack the player
+            int[] playerPos = GameManager.GetPlayerPos();
+            if (
+                ((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 1)) ||
+                ((Math.Abs(playerPos[0] - x) == 1) && (Math.Abs(playerPos[1] - y) == 0)) ||
+                ((Math.Abs(playerPos[0] - x) == 0) && (Math.Abs(playerPos[1] - y) == 2)) ||
+                ((Math.Abs(playerPos[0] - x) == 2) && (Math.Abs(playerPos[1] - y) == 0)))
+            {
+                Attack(attackShape);
+                return;
+            }
+
+            // or move
+            switch (Global.random.Next(4))
+            {
+                case 0:
+                    yDelta--;
+                    break;
+                case 1:
+                    xDelta--;
+                    break;
+                case 2:
+                    yDelta++;
+                    break;
+                case 3:
+                    xDelta++;
+                    break;
+            }
+            Move();
+        }
+
+        private void StaticMove()
+        {
+            // attack
+            Attack(attackShape);
         }
 
         protected override void Die()
@@ -60,9 +186,9 @@ namespace Text_Based_RPG
             base.TakeDamage(damageAmount, displayDamage);
         }
 
-        public EnemyTypeClass.EnemyType GetEnemyType()
+        public string GetEnemyName()
         {
-            return Type;
+            return name;
         }
     }
 }

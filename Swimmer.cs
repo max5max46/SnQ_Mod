@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             character = Global.SWIMMER_CHAR;
             strength = Global.SWIMMER_STRENGTH;
             attackShape = Global.CROSS_ATTACK;
-            this.Type = type;
+            this.type = type;
             name = type.ToString();
             waterWalking = true;
         }

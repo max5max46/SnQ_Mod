@@ -33,7 +33,7 @@ namespace Text_Based_RPG
         public const char SANDGUY_CHAR = 'S';
         public const char DOCKGUY_CHAR = 'D';
         public const char SIGN_CHAR = 'P';
-        public const char JOURNAL_CHAR = 'J'; 
+        public const char JOURNAL_CHAR = 'J';
         public const char ROAMER_CHAR = '0';
         public const char CHARGER_CHAR = 'V';
         public const char LAVA_CHAR = '₤';
@@ -126,5 +126,19 @@ namespace Text_Based_RPG
 
         // event log length
         public const int EVENT_LOG_LENGTH = 7;
+
+        public static int ConvertAttackType(string attackName)
+        {
+            switch (attackName)
+            {
+                case "cross_attack": return 0;
+                case "space_attack": return 1;
+                case "long_attack": return 2;
+                case "ring_attack": return 3;
+                case "x_attack": return 4;
+                default: return 0;
+            }
+        }
+
     }
 }

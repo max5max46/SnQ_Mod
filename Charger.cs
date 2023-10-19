@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             character = Global.CHARGER_CHAR;
             strength = Global.CHARGER_STRENGTH;
             attackShape = Global.SPACE_ATTACK;
-            this.Type = type;
+            this.type = type;
             name = type.ToString();
             kamikaze = true;
         }

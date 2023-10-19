@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             character = Global.LAVA_CHAR;
             strength = Global.LAVA_STRENGTH;
             attackShape = Global.RING_ATTACK;
-            this.Type = type;
+            this.type = type;
             name = type.ToString();
         }
 
