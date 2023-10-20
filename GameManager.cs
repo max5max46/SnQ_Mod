@@ -8,6 +8,8 @@ namespace Text_Based_RPG
 {
     internal class GameManager
     {
+        public static Global global = Global.GetFromJSON();
+
         static Map map;
         static Render render;
         static AttackMap attack;
@@ -28,7 +30,7 @@ namespace Text_Based_RPG
             map = new Map();
             render = new Render(map);
             attack = new AttackMap(map, render);
-            player = new Player(Global.START_X, Global.START_Y, map, attack, render);
+            player = new Player(GameManager.global.START_X, GameManager.global.START_Y, map, attack, render);
             playerUI = new PlayerUI(player);
             itemManager = new ItemManager(render, attack, map, player);
             npcManager = new NPCManager(attack, player, render, map, itemManager);

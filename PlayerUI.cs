@@ -17,7 +17,7 @@ namespace Text_Based_RPG
             "----------------------",
         };
 
-        public String[] EventLog = new string[Global.EVENT_LOG_LENGTH];
+        public String[] EventLog = new string[GameManager.global.EVENT_LOG_LENGTH];
 
         public PlayerUI(Player player)
         {
@@ -31,14 +31,14 @@ namespace Text_Based_RPG
 
         public void Draw(Map map)
         {
-            Console.SetCursorPosition(0, Global.CAMERA_RADIUS * 2);
+            Console.SetCursorPosition(0, GameManager.global.CAMERA_RADIUS * 2);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine(UIText[0]);
             Console.WriteLine(UIText[1]);
-            Console.SetCursorPosition(4, (Global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetHealth() + "  ");
-            Console.SetCursorPosition(18, (Global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetCoins() + "  ");
+            Console.SetCursorPosition(4, (GameManager.global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetHealth() + "  ");
+            Console.SetCursorPosition(18, (GameManager.global.CAMERA_RADIUS * 2) + 1); Console.Write(player.GetCoins() + "  ");
             Console.WriteLine("\n" + UIText[0]);
 
             for (int i = 0; i < EventLog.GetLength(0); i++)

@@ -59,24 +59,24 @@ namespace Text_Based_RPG
                             switch (Global.random.Next(3))
                             {
                                 case 0:
-                                    AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(Global.GIVE_HEALTH_QUEST_REWARD_RANGE) + Global.GIVE_HEALTH_QUEST_REWARD_MIN);
+                                    AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(GameManager.global.GIVE_HEALTH_QUEST_REWARD_RANGE) + GameManager.global.GIVE_HEALTH_QUEST_REWARD_MIN);
                                     break;
                                 case 1:
-                                    AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(Global.GIVE_SPEAR_QUEST_REWARD_RANGE) + Global.GIVE_SPEAR_QUEST_REWARD_MIN);
+                                    AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(GameManager.global.GIVE_SPEAR_QUEST_REWARD_RANGE) + GameManager.global.GIVE_SPEAR_QUEST_REWARD_MIN);
                                     break;
                                 case 2:
-                                    AddQuest(QuestTypeClass.QuestType.GiveHula, j, i, Global.random.Next(Global.GIVE_HULA_QUEST_REWARD_RANGE) + Global.GIVE_HULA_QUEST_REWARD_MIN);
+                                    AddQuest(QuestTypeClass.QuestType.GiveHula, j, i, Global.random.Next(GameManager.global.GIVE_HULA_QUEST_REWARD_RANGE) + GameManager.global.GIVE_HULA_QUEST_REWARD_MIN);
                                     break;
                             }
                             break;
                         case Global.GIVE_HEALTH_QUEST_CHAR:
-                            AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(Global.GIVE_HEALTH_QUEST_REWARD_RANGE) + Global.GIVE_HEALTH_QUEST_REWARD_MIN);
+                            AddQuest(QuestTypeClass.QuestType.GiveHealth, j, i, Global.random.Next(GameManager.global.GIVE_HEALTH_QUEST_REWARD_RANGE) + GameManager.global.GIVE_HEALTH_QUEST_REWARD_MIN);
                             break;
                         case Global.GIVE_SPEAR_QUEST_CHAR:
-                            AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(Global.GIVE_SPEAR_QUEST_REWARD_RANGE) + Global.GIVE_SPEAR_QUEST_REWARD_MIN);
+                            AddQuest(QuestTypeClass.QuestType.GiveSpear, j, i, Global.random.Next(GameManager.global.GIVE_SPEAR_QUEST_REWARD_RANGE) + GameManager.global.GIVE_SPEAR_QUEST_REWARD_MIN);
                             break;
                         case Global.GIVE_HULA_QUEST_CHAR:
-                            AddQuest(QuestTypeClass.QuestType.GiveHula, j, i, Global.random.Next(Global.GIVE_HULA_QUEST_REWARD_RANGE) + Global.GIVE_HULA_QUEST_REWARD_MIN);
+                            AddQuest(QuestTypeClass.QuestType.GiveHula, j, i, Global.random.Next(GameManager.global.GIVE_HULA_QUEST_REWARD_RANGE) + GameManager.global.GIVE_HULA_QUEST_REWARD_MIN);
                             break;
                     }
                 }

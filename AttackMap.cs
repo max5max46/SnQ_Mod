@@ -33,7 +33,6 @@ namespace Text_Based_RPG
             currentAttack.strength = strength;
             if (source == "Player")
                 currentAttack.isPlayer = true;
-
             switch (attackShape)
             {
                 case Global.CROSS_ATTACK:

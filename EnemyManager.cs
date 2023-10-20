@@ -79,7 +79,7 @@ namespace Text_Based_RPG
         public void Bomb()
         {
             foreach (Enemy enemy in enemies)
-                enemy.TakeDamageDirect(Global.SMALL_BOMB_DAMAGE);
+                enemy.TakeDamageDirect(GameManager.global.SMALL_BOMB_DAMAGE);
             attackMap.Flash();
         }
 

@@ -1,53 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
     internal class Global
     {
-        // item value constants
-        public const int HEAL_SMALL = 2;
-        public const int HEAL_LARGE = 5;
-        public const int SMALL_BOMB_DAMAGE = 5;
-
-        // attack shape constants
-        public const int CROSS_ATTACK = 0;
-        public const int SPACE_ATTACK = 1;
-        public const int LONG_ATTACK = 2;
-        public const int RING_ATTACK = 3;
-        public const int X_ATTACK = 4;
-
-        // character constants
-        public const char PLAYER_CHAR = '@';
-        public const char SHOP_CHAR = '$';
-        public const char GAMBLER_CHAR = '¢';
-        public const char QUEST_CHAR = '?';
-        public const char FISHERMAN_CHAR = 'F';
-        public const char MAYOR_CHAR = 'M';
-        public const char SOLDIER_CHAR = 'A';
-        public const char HERMIT_CHAR = 'H';
-        public const char GRASSGUY_CHAR = 'G';
-        public const char SANDGUY_CHAR = 'S';
-        public const char DOCKGUY_CHAR = 'D';
-        public const char SIGN_CHAR = 'P';
-        public const char JOURNAL_CHAR = 'J';
-        public const char ROAMER_CHAR = '0';
-        public const char CHARGER_CHAR = 'V';
-        public const char LAVA_CHAR = '₤';
-        public const char SWIMMER_CHAR = 'W';
-        public const char ELITE_CHAR = '‼';
-        public const char HEALTH_CHAR = '♥';
-        public const char HEALTH_CHAR2 = '+';
-        public const char COINBAG_CHAR = 'C';
-        public const char SPEAR_CHAR = '↑';
-        public const char BOMB_CHAR = 'B';
-        public const char BOAT_CHAR = 'U';
-        public const char HULA_CHAR = 'O';
-        public const char GEM_CHAR = '♦';
-
         // map display constants
         public const char MAP_GRASS = '`';
         public const char MAP_WATER = '~';
@@ -61,26 +24,51 @@ namespace Text_Based_RPG
         public const char MAP_SHOP = 'x';
         public const char MAP_SHOP_R = 'r';
 
-        // health constants
-        public const int PLAYER_HP = 10;
-        public const int ROAMER_HP = 2;
-        public const int CHARGER_HP = 1;
-        public const int LAVA_HP = 1;
-        public const int SWIMMER_HP = 3;
-        public const int ELITE_HP = 8;
+        // attack shape constants
+        public const int CROSS_ATTACK = 0;
+        public const int SPACE_ATTACK = 1;
+        public const int LONG_ATTACK = 2;
+        public const int RING_ATTACK = 3;
+        public const int X_ATTACK = 4;
+
+        // player constants (char)
+        public const char PLAYER_CHAR = '@';
+
+        // item character constants
+        public const char HEALTH_CHAR = '♥';
+        public const char HEALTH_CHAR2 = '+';
+        public const char COINBAG_CHAR = 'C';
+        public const char SPEAR_CHAR = '↑';
+        public const char BOMB_CHAR = 'B';
+        public const char BOAT_CHAR = 'U';
+        public const char HULA_CHAR = 'O';
+        public const char GEM_CHAR = '♦';
+
+        // item value constants
+        public int HEAL_SMALL { get; set; }
+        public int HEAL_LARGE { get; set; }
+        public int SMALL_BOMB_DAMAGE { get; set; }
+
+        // player constants
+        public int PLAYER_HP { get; set; }
+        public int PLAYER_START_COINS { get; set; }
+        public int PLAYER_STRENGTH { get; set; }
+
+        // player starting position
+        public int START_X { get; set; }
+        public int START_Y { get; set; }
 
         // coin constants
-        public const int PLAYER_START_COINS = 5;
-        public const int COINBAG_RANGE = 5;
-        public const int COINBAG_MIN = 3;
-        public const int HEALTH_COST = 4;
-        public const int HEALTH_COST2 = 8;
-        public const int SPEAR_COST = 15;
-        public const int BOMB_COST = 60;
-        public const int BOAT_COST = 40;
-        public const int HULA_COST = 20;
-        public const int GEM_COST = 100;
-        public const int COINBAG_COST = 5;
+        public int COINBAG_RANGE { get; set; }
+        public int COINBAG_MIN { get; set; }
+        public int HEALTH_COST { get; set; }
+        public int HEALTH_COST2 { get; set; }
+        public int SPEAR_COST { get; set; }
+        public int BOMB_COST { get; set; }
+        public int BOAT_COST { get; set; }
+        public int HULA_COST { get; set; }
+        public int GEM_COST { get; set; }
+        public int COINBAG_COST { get; set; }
 
         // quest char contants
         public const char UNACCEPTED_QUEST = '?';
@@ -92,40 +80,22 @@ namespace Text_Based_RPG
         public const char GIVE_HULA_QUEST_CHAR = 'O';
 
         // quest reward contants
-        public const int GIVE_HEALTH_QUEST_REWARD_RANGE = 4;
-        public const int GIVE_HEALTH_QUEST_REWARD_MIN = 5;
-        public const int GIVE_SPEAR_QUEST_REWARD_RANGE = 6;
-        public const int GIVE_SPEAR_QUEST_REWARD_MIN = 13;
-        public const int GIVE_HULA_QUEST_REWARD_RANGE = 6;
-        public const int GIVE_HULA_QUEST_REWARD_MIN = 13;
+        public int GIVE_HEALTH_QUEST_REWARD_RANGE { get; set; }
+        public int GIVE_HEALTH_QUEST_REWARD_MIN { get; set; }
+        public int GIVE_SPEAR_QUEST_REWARD_RANGE { get; set; }
+        public int GIVE_SPEAR_QUEST_REWARD_MIN { get; set; }
+        public int GIVE_HULA_QUEST_REWARD_RANGE { get; set; }
+        public int GIVE_HULA_QUEST_REWARD_MIN { get; set; }
 
-        // move-at constants
-        public const int ROAMER_MOVEAT = 2;
-        public const int CHARGER_MOVEAT = 1;
-        public const int LAVA_MOVEAT = 1;
-        public const int SWIMMER_MOVEAT = 2;
-        public const int ELITE_MOVEAT = 2;
 
-        // strength constants
-        public const int PLAYER_STRENGTH = 1;
-        public const int ROAMER_STRENGTH = 1;
-        public const int CHARGER_STRENGTH = 3;
-        public const int LAVA_STRENGTH = 3;
-        public const int SWIMMER_STRENGTH = 2;
-        public const int ELITE_STRENGTH = 4;
+        // camera radius
+        public int CAMERA_RADIUS { get; set; }
+
+        // event log length
+        public int EVENT_LOG_LENGTH { get; set; }
 
         // random class constant
         public static Random random = new Random();
-
-        // player starting position
-        public const int START_X = 54;
-        public const int START_Y = 39;
-
-        // camera radius
-        public const int CAMERA_RADIUS = 10;
-
-        // event log length
-        public const int EVENT_LOG_LENGTH = 7;
 
         public static int ConvertAttackType(string attackName)
         {
@@ -140,5 +110,12 @@ namespace Text_Based_RPG
             }
         }
 
+        public static Global GetFromJSON()
+        {
+            string dataPath = "settings.json";
+            string jsonData = File.ReadAllText(dataPath);
+            var settingsData = JsonSerializer.Deserialize<Global>(jsonData);
+            return settingsData;
+        }
     }
 }

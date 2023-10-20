@@ -25,8 +25,8 @@ namespace Text_Based_RPG
             this.map = map;
 
             wholeMap = new RenderSpace[map.Height(), map.Width()];
-            camBufferPrev = new RenderSpace[Global.CAMERA_RADIUS * 2, Global.CAMERA_RADIUS * 2];
-            camBufferNext = new RenderSpace[Global.CAMERA_RADIUS * 2, Global.CAMERA_RADIUS * 2];
+            camBufferPrev = new RenderSpace[GameManager.global.CAMERA_RADIUS * 2, GameManager.global.CAMERA_RADIUS * 2];
+            camBufferNext = new RenderSpace[GameManager.global.CAMERA_RADIUS * 2, GameManager.global.CAMERA_RADIUS * 2];
         }
 
         public void ChangeSpace(char NewChar, ConsoleColor NewBGColour, ConsoleColor NewFGColour, int x, int y)
@@ -48,7 +48,7 @@ namespace Text_Based_RPG
             {
                 for (int x = 0; x < camBufferNext.GetLength(1); x++)
                 {
-                    camBufferNext[y, x] = wholeMap[y + camera.GetPos()[1] - Global.CAMERA_RADIUS + 1, x + camera.GetPos()[0] - Global.CAMERA_RADIUS + 1];
+                    camBufferNext[y, x] = wholeMap[y + camera.GetPos()[1] - GameManager.global.CAMERA_RADIUS + 1, x + camera.GetPos()[0] - GameManager.global.CAMERA_RADIUS + 1];
                     Console.SetCursorPosition(x * 2, y);
                     Console.BackgroundColor = camBufferNext[y, x].BG;
                     Console.ForegroundColor = camBufferNext[y, x].FG;

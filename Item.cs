@@ -92,7 +92,7 @@ namespace Text_Based_RPG
                     {
                         if (Type == ItemTypeClass.ItemType.CoinBag)
                         {
-                            coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
+                            coinAmount = Global.random.Next(GameManager.global.COINBAG_RANGE) + GameManager.global.COINBAG_MIN;
                             GameManager.playerUI.AddEvent("Player bought a " + name + " worth " + coinAmount + " coins");
                         }
                         else
@@ -117,7 +117,7 @@ namespace Text_Based_RPG
 
                 if (Type == ItemTypeClass.ItemType.CoinBag)
                 {
-                    coinAmount = Global.random.Next(Global.COINBAG_RANGE) + Global.COINBAG_MIN;
+                    coinAmount = Global.random.Next(GameManager.global.COINBAG_RANGE) + GameManager.global.COINBAG_MIN;
                     GameManager.playerUI.AddEvent("Player collected a " + name + " worth " + coinAmount + " coins");
                 }else
                     GameManager.playerUI.AddEvent("Player collected a " + name);
@@ -126,10 +126,10 @@ namespace Text_Based_RPG
             switch (Type)
             {
                 case ItemTypeClass.ItemType.HealthPickup:
-                    player.Heal(Global.HEAL_SMALL);
+                    player.Heal(GameManager.global.HEAL_SMALL);
                     break;
                 case ItemTypeClass.ItemType.HealthPickupLarge:
-                    player.Heal(Global.HEAL_LARGE);
+                    player.Heal(GameManager.global.HEAL_LARGE);
                     break;
                 case ItemTypeClass.ItemType.Spear:
                     player.ChangeAttackShape(Global.LONG_ATTACK);

@@ -20,12 +20,12 @@ namespace Text_Based_RPG
             baseColor = color;
             attackShape = Global.CROSS_ATTACK;
             kamikaze = false;
-            strength = Global.PLAYER_STRENGTH;
+            strength = GameManager.global.PLAYER_STRENGTH;
             name = "Player";
             waterWalking = false;
-            health = Global.PLAYER_HP;
-            maxHealth = Global.PLAYER_HP;
-            coins = Global.PLAYER_START_COINS;
+            health = GameManager.global.PLAYER_HP;
+            maxHealth = GameManager.global.PLAYER_HP;
+            coins = GameManager.global.PLAYER_START_COINS;
         }
 
         public override void Update()

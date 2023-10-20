@@ -62,28 +62,28 @@ namespace Text_Based_RPG
                     switch (itemMap[i, j])
                     {
                         case Global.GEM_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Gem, j, i, Global.GEM_COST);
+                            AddItem(ItemTypeClass.ItemType.Gem, j, i, GameManager.global.GEM_COST);
                             break;
                         case Global.BOAT_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Boat, j, i, Global.BOAT_COST);
+                            AddItem(ItemTypeClass.ItemType.Boat, j, i, GameManager.global.BOAT_COST);
                             break;
                         case Global.HULA_CHAR:
-                            AddItem(ItemTypeClass.ItemType.HulaHoop, j, i, Global.HULA_COST);
+                            AddItem(ItemTypeClass.ItemType.HulaHoop, j, i, GameManager.global.HULA_COST);
                             break;
                         case Global.SPEAR_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Spear, j, i, Global.SPEAR_COST);
+                            AddItem(ItemTypeClass.ItemType.Spear, j, i, GameManager.global.SPEAR_COST);
                             break;
                         case Global.BOMB_CHAR:
-                            AddItem(ItemTypeClass.ItemType.Bomb, j, i, Global.BOMB_COST);
+                            AddItem(ItemTypeClass.ItemType.Bomb, j, i, GameManager.global.BOMB_COST);
                             break;
                         case Global.HEALTH_CHAR:
-                            AddItem(ItemTypeClass.ItemType.HealthPickup, j, i, Global.HEALTH_COST);
+                            AddItem(ItemTypeClass.ItemType.HealthPickup, j, i, GameManager.global.HEALTH_COST);
                             break;
                         case Global.HEALTH_CHAR2:
-                            AddItem(ItemTypeClass.ItemType.HealthPickupLarge, j, i, Global.HEALTH_COST2);
+                            AddItem(ItemTypeClass.ItemType.HealthPickupLarge, j, i, GameManager.global.HEALTH_COST2);
                             break;
                         case Global.COINBAG_CHAR:
-                            AddItem(ItemTypeClass.ItemType.CoinBag, j, i, Global.COINBAG_COST);
+                            AddItem(ItemTypeClass.ItemType.CoinBag, j, i, GameManager.global.COINBAG_COST);
                             break;
                     }
                 }
