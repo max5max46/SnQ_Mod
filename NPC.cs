@@ -32,7 +32,7 @@ namespace Text_Based_RPG
             if (dialogue.Length <= dialogueCycle)
                 dialogueCycle = 0;
 
-            GameManager.playerUI.AddEvent(dialogue[dialogueCycle] + " -" + name);
+            GameManager.playerUI.AddEvent("\"" + dialogue[dialogueCycle] + "\"" + " -" + name);
             dialogueCycle++;
         }
 
