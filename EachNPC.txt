@@ -1,0 +1,106 @@
+{
+[Name](Dock Guy)
+[Symbol Used In NPC Map](D)
+[Symbol Used In Gameplay](D)
+[Dialogue]
+(Oh me? I'm just enjoying this wonderful dock)
+(Some people say if you follow the old dock heading west, theres a fortress at the end!)
+(If you need a way to cross water, go to the fisherman's shack on the water)
+}
+{
+[Name](Fisherman)
+[Symbol Used In NPC Map](F)
+[Symbol Used In Gameplay](F)
+[Dialogue]
+(Aye lad, what can i do for thee?)
+(If ye need a boat, you can buy me old one sitting over there)
+(Ye know, there used to be a old man 'round here, sailed off one day and I aven't seen him since)
+}
+{
+[Name](Gambler)
+[Symbol Used In NPC Map](¢)
+[Symbol Used In Gameplay](¢)
+[Dialogue]
+(Hello there old boy! Here to try your luck?)
+(Buy a bag and you may get your coins back and then some!)
+(Gem? of course! you can afford as many gems as you want, just play my game!)
+}
+{
+[Name](Grass Guy)
+[Symbol Used In NPC Map](G)
+[Symbol Used In Gameplay](G)
+[Dialogue]
+(Oh me? just enjoying this superb grass!)
+(Theres a fortress north of here, they say you need to sail up the river to get inside)
+(Gem? oh, talk to the Mayor he can help)
+}
+{
+[Name](Journal)
+[Symbol Used In NPC Map](J)
+[Symbol Used In Gameplay](J)
+[Dialogue]
+(Day XXX: Ever since I heard the legend of the old hero, I've been training for a great quest!)
+(Day XZX: Finally a lead to begin my quest! but to pursue it I need an gem...)
+(Day XYZ: Given the research I've done, there should be someone in this town who has one, time to ask around)
+}
+{
+[Name](Mayor)
+[Symbol Used In NPC Map](M)
+[Symbol Used In Gameplay](M)
+[Dialogue]
+(A gem you say? yes I have it, but I need a favor)
+(Kill all the elites in the area and I'll sell you one)
+(Need help? talk to the Guys, they'll point you in the right direction)
+(Come back when your done, I'll have the gem ready)
+}
+{
+[Name](Old Hermit)
+[Symbol Used In NPC Map](H)
+[Symbol Used In Gameplay](H)
+[Dialogue]
+(Hehehehehe ooooo look at you hehehe)
+(Need some fire power? hehe I've got just the thing hehe)
+(If you buy it you'll never have to fight again hehe)
+}
+{
+[Name](Quest Dealer)
+[Symbol Used In NPC Map](?)
+[Symbol Used In Gameplay](?)
+[Dialogue]
+(Oh! Hi! Didn't see you there, feel free to take a quest!)
+(What? a gem you say? I heard the Mayor might have one)
+}
+{
+[Name](Retired Soldier)
+[Symbol Used In NPC Map](A)
+[Symbol Used In Gameplay](A)
+[Dialogue]
+(Huh, didn't expect anyone coming around here)
+(I'll sell you my old weapons if you want, but don't expect me to help you fight)
+(Be careful theres a cave north of here full of monsters)
+}
+{
+[Name](Sand Guy)
+[Symbol Used In NPC Map](S)
+[Symbol Used In Gameplay](S)
+[Dialogue]
+(Oh me? just enjoying this amazing sand!)
+(If you head west along the cost you'll find a retired soldier, he's a pretty cool dude!)
+(If you want to sign up to some quests before you go, just enter the building east of here!)
+}
+{
+[Name](Shop Keep)
+[Symbol Used In NPC Map]($)
+[Symbol Used In Gameplay]($)
+[Dialogue]
+(Hello! Welcome to my humble shop!)
+(If you want to try your luck, talk to my friend the room over)
+(Gem? no I don't have anything like that)
+}
+{
+[Name](Shop Sign)
+[Symbol Used In NPC Map](P)
+[Symbol Used In Gameplay](P)
+[Dialogue]
+(Health Shop! and nothing shady!)
+}

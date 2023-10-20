@@ -25,7 +25,7 @@ namespace Text_Based_RPG
             this.character = character;
             this.strength = strength;
             this.attackShape = Global.ConvertAttackType(attackShape);
-            this.kamikaze = true;
+            this.kamikaze = kamikaze;
             this.moveType = moveType;
             this.name = name;
         }

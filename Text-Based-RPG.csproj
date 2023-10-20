@@ -48,23 +48,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Quest.cs" />
     <Compile Include="QuestManager.cs" />
-    <Compile Include="QuestType.cs" />
-    <Compile Include="Fisherman.cs" />
-    <Compile Include="Mayor.cs" />
-    <Compile Include="RetiredSoldier.cs" />
-    <Compile Include="OldHermit.cs" />
-    <Compile Include="SandGuy.cs" />
-    <Compile Include="GrassGuy.cs" />
-    <Compile Include="DockGuy.cs" />
-    <Compile Include="Gambler.cs" />
-    <Compile Include="Journal.cs" />
-    <Compile Include="Sign.cs" />
-    <Compile Include="QuestDealer.cs" />
-    <Compile Include="ShopKeep.cs" />
-    <Compile Include="Charger.cs" />
-    <Compile Include="Elite.cs" />
     <Compile Include="NPC.cs" />
-    <Compile Include="NPCType.cs" />
     <Compile Include="NPCManager.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="GameCharacter.cs" />
@@ -73,15 +57,13 @@
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="ItemType.cs" />
-    <Compile Include="Lava.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestType.cs" />
     <Compile Include="Render.cs" />
-    <Compile Include="Roamer.cs" />
-    <Compile Include="Swimmer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

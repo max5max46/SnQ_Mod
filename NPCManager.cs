@@ -10,6 +10,14 @@ namespace Text_Based_RPG
 {
     internal class NPCManager
     {
+        private struct NPCStats
+        {
+            public string name;
+            public char characterOnNPCMap;
+            public char character;
+            public string[] dialogue;
+        }
+
         private Render render;
         private Map map;
         private AttackMap attackMap;
@@ -35,9 +43,9 @@ namespace Text_Based_RPG
 
         List<NPC> npcs = new List<NPC>();
 
-        public void AddNPC(NPCTypeClass.NPCType Type, int x, int y)
+        private void AddNPC(int x, int y, NPCStats NPC)
         {
-            npcs.Add(NPCTypeClass.CreateNPC(Type, x, y, map, attackMap, render));
+            npcs.Add(new NPC(x, y, map, attackMap, render, NPC.character, NPC.name, NPC.dialogue));
         }
 
         public void Update()
@@ -70,71 +78,78 @@ namespace Text_Based_RPG
 
         public void InitNPCs()
         {
+            NPCStats[] NPCs = InitEachNPC();
+
             for (int i = 0; i < npcMap.GetLength(0); i++)
                 for (int j = 0; j < npcMap.GetLength(1); j++)
-                {
-                    switch (npcMap[i, j])
-                    {
-                        case Global.QUEST_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.QuestDealer, j, i);
-                            break;
-                        case Global.SHOP_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.ShopKeep, j, i);
-                            break;
-                        case Global.GAMBLER_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.Gambler, j, i);
-                            break;
-                        case Global.FISHERMAN_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.Fisherman, j, i);
-                            break;
-                        case Global.MAYOR_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.Mayor, j, i);
-                            break;
-                        case Global.SOLDIER_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.RetiredSoldier, j, i);
-                            break;
-                        case Global.HERMIT_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.OldHermit, j, i);
-                            break;
-                        case Global.GRASSGUY_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.GrassGuy, j, i);
-                            break;
-                        case Global.SANDGUY_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.SandGuy, j, i);
-                            break;
-                        case Global.DOCKGUY_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.DockGuy, j, i);
-                            break;
-                        case Global.SIGN_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.Sign, j, i);
-                            break;
-                        case Global.JOURNAL_CHAR:
-                            AddNPC(NPCTypeClass.NPCType.Journal, j, i);
-                            break;
-                    }
-                }
+                    foreach (NPCStats NPC in NPCs)
+                        if (npcMap[i, j] == NPC.characterOnNPCMap)
+                            AddNPC(j, i, NPC);
         }
 
-        public bool IsNPCHere(int x, int y)
+        private NPCStats[] InitEachNPC()
         {
-            switch (npcMap[y, x])
+            string txtNPCs;
+            string[] txtEachNPC;
+            string[] txtNPCStats;
+            NPCStats[] NPCs;
+            int NPCIndex = 0;
+
+            txtNPCs = File.ReadAllText("EachNPC.txt");
+            txtEachNPC = txtNPCs.Split('{');
+            NPCs = new NPCStats[txtEachNPC.GetLength(0) - 1];
+
+            foreach (string txtNPC in txtEachNPC)
             {
-                case Global.QUEST_CHAR:
-                case Global.SHOP_CHAR:
-                case Global.GAMBLER_CHAR:
-                case Global.FISHERMAN_CHAR:
-                case Global.MAYOR_CHAR:
-                case Global.SOLDIER_CHAR:
-                case Global.HERMIT_CHAR:
-                case Global.GRASSGUY_CHAR:
-                case Global.SANDGUY_CHAR:
-                case Global.DOCKGUY_CHAR:
-                case Global.SIGN_CHAR:
-                case Global.JOURNAL_CHAR:
-                    return true;
-                default: 
-                    return false;
+                if (txtNPC.Contains('}'))
+                {
+                    txtNPCStats = txtNPC.Split('[');
+                    foreach (string txtNPCStat in txtNPCStats)
+                    {
+                        if (txtNPCStat.Contains(']'))
+                        {
+                            switch (txtNPCStat.ToLower())
+                            {
+                                case string s when s.Contains("name"):
+                                    if (txtNPCStat.IndexOf('(') != -1 && txtNPCStat.IndexOf(')') != -1)
+                                        NPCs[NPCIndex].name = txtNPCStat.Substring(txtNPCStat.IndexOf('(') + 1, txtNPCStat.IndexOf(')') - (txtNPCStat.IndexOf('(') + 1));
+                                    break;
+
+                                case string s when s.Contains("symbol used in npc map"):
+                                    if (txtNPCStat.IndexOf('(') != -1 && txtNPCStat.IndexOf(')') != -1)
+                                        NPCs[NPCIndex].characterOnNPCMap = txtNPCStat.Substring(txtNPCStat.IndexOf('(') + 1, txtNPCStat.IndexOf(')') - (txtNPCStat.IndexOf('(') + 1))[0];
+                                    break;
+
+                                case string s when s.Contains("symbol used in gameplay"):
+                                    if (txtNPCStat.IndexOf('(') != -1 && txtNPCStat.IndexOf(')') != -1)
+                                        NPCs[NPCIndex].character = txtNPCStat.Substring(txtNPCStat.IndexOf('(') + 1, txtNPCStat.IndexOf(')') - (txtNPCStat.IndexOf('(') + 1))[0];
+                                    break;
+
+                                case string s when s.Contains("dialogue"):
+
+                                    int dialogueIndex = 0;
+                                    string[] dialogue = txtNPCStat.Split('(');
+                                    NPCs[NPCIndex].dialogue = new string[dialogue.GetLength(0) - 1];
+
+                                    foreach (string line in dialogue)
+                                    {
+                                        if (line.Contains(')'))
+                                        {
+                                            if (line.IndexOf(')') != -1)
+                                                NPCs[NPCIndex].dialogue[dialogueIndex] = line.Substring(0, line.IndexOf(')'));
+                                            dialogueIndex++;
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    NPCIndex++;
+                }
             }
+
+            return NPCs;
         }
+
     }
 }

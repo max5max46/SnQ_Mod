@@ -1,11 +1,55 @@
 {
 [Name](Elite)
 [Symbol Used In Enemy Map](‼)
-[Symbol Used In Gameplay](☺)
+[Symbol Used In Gameplay](‼)
 [Health](10)
 [Strength](4)
 [Attack Shape](long_attack)
 [Will Kamikaze](false)
 [Movement Type](random_long)
+[Movement Cooldown](2)
+}
+{
+[Name](Roamer)
+[Symbol Used In Enemy Map](0)
+[Symbol Used In Gameplay](☺)
+[Health](2)
+[Strength](1)
+[Attack Shape](cross_attack)
+[Will Kamikaze](false)
+[Movement Type](random)
+[Movement Cooldown](2)
+}
+{
+[Name](Charger)
+[Symbol Used In Enemy Map](V)
+[Symbol Used In Gameplay](V)
+[Health](1)
+[Strength](2)
+[Attack Shape](space_attack)
+[Will Kamikaze](true)
+[Movement Type](chasing)
+[Movement Cooldown](1)
+}
+{
+[Name](Lava)
+[Symbol Used In Enemy Map](₤)
+[Symbol Used In Gameplay](₤)
+[Health](1)
+[Strength](3)
+[Attack Shape](ring_attack)
+[Will Kamikaze](false)
+[Movement Type](static)
+[Movement Cooldown](1)
+}
+{
+[Name](Swimmer)
+[Symbol Used In Enemy Map](W)
+[Symbol Used In Gameplay](W)
+[Health](3)
+[Strength](2)
+[Attack Shape](cross_attack)
+[Will Kamikaze](false)
+[Movement Type](random)
 [Movement Cooldown](2)
 }

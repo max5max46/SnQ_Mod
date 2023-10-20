@@ -8,30 +8,32 @@ namespace Text_Based_RPG
 {
     internal class NPC : GameCharacter
     {
-        protected int moveCharge;
-        protected int moveAt;
-        protected NPCTypeClass.NPCType Type;
-        protected int dialogueCycle;
+        protected int dialogueCycle = 0;
+        protected string[] dialogue;
 
-        public NPC(int x, int y, Map map, AttackMap attackMap, Render render) : base(x, y, map, attackMap, render)
+        public NPC(int x, int y, Map map, AttackMap attackMap, Render render, char character, string name, string[] dialogue) : base(x, y, map, attackMap, render)
         {
-            moveCharge = 0;
             color = ConsoleColor.Green;
             baseColor = color;
+
+            this.character = character;
+            this.name = name;
+            this.dialogue = dialogue;
+
         }
 
         public override void Update()
         {
             base.Update();
         }
-        public NPCTypeClass.NPCType GetNPCType()
-        {
-            return Type;
-        }
 
-        public virtual void Interact()
+        public void Interact()
         {
+            if (dialogue.Length <= dialogueCycle)
+                dialogueCycle = 0;
 
+            GameManager.playerUI.AddEvent(dialogue[dialogueCycle] + " -" + name);
+            dialogueCycle++;
         }
 
         protected override void Die()
